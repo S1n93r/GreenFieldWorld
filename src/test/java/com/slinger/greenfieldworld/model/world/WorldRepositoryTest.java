@@ -31,17 +31,27 @@ class WorldRepositoryTest {
     }
 
     @Test
+    public void createdWorldIsNotNull() {
+
+        /* Given, When */
+        World world = sut.createWorld("creation_test");
+
+        /* Then */
+        assertNotNull(world);
+    }
+
+    @Test
     public void savedFileEqualsSavedWorld() throws IOException {
 
         /* Given */
-        World expectedWorld = new World(1, "loading_test");
+        World expectedWorld = World.builder().id(1).name("saving_test").build();
 
         /* When */
         sut.saveWorld(expectedWorld, FOLDER);
 
         /* Then */
         ObjectReader or = new ObjectMapper().reader();
-        World actualWorld = or.readValue(new File(FOLDER, "world_loading_test.json"), World.class);
+        World actualWorld = or.readValue(new File(FOLDER, "world_saving_test.json"), World.class);
 
         assertEquals(expectedWorld.getId(), actualWorld.getId());
     }
@@ -50,7 +60,7 @@ class WorldRepositoryTest {
     public void loadedWorldEqualsLoadedFile() {
 
         /* Given */
-        World expectedWorld = new World(1, "loading_test");
+        World expectedWorld = World.builder().id(1).name("loading_test").build();
 
         sut.saveWorld(expectedWorld, FOLDER);
 

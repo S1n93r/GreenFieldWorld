@@ -6,25 +6,18 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Jacksonized
-@Builder(access = AccessLevel.PROTECTED)
+@Builder(access = AccessLevel.PACKAGE)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class World {
+public class Plains {
 
     @Getter
-    private final Map<Coordinate, Region> regionsMap = new HashMap<>();
+    private final RegionName regionName = RegionName.PLAINS;
 
     @Getter
     private long id;
 
-    @Getter
-    private String name;
-
-    private World(long id, String name) {
+    private Plains(long id) {
         this.id = id;
-        this.name = name;
     }
 }

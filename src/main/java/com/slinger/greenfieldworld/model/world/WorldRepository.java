@@ -18,12 +18,10 @@ public class WorldRepository {
         return World.builder().id(System.currentTimeMillis()).name(name).build();
     }
 
-    /* TODO: Remove "return String" --> Only for implementation. */
     public void saveWorld(World world) {
         saveWorld(world, DEFAULT_SAVE_FOLDER);
     }
 
-    /* TODO: Remove "return String" --> Only for implementation. */
     public void saveWorld(World world, File folder) {
 
         try {
@@ -43,7 +41,6 @@ public class WorldRepository {
         }
     }
 
-    /* TODO: Remove "return String" --> Only for implementation. */
     public World loadStateFromFile(File file) {
 
         World world = null;

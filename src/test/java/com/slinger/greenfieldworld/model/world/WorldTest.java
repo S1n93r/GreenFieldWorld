@@ -11,7 +11,7 @@ class WorldTest {
     public void createdWorldShouldNotBeNull() {
 
         /* Given, When */
-        World sut = new World(1, "Test");
+        World sut = World.builder().id(1).name("Test").build();
 
         /* Then */
         assertNotNull(sut);
@@ -21,7 +21,7 @@ class WorldTest {
     public void createdWorldShouldHaveCorrectValues() {
 
         /* Given, When */
-        World sut = new World(1, "Test");
+        World sut = World.builder().id(1).name("Test").build();
 
         /* Then */
         assertEquals(1, sut.getId());
