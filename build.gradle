@@ -14,6 +14,7 @@ repositories {
 ext {
     junitVersion = '5.7.1'
     lombokVersion = '1.18.22'
+    jacksonVersion = '2.13.1';
 }
 
 sourceCompatibility = '13'
@@ -44,6 +45,9 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
 }
 
 test {

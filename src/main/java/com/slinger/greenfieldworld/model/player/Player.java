@@ -8,8 +8,8 @@ import lombok.Getter;
 public class Player {
 
     @Getter
-    private PlayerId playerId;
+    private long id;
 
     @Getter
-    private PlayerName playerName;
+    private String name;
 }

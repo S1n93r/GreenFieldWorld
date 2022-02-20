@@ -22,12 +22,12 @@ class PlayerTest {
 
         /* Given */
         Player sut = Player.builder()
-                .playerId(PlayerId.of(1))
-                .playerName(PlayerName.of("Sl1ng3r"))
+                .id(1)
+                .name("Sl1ng3r")
                 .build();
 
         /* Then */
-        assertEquals(1, sut.getPlayerId().getId());
-        assertEquals("Sl1ng3r", sut.getPlayerName().getName());
+        assertEquals(1, sut.getId());
+        assertEquals("Sl1ng3r", sut.getName());
     }
 }
