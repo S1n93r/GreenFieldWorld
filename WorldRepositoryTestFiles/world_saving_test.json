@@ -1,5 +1,5 @@
 {
-  "regionsMap" : { },
   "id" : 1,
-  "name" : "saving_test"
+  "name" : "saving_test",
+  "unmodifiableRegionsMap" : { }
 }

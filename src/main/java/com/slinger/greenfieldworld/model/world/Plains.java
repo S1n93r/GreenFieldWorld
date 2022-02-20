@@ -1,23 +1,14 @@
 package com.slinger.greenfieldworld.model.world;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
+@Getter
 @Jacksonized
-@Builder(access = AccessLevel.PACKAGE)
+@SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Plains {
-
-    @Getter
-    private final RegionName regionName = RegionName.PLAINS;
-
-    @Getter
-    private long id;
-
-    private Plains(long id) {
-        this.id = id;
-    }
+public class Plains extends Region {
+    private final long id;
 }

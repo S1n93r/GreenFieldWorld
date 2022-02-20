@@ -1,5 +1,5 @@
 {
-  "regionsMap" : { },
   "id" : 1,
-  "name" : "loading_test"
+  "name" : "loading_test",
+  "unmodifiableRegionsMap" : { }
 }
