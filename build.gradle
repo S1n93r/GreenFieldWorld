@@ -15,6 +15,7 @@ ext {
     junitVersion = '5.7.1'
     lombokVersion = '1.18.22'
     jacksonVersion = '2.13.1';
+    jimfsVersion = '1.2';
 }
 
 sourceCompatibility = '13'
@@ -48,6 +49,10 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
+
+    // https://mvnrepository.com/artifact/com.google.jimfs/jimfs
+    implementation("com.google.jimfs:jimfs:${jimfsVersion}")
+    
 }
 
 test {

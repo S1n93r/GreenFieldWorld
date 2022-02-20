@@ -12,7 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WorldRepositoryTest {
 
+    /* TODO: User in-memory-file-system from JIMFS. */
     private static final File FOLDER = new File("WorldRepositoryTestFiles");
+
     private final WorldRepository sut = new WorldRepository();
 
     @BeforeAll
