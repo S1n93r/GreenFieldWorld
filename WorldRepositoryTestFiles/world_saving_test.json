@@ -1,5 +1,6 @@
 {
   "id" : 1,
   "name" : "saving_test",
-  "unmodifiableRegionsMap" : { }
+  "gridSize" : 16,
+  "unmodifiableClusterMap" : { }
 }

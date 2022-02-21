@@ -15,7 +15,9 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class World {
 
-    private final Map<Coordinate, Region> regionsMap = new HashMap<>();
+    private static final int DEFAULT_GRID_SIZE = 16;
+
+    private final Map<Coordinate, Cluster> clusterMap = new HashMap<>();
 
     @Getter
     private long id;
@@ -23,20 +25,33 @@ public class World {
     @Getter
     private String name;
 
-    private World(long id, String name) {
+    @Getter
+    @Builder.Default
+    private int gridSize = 16;
+
+    private World(long id, String name, int gridSize) {
+
         this.id = id;
         this.name = name;
+        this.gridSize = gridSize;
     }
 
-    public Map<Coordinate, Region> getUnmodifiableRegionsMap() {
-        return Collections.unmodifiableMap(regionsMap);
+    public Map<Coordinate, Cluster> getUnmodifiableClusterMap() {
+        return Collections.unmodifiableMap(clusterMap);
     }
 
-    public void addRegion(Coordinate coordinate, Region region) {
-        regionsMap.put(coordinate, region);
+    public void addCluster(Cluster cluster) {
+
+        Cluster checkCluster = clusterMap.get(cluster.getCoordinate());
+
+        /* TODO: Use logger here. */
+        if (checkCluster != null)
+            System.out.println("WARNING: Cluster already exists.");
+
+        clusterMap.put(cluster.getCoordinate(), cluster);
     }
 
-    public Region getRegion(Coordinate coordinate) {
-        return regionsMap.get(coordinate);
+    public Cluster getCluster(Coordinate coordinate) {
+        return clusterMap.get(coordinate);
     }
 }
