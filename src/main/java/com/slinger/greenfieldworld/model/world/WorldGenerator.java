@@ -29,9 +29,12 @@ public class WorldGenerator {
         int x = exitCluster.getCoordinate().getX();
         int y = exitCluster.getCoordinate().getY() - 1;
 
-        Cluster cluster = Cluster.builder().coordinate(new Coordinate(x, y)).build();
+        Cluster cluster = world.getCluster(new Coordinate(x, y));
 
-        world.addCluster(cluster);
+        if (cluster == null)
+            throw new IllegalStateException("It should not be possible to walk north from a border cluster.");
+
+        generateRegions(world, cluster);
     }
 
     public void generateClusterToEast(World world, Cluster exitCluster) {
@@ -39,9 +42,12 @@ public class WorldGenerator {
         int x = exitCluster.getCoordinate().getX() + 1;
         int y = exitCluster.getCoordinate().getY();
 
-        Cluster cluster = Cluster.builder().coordinate(new Coordinate(x, y)).build();
+        Cluster cluster = world.getCluster(new Coordinate(x, y));
 
-        world.addCluster(cluster);
+        if (cluster == null)
+            throw new IllegalStateException("It should not be possible to walk east from a border cluster.");
+
+        generateRegions(world, cluster);
     }
 
     public void generateClusterToSouth(World world, Cluster exitCluster) {
@@ -49,9 +55,12 @@ public class WorldGenerator {
         int x = exitCluster.getCoordinate().getX();
         int y = exitCluster.getCoordinate().getY() + 1;
 
-        Cluster cluster = Cluster.builder().coordinate(new Coordinate(x, y)).build();
+        Cluster cluster = world.getCluster(new Coordinate(x, y));
 
-        world.addCluster(cluster);
+        if (cluster == null)
+            throw new IllegalStateException("It should not be possible to walk south from a border cluster.");
+
+        generateRegions(world, cluster);
     }
 
     public void generateClusterToWest(World world, Cluster exitCluster) {
@@ -59,9 +68,12 @@ public class WorldGenerator {
         int x = exitCluster.getCoordinate().getX() - 1;
         int y = exitCluster.getCoordinate().getY();
 
-        Cluster cluster = Cluster.builder().coordinate(new Coordinate(x, y)).build();
+        Cluster cluster = world.getCluster(new Coordinate(x, y));
 
-        world.addCluster(cluster);
+        if (cluster == null)
+            throw new IllegalStateException("It should not be possible to walk west from a border cluster.");
+
+        generateRegions(world, cluster);
     }
 
     private void generateRegions(World world, Cluster cluster) {

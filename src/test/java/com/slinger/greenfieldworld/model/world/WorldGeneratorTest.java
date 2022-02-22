@@ -59,21 +59,77 @@ class WorldGeneratorTest {
 
     @Test
     public void coordinatesAreCorrectForClusterGeneratedToTheNorth() {
-        /* TODO: Implement. */
+
+        /* Given */
+        World world = World.builder().id(1).name("Test").regionGridSideLength(3).build();
+
+        sut.generateCluster(world);
+
+        Cluster centerCluster = world.getUnmodifiableClusterMap().get(new Coordinate(2, 2));
+
+        /* When */
+        sut.generateClusterToNorth(world, centerCluster);
+
+        /* Then */
+        Cluster clusterNorthFromCenter = world.getCluster(new Coordinate(2, 1));
+
+        assertEquals(9, clusterNorthFromCenter.getUnmodifiableRegionsMap().size());
     }
 
     @Test
     public void coordinatesAreCorrectForClusterGeneratedToTheEast() {
-        /* TODO: Implement. */
+
+        /* Given */
+        World world = World.builder().id(1).name("Test").regionGridSideLength(3).build();
+
+        sut.generateCluster(world);
+
+        Cluster centerCluster = world.getUnmodifiableClusterMap().get(new Coordinate(2, 2));
+
+        /* When */
+        sut.generateClusterToEast(world, centerCluster);
+
+        /* Then */
+        Cluster clusterEastFromCenter = world.getCluster(new Coordinate(3, 2));
+
+        assertEquals(9, clusterEastFromCenter.getUnmodifiableRegionsMap().size());
     }
 
     @Test
     public void coordinatesAreCorrectForClusterGeneratedToTheSouth() {
-        /* TODO: Implement. */
+
+        /* Given */
+        World world = World.builder().id(1).name("Test").regionGridSideLength(3).build();
+
+        sut.generateCluster(world);
+
+        Cluster centerCluster = world.getUnmodifiableClusterMap().get(new Coordinate(2, 2));
+
+        /* When */
+        sut.generateClusterToSouth(world, centerCluster);
+
+        /* Then */
+        Cluster clusterSouthFromCenter = world.getCluster(new Coordinate(2, 3));
+
+        assertEquals(9, clusterSouthFromCenter.getUnmodifiableRegionsMap().size());
     }
 
     @Test
     public void coordinatesAreCorrectForClusterGeneratedToTheWest() {
-        /* TODO: Implement. */
+
+        /* Given */
+        World world = World.builder().id(1).name("Test").regionGridSideLength(3).build();
+
+        sut.generateCluster(world);
+
+        Cluster centerCluster = world.getUnmodifiableClusterMap().get(new Coordinate(2, 2));
+
+        /* When */
+        sut.generateClusterToWest(world, centerCluster);
+
+        /* Then */
+        Cluster clusterWestFromCenter = world.getCluster(new Coordinate(1, 2));
+
+        assertEquals(9, clusterWestFromCenter.getUnmodifiableRegionsMap().size());
     }
 }
