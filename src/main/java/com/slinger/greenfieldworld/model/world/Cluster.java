@@ -28,8 +28,8 @@ public class Cluster {
         return Collections.unmodifiableMap(regionsMap);
     }
 
-    public void addRegion(Coordinate coordinate, Region region) {
-        regionsMap.put(coordinate, region);
+    public void addRegion(Region region) {
+        regionsMap.put(region.getCoordinate(), region);
     }
 
     public Region getRegion(Coordinate coordinate) {

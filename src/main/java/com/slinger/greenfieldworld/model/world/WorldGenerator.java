@@ -1,13 +1,27 @@
 package com.slinger.greenfieldworld.model.world;
 
-import java.util.Map;
-
 public class WorldGenerator {
 
-    private static int DEFAULT_GRID_SIZE = 16;
+    public void generateCluster(World world) {
 
-    public void generateInitialCluster(World world) {
-        generateClusterAtCoordinate(world, new Coordinate(0, 0));
+        int clusterGridSideLength = world.getClusterGridSideLength();
+
+        int numberOfCoordinates = clusterGridSideLength * clusterGridSideLength;
+
+        /* TODO: Use continuous coordinates instead of starting from 0/0 within every cluster? */
+        for (int i = 0; i < numberOfCoordinates; i++) {
+
+            int x = i % clusterGridSideLength;
+            int y = i / clusterGridSideLength;
+
+            Cluster cluster = Cluster.builder().coordinate(new Coordinate(x, y)).build();
+
+            world.addCluster(cluster);
+        }
+
+        Cluster centerCluster = world.getCluster(new Coordinate(2, 2));
+
+        generateRegions(world, centerCluster);
     }
 
     public void generateClusterToNorth(World world, Cluster exitCluster) {
@@ -50,38 +64,28 @@ public class WorldGenerator {
         world.addCluster(cluster);
     }
 
-    private void generateClusterAtCoordinate(World world, Coordinate coordinate) {
-
-        Cluster cluster = Cluster.builder().coordinate(coordinate).build();
-
-        generateRegions(world, cluster);
-
-        world.addCluster(cluster);
-    }
-
     private void generateRegions(World world, Cluster cluster) {
 
-        Map<Coordinate, Region> regionMap = cluster.getUnmodifiableRegionsMap();
+        int regionGridSideLength = world.getRegionGridSideLength();
 
-        int gridSize = world.getGridSize();
+        int numberOfCoordinates = regionGridSideLength * regionGridSideLength;
 
-        int numberOfCoordinates = gridSize * gridSize;
-
-        int x;
-        int y;
-
-        /* TODO: Use continuous coordinates instead of starting from 0/0 within every cluster? */
         for (int i = 0; i < numberOfCoordinates; i++) {
 
-            x = i % gridSize;
-            y = i / gridSize;
+            int x = i % regionGridSideLength;
+            int y = i / regionGridSideLength;
 
-            int regionId = regionMap.size() + 1;
+            int xShift = cluster.getCoordinate().getX() * regionGridSideLength;
+            int yShift = cluster.getCoordinate().getY() * regionGridSideLength;
+
+            int xShifted = x + xShift;
+            int yShifted = y + yShift;
 
             /* TODO: RegionName.PLAINS should be given by default in Plains class. */
-            Plains plains = Plains.builder().id(regionId).regionName(RegionName.PLAINS).build();
+            Plains plains = Plains.builder().coordinate(new Coordinate(xShifted, yShifted))
+                    .regionName(RegionName.PLAINS).build();
 
-            cluster.addRegion(new Coordinate(x, y), plains);
+            cluster.addRegion(plains);
         }
     }
 }

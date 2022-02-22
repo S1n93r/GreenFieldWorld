@@ -15,7 +15,8 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class World {
 
-    private static final int DEFAULT_GRID_SIZE = 16;
+    private static final int DEFAULT_REGION_GRID_SIDE_LENGTH = 16;
+    private static final int DEFAULT_CLUSTER_GRID_SIDE_LENGTH = 5;
 
     private final Map<Coordinate, Cluster> clusterMap = new HashMap<>();
 
@@ -27,13 +28,18 @@ public class World {
 
     @Getter
     @Builder.Default
-    private int gridSize = 16;
+    private int regionGridSideLength = DEFAULT_REGION_GRID_SIDE_LENGTH;
 
-    private World(long id, String name, int gridSize) {
+    @Getter
+    @Builder.Default
+    private int clusterGridSideLength = DEFAULT_CLUSTER_GRID_SIDE_LENGTH;
+
+    private World(long id, String name, int regionGridSideLength, int clusterGridSideLength) {
 
         this.id = id;
         this.name = name;
-        this.gridSize = gridSize;
+        this.regionGridSideLength = regionGridSideLength;
+        this.clusterGridSideLength = clusterGridSideLength;
     }
 
     public Map<Coordinate, Cluster> getUnmodifiableClusterMap() {

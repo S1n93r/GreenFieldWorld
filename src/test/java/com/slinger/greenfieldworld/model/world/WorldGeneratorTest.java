@@ -13,48 +13,48 @@ class WorldGeneratorTest {
     public void afterGeneratingClusterMapIsNotEmpty() {
 
         /* Given */
-        World world = World.builder().id(1).name("Test").gridSize(3).build();
+        World world = World.builder().id(1).name("Test").regionGridSideLength(3).build();
 
         /* When */
-        sut.generateInitialCluster(world);
+        sut.generateCluster(world);
 
         /* Then */
         assertFalse(world.getUnmodifiableClusterMap().isEmpty());
     }
 
     @Test
-    public void generatedInitialClusterFitsGridSize() {
+    public void initializedCenterClusterFitsGridSize() {
 
         /* Given */
-        World world = World.builder().id(1).name("Test").gridSize(3).build();
+        World world = World.builder().id(1).name("Test").regionGridSideLength(3).build();
 
         /* When */
-        sut.generateInitialCluster(world);
+        sut.generateCluster(world);
 
         /* Then */
-        Cluster actualCluster = world.getUnmodifiableClusterMap().get(new Coordinate(0, 0));
+        Cluster actualCluster = world.getUnmodifiableClusterMap().get(new Coordinate(2, 2));
 
         assertEquals(9, actualCluster.getUnmodifiableRegionsMap().size());
     }
 
     @Test
-    public void generatedRegionsHaveCorrectContent() {
+    public void initializedCenterClusterHasCorrectRegions() {
 
         /* Given */
-        World world = World.builder().id(1).name("Test").gridSize(3).build();
+        World world = World.builder().id(1).name("Test").regionGridSideLength(3).build();
 
         /* When */
-        sut.generateInitialCluster(world);
+        sut.generateCluster(world);
 
         /* Then */
-        Cluster actualCluster = world.getUnmodifiableClusterMap().get(new Coordinate(0, 0));
+        Cluster actualCluster = world.getUnmodifiableClusterMap().get(new Coordinate(2, 2));
 
         assertEquals(RegionName.PLAINS,
-                actualCluster.getUnmodifiableRegionsMap().get(new Coordinate(0, 0)).getRegionName());
+                actualCluster.getUnmodifiableRegionsMap().get(new Coordinate(6, 6)).getRegionName());
         assertEquals(RegionName.PLAINS,
-                actualCluster.getUnmodifiableRegionsMap().get(new Coordinate(1, 1)).getRegionName());
+                actualCluster.getUnmodifiableRegionsMap().get(new Coordinate(7, 7)).getRegionName());
         assertEquals(RegionName.PLAINS,
-                actualCluster.getUnmodifiableRegionsMap().get(new Coordinate(2, 2)).getRegionName());
+                actualCluster.getUnmodifiableRegionsMap().get(new Coordinate(8, 8)).getRegionName());
     }
 
     @Test
