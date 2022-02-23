@@ -28,11 +28,7 @@ public class WorldRepository {
 
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
-            String json = "";
-
             String fileName = SAVE_FILE_PREFIX + world.getName() + SAVE_FILE_SUFFIX;
-
-            json = ow.writeValueAsString(world);
 
             ow.writeValue(new File(folder, fileName), world);
 

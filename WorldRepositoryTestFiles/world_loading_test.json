@@ -1,7 +1,7 @@
 {
   "id" : 1,
   "name" : "loading_test",
-  "regionGridSideLength" : 3,
-  "clusterGridSideLength" : 5,
+  "player" : null,
+  "regionGridSideLength" : 5,
   "unmodifiableRegionMap" : { }
 }

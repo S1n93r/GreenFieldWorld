@@ -2,6 +2,7 @@ package com.slinger.greenfieldworld.model.world;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
+import com.slinger.greenfieldworld.model.player.PlayerGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -45,6 +46,14 @@ class WorldRepositoryTest {
 
         /* Given */
         World expectedWorld = World.builder().id(1).name("saving_test").build();
+
+        WorldGenerator worldGenerator = new WorldGenerator();
+
+        worldGenerator.generateRegions(expectedWorld);
+
+        PlayerGenerator playerGenerator = new PlayerGenerator();
+
+        expectedWorld.spawnPlayerAtCenter(playerGenerator.generatePlayer("Sl1ng3r"));
 
         /* When */
         sut.saveWorld(expectedWorld, FOLDER);

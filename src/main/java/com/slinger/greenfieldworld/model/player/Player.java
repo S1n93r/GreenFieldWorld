@@ -1,10 +1,14 @@
 package com.slinger.greenfieldworld.model.player;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.slinger.greenfieldworld.model.world.Region;
-import com.slinger.greenfieldworld.model.world.World;
+import com.slinger.greenfieldworld.model.world.Coordinate;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.extern.jackson.Jacksonized;
 
+@Jacksonized
+@Builder(access = AccessLevel.PROTECTED)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
 
@@ -12,23 +16,14 @@ public class Player {
     private final String name;
 
     @Getter
-    Region currentRegion;
+    private Coordinate currentPosition;
 
-    @Getter
-    private Actions actions;
-
-    @Getter
-    private World world;
-
-    public Player(String name) {
+    private Player(String name, Coordinate currentPosition) {
         this.name = name;
+        this.currentPosition = currentPosition;
     }
 
-    public void spawn(World world, Region region) {
-
-        this.world = world;
-
-        actions = new Actions(this);
-        currentRegion = region;
+    public void spawn(Coordinate coordinate) {
+        currentPosition = coordinate;
     }
 }

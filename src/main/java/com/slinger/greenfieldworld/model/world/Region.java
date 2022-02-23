@@ -10,4 +10,9 @@ public abstract class Region {
     private final Coordinate coordinate;
 
     private final RegionName regionName;
+
+    private Region(Coordinate coordinate, RegionName regionName) {
+        this.coordinate = coordinate;
+        this.regionName = regionName;
+    }
 }

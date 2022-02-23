@@ -16,8 +16,7 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class World {
 
-    private static final int DEFAULT_REGION_GRID_SIDE_LENGTH = 3;
-    private static final int DEFAULT_CLUSTER_GRID_SIDE_LENGTH = 5;
+    private static final int DEFAULT_REGION_GRID_SIDE_LENGTH = 5;
 
     private final Map<Coordinate, Region> regionMap = new HashMap<>();
 
@@ -28,19 +27,18 @@ public class World {
     private String name;
 
     @Getter
-    @Builder.Default
-    private int regionGridSideLength = DEFAULT_REGION_GRID_SIDE_LENGTH;
+    private Player player;
 
     @Getter
     @Builder.Default
-    private int clusterGridSideLength = DEFAULT_CLUSTER_GRID_SIDE_LENGTH;
+    private int regionGridSideLength = DEFAULT_REGION_GRID_SIDE_LENGTH;
 
-    private World(long id, String name, int regionGridSideLength, int clusterGridSideLength) {
+    private World(long id, String name, Player player, int regionGridSideLength) {
 
         this.id = id;
         this.name = name;
+        this.player = player;
         this.regionGridSideLength = regionGridSideLength;
-        this.clusterGridSideLength = clusterGridSideLength;
     }
 
     public Map<Coordinate, Region> getUnmodifiableRegionMap() {
@@ -64,14 +62,21 @@ public class World {
 
     public void spawnPlayerAtCenter(Player player) {
 
+        this.player = player;
+
         int spawnSideValue = regionGridSideLength / 2;
 
-        Region startRegion = getRegion(new Coordinate(spawnSideValue, spawnSideValue));
-
-        player.spawn(this, startRegion);
+        player.spawn(new Coordinate(spawnSideValue, spawnSideValue));
     }
 
-    public void movePlayerNorth(Player player) {
+    public void movePlayerNorth() {
 
+        checkWorldHasPlayer();
+    }
+
+    private void checkWorldHasPlayer() {
+
+        if (this.player == null)
+            throw new IllegalStateException("You must spawn a player before trying to use any actions.");
     }
 }
