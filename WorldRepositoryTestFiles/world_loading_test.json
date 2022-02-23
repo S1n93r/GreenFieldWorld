@@ -1,6 +1,7 @@
 {
   "id" : 1,
   "name" : "loading_test",
-  "gridSize" : 16,
-  "unmodifiableClusterMap" : { }
+  "regionGridSideLength" : 3,
+  "clusterGridSideLength" : 5,
+  "unmodifiableRegionMap" : { }
 }

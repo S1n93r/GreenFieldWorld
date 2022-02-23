@@ -11,7 +11,7 @@ class PlayerTest {
     public void createdPlayerIsNotNull() {
 
         /* Given */
-        Player sut = Player.builder().build();
+        Player sut = new Player("Sl1ng3r");
 
         /* Then */
         assertNotNull(sut);
@@ -21,13 +21,9 @@ class PlayerTest {
     public void createdPlayerHasValuesFromBuilder() {
 
         /* Given */
-        Player sut = Player.builder()
-                .id(1)
-                .name("Sl1ng3r")
-                .build();
+        Player sut = new Player("Sl1ng3r");
 
         /* Then */
-        assertEquals(1, sut.getId());
         assertEquals("Sl1ng3r", sut.getName());
     }
 }

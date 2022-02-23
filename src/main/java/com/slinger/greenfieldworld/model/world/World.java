@@ -1,6 +1,7 @@
 package com.slinger.greenfieldworld.model.world;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.slinger.greenfieldworld.model.player.Player;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,10 +16,10 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class World {
 
-    private static final int DEFAULT_REGION_GRID_SIDE_LENGTH = 16;
+    private static final int DEFAULT_REGION_GRID_SIDE_LENGTH = 3;
     private static final int DEFAULT_CLUSTER_GRID_SIDE_LENGTH = 5;
 
-    private final Map<Coordinate, Cluster> clusterMap = new HashMap<>();
+    private final Map<Coordinate, Region> regionMap = new HashMap<>();
 
     @Getter
     private long id;
@@ -42,22 +43,35 @@ public class World {
         this.clusterGridSideLength = clusterGridSideLength;
     }
 
-    public Map<Coordinate, Cluster> getUnmodifiableClusterMap() {
-        return Collections.unmodifiableMap(clusterMap);
+    public Map<Coordinate, Region> getUnmodifiableRegionMap() {
+        return Collections.unmodifiableMap(regionMap);
     }
 
-    public void addCluster(Cluster cluster) {
+    public void addRegion(Region region) {
 
-        Cluster checkCluster = clusterMap.get(cluster.getCoordinate());
+        Region checkRegion = regionMap.get(region.getCoordinate());
 
         /* TODO: Use logger here. */
-        if (checkCluster != null)
+        if (checkRegion != null)
             System.out.println("WARNING: Cluster already exists.");
 
-        clusterMap.put(cluster.getCoordinate(), cluster);
+        regionMap.put(region.getCoordinate(), region);
     }
 
-    public Cluster getCluster(Coordinate coordinate) {
-        return clusterMap.get(coordinate);
+    public Region getRegion(Coordinate coordinate) {
+        return regionMap.get(coordinate);
+    }
+
+    public void spawnPlayerAtCenter(Player player) {
+
+        int spawnSideValue = regionGridSideLength / 2;
+
+        Region startRegion = getRegion(new Coordinate(spawnSideValue, spawnSideValue));
+
+        player.spawn(this, startRegion);
+    }
+
+    public void movePlayerNorth(Player player) {
+
     }
 }

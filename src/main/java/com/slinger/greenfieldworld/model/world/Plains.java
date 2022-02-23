@@ -10,4 +10,9 @@ import lombok.extern.jackson.Jacksonized;
 @SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Plains extends Region {
+
+    @Override
+    public RegionName getRegionName() {
+        return RegionName.PLAINS;
+    }
 }
