@@ -1,7 +1,6 @@
 {
   "id" : 1,
   "name" : "loading_test",
-  "player" : null,
   "gridSideLength" : 5,
   "unmodifiableRegionMap" : { }
 }

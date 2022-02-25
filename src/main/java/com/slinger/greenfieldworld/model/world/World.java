@@ -28,17 +28,13 @@ public class World {
     private String name;
 
     @Getter
-    private Player player;
-
-    @Getter
     @Builder.Default
     private int gridSideLength = DEFAULT_REGION_GRID_SIDE_LENGTH;
 
-    private World(long id, String name, Player player, int gridSideLength) {
+    private World(long id, String name, int gridSideLength) {
 
         this.id = id;
         this.name = name;
-        this.player = player;
         this.gridSideLength = gridSideLength;
     }
 
@@ -63,8 +59,6 @@ public class World {
 
     public void spawnPlayerAtCenter(Player player) {
 
-        this.player = player;
-
         int spawnSideValue = gridSideLength / 2;
 
         Coordinate spawnPosition = Coordinate.of(spawnSideValue, spawnSideValue);
@@ -76,11 +70,5 @@ public class World {
                     " does not exist.", spawnPosition));
 
         player.spawn(spawnRegion);
-    }
-
-    private void checkWorldHasPlayer() {
-
-        if (this.player == null)
-            throw new IllegalStateException("You must spawn a player before trying to use any actions.");
     }
 }

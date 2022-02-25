@@ -6,12 +6,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
-@Getter
 @SuperBuilder
 public abstract class Region {
 
+    @Getter
     private final Coordinate coordinate;
 
+    @Getter
     private final RegionName regionName;
 
     @Builder.Default
@@ -26,17 +27,7 @@ public abstract class Region {
     @Builder.Default
     private boolean hasWestExit = true;
 
-    private Region(Coordinate coordinate, RegionName regionName, boolean hasNorthExit, boolean hasEastExit,
-                   boolean hasSouthExit, boolean hasWestExit) {
-
-        this.coordinate = coordinate;
-        this.regionName = regionName;
-        this.hasNorthExit = hasNorthExit;
-        this.hasEastExit = hasEastExit;
-        this.hasSouthExit = hasSouthExit;
-        this.hasWestExit = hasWestExit;
-    }
-
+    /* TODO: Maybe moving should be entirely handled by an dedicated action or movement class?*/
     public Coordinate move(Direction direction) {
 
         int xShift = 0;
