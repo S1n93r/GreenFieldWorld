@@ -33,20 +33,18 @@ class WorldTest {
     @Test
     public void playerSpawnedAtCenterIsInCorrectRegion() {
 
-        World sut = World.builder().id(1).name("Test").regionGridSideLength(3).build();
+        WorldGenerator worldGenerator = new WorldGenerator();
+
+        World sut = worldGenerator.generateWorld("Test", 3);
 
         PlayerGenerator playerGenerator = new PlayerGenerator();
 
         Player player = playerGenerator.generatePlayer("Sl1ng3r");
 
-        WorldGenerator worldGenerator = new WorldGenerator();
-
-        worldGenerator.generateRegions(sut);
-
         /* When */
         sut.spawnPlayerAtCenter(player);
 
         /* Then */
-        assertEquals(new Coordinate(1, 1), player.getCurrentPosition());
+        assertEquals(Coordinate.of(1, 1), player.getCurrentRegion().getCoordinate());
     }
 }

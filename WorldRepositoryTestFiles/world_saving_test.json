@@ -1,5 +1,5 @@
 {
-  "id" : 1,
+  "id" : 0,
   "name" : "saving_test",
   "player" : {
     "name" : "Sl1ng3r",
@@ -8,7 +8,7 @@
       "y" : 2
     }
   },
-  "regionGridSideLength" : 5,
+  "gridSideLength" : 5,
   "unmodifiableRegionMap" : {
     "Coordinate(x=4, y=0)" : {
       "coordinate" : {

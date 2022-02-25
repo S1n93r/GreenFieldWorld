@@ -14,7 +14,7 @@ public final class CoordinateRegionMapUtil {
 
         while (searchingX) {
 
-            Region region = coordinateRegionMap.get(new Coordinate(x, y));
+            Region region = coordinateRegionMap.get(Coordinate.of(x, y));
 
             if (region != null)
                 x -= gridSize;
@@ -26,7 +26,7 @@ public final class CoordinateRegionMapUtil {
 
         while (searchingY) {
 
-            Region region = coordinateRegionMap.get(new Coordinate(x, y));
+            Region region = coordinateRegionMap.get(Coordinate.of(x, y));
 
             if (region != null)
                 y -= gridSize;
@@ -34,7 +34,7 @@ public final class CoordinateRegionMapUtil {
                 searchingY = false;
         }
 
-        Coordinate topLeftCoordinate = new Coordinate(x, y);
+        Coordinate topLeftCoordinate = Coordinate.of(x, y);
 
         return topLeftCoordinate;
 

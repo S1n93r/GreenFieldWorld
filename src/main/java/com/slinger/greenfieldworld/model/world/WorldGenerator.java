@@ -2,9 +2,27 @@ package com.slinger.greenfieldworld.model.world;
 
 public class WorldGenerator {
 
-    public void generateRegions(World world) {
+    public World generateWorld(String name) {
 
-        int clusterGridSideLength = world.getRegionGridSideLength();
+        World world = World.builder().name(name).build();
+
+        generateRegions(world);
+
+        return world;
+    }
+
+    public World generateWorld(String name, int gridSideLength) {
+
+        World world = World.builder().name(name).gridSideLength(gridSideLength).build();
+
+        generateRegions(world);
+
+        return world;
+    }
+
+    private void generateRegions(World world) {
+
+        int clusterGridSideLength = world.getGridSideLength();
 
         int numberOfCoordinates = clusterGridSideLength * clusterGridSideLength;
 
@@ -13,8 +31,7 @@ public class WorldGenerator {
             int x = i % clusterGridSideLength;
             int y = i / clusterGridSideLength;
 
-            Region region = Plains.builder().coordinate(new Coordinate(x, y)).build();
-
+            Region region = Plains.builder().coordinate(Coordinate.of(x, y)).build();
             world.addRegion(region);
         }
     }

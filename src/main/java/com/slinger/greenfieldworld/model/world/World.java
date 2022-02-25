@@ -1,6 +1,7 @@
 package com.slinger.greenfieldworld.model.world;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.Player;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -31,14 +32,14 @@ public class World {
 
     @Getter
     @Builder.Default
-    private int regionGridSideLength = DEFAULT_REGION_GRID_SIDE_LENGTH;
+    private int gridSideLength = DEFAULT_REGION_GRID_SIDE_LENGTH;
 
-    private World(long id, String name, Player player, int regionGridSideLength) {
+    private World(long id, String name, Player player, int gridSideLength) {
 
         this.id = id;
         this.name = name;
         this.player = player;
-        this.regionGridSideLength = regionGridSideLength;
+        this.gridSideLength = gridSideLength;
     }
 
     public Map<Coordinate, Region> getUnmodifiableRegionMap() {
@@ -64,14 +65,17 @@ public class World {
 
         this.player = player;
 
-        int spawnSideValue = regionGridSideLength / 2;
+        int spawnSideValue = gridSideLength / 2;
 
-        player.spawn(new Coordinate(spawnSideValue, spawnSideValue));
-    }
+        Coordinate spawnPosition = Coordinate.of(spawnSideValue, spawnSideValue);
 
-    public void movePlayerNorth() {
+        Region spawnRegion = regionMap.get(spawnPosition);
 
-        checkWorldHasPlayer();
+        if (spawnRegion == null)
+            throw new IllegalStateException(MessageUtil.format("Can't spawn player. Region at coordinate {0}" +
+                    " does not exist.", spawnPosition));
+
+        player.spawn(spawnRegion);
     }
 
     private void checkWorldHasPlayer() {

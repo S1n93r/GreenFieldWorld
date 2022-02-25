@@ -12,11 +12,8 @@ class WorldGeneratorTest {
     @Test
     public void afterGeneratingRegionMapIsNotEmpty() {
 
-        /* Given */
-        World world = World.builder().id(1).name("Test").regionGridSideLength(3).build();
-
-        /* When */
-        sut.generateRegions(world);
+        /* Given, When */
+        World world = sut.generateWorld("Test", 3);
 
         /* Then */
         assertFalse(world.getUnmodifiableRegionMap().isEmpty());
@@ -25,11 +22,8 @@ class WorldGeneratorTest {
     @Test
     public void afterGeneratingRegionMapFitsGridSize() {
 
-        /* Given */
-        World world = World.builder().id(1).name("Test").regionGridSideLength(3).build();
-
-        /* When */
-        sut.generateRegions(world);
+        /* Given, When */
+        World world = sut.generateWorld("Test", 3);
 
         /* Then */
         assertEquals(9, world.getUnmodifiableRegionMap().size());
@@ -38,15 +32,12 @@ class WorldGeneratorTest {
     @Test
     public void afterGeneratingRegionMapHasCorrectRegionTypes() {
 
-        /* Given */
-        World world = World.builder().id(1).name("Test").regionGridSideLength(3).build();
-
-        /* When */
-        sut.generateRegions(world);
+        /* Given, When */
+        World world = sut.generateWorld("Test", 3);
 
         /* Then */
-        assertEquals(RegionName.PLAINS, world.getUnmodifiableRegionMap().get(new Coordinate(0, 0)).getRegionName());
-        assertEquals(RegionName.PLAINS, world.getUnmodifiableRegionMap().get(new Coordinate(1, 1)).getRegionName());
-        assertEquals(RegionName.PLAINS, world.getUnmodifiableRegionMap().get(new Coordinate(2, 2)).getRegionName());
+        assertEquals(RegionName.PLAINS, world.getUnmodifiableRegionMap().get(Coordinate.of(0, 0)).getRegionName());
+        assertEquals(RegionName.PLAINS, world.getUnmodifiableRegionMap().get(Coordinate.of(1, 1)).getRegionName());
+        assertEquals(RegionName.PLAINS, world.getUnmodifiableRegionMap().get(Coordinate.of(2, 2)).getRegionName());
     }
 }

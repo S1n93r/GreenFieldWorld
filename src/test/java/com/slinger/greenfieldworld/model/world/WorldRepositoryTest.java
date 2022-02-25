@@ -45,11 +45,9 @@ class WorldRepositoryTest {
     public void savedFileEqualsSavedWorld() throws IOException {
 
         /* Given */
-        World expectedWorld = World.builder().id(1).name("saving_test").build();
-
         WorldGenerator worldGenerator = new WorldGenerator();
 
-        worldGenerator.generateRegions(expectedWorld);
+        World expectedWorld = worldGenerator.generateWorld("saving_test");
 
         PlayerGenerator playerGenerator = new PlayerGenerator();
 
