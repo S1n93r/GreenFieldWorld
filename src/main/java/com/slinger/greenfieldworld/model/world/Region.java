@@ -2,11 +2,8 @@ package com.slinger.greenfieldworld.model.world;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.exceptions.SwitchCaseNotDefinedException;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
 public abstract class Region {
 
     @Getter
@@ -15,17 +12,18 @@ public abstract class Region {
     @Getter
     private final RegionName regionName;
 
-    @Builder.Default
     private boolean hasNorthExit = true;
 
-    @Builder.Default
     private boolean hasEastExit = true;
 
-    @Builder.Default
     private boolean hasSouthExit = true;
 
-    @Builder.Default
     private boolean hasWestExit = true;
+
+    protected Region(Coordinate coordinate, RegionName regionName) {
+        this.coordinate = coordinate;
+        this.regionName = regionName;
+    }
 
     /* TODO: Maybe moving should be entirely handled by an dedicated action or movement class?*/
     public Coordinate move(Direction direction) {

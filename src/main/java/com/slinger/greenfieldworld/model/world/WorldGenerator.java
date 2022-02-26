@@ -31,7 +31,8 @@ public class WorldGenerator {
             int x = i % clusterGridSideLength;
             int y = i / clusterGridSideLength;
 
-            Region region = Plains.builder().coordinate(Coordinate.of(x, y)).build();
+            Region region = new Plains(Coordinate.of(x, y));
+
             world.addRegion(region);
         }
     }

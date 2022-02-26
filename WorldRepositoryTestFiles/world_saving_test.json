@@ -1,8 +1,5 @@
 {
-  "id" : 0,
-  "name" : "saving_test",
-  "gridSideLength" : 5,
-  "unmodifiableRegionMap" : {
+  "regionMap" : {
     "Coordinate(x=4, y=0)" : {
       "coordinate" : {
         "x" : 4,
@@ -178,5 +175,7 @@
       },
       "regionName" : "PLAINS"
     }
-  }
+  },
+  "id" : 0,
+  "name" : "saving_test"
 }

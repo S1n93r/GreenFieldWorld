@@ -3,6 +3,8 @@ package com.slinger.greenfieldworld.model.world;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.slinger.greenfieldworld.model.player.PlayerGenerator;
+import com.slinger.greenfieldworld.persistence.world.WorldPersistenceDto;
+import com.slinger.greenfieldworld.persistence.world.WorldRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -32,16 +34,6 @@ class WorldRepositoryTest {
     }
 
     @Test
-    public void createdWorldIsNotNull() {
-
-        /* Given, When */
-        World world = sut.createWorld("creation_test");
-
-        /* Then */
-        assertNotNull(world);
-    }
-
-    @Test
     public void savedFileEqualsSavedWorld() throws IOException {
 
         /* Given */
@@ -58,23 +50,32 @@ class WorldRepositoryTest {
 
         /* Then */
         ObjectReader or = new ObjectMapper().reader();
-        World actualWorld = or.readValue(new File(FOLDER, "world_saving_test.json"), World.class);
 
-        assertEquals(expectedWorld.getId(), actualWorld.getId());
+        WorldPersistenceDto dto = or.readValue(new File(FOLDER, "world_saving_test.json"), WorldPersistenceDto.class);
+
+        World loadedWorld = dto.toWorld();
+
+        assertEquals(expectedWorld.getId(), loadedWorld.getId());
     }
 
     @Test
     public void loadedWorldEqualsLoadedFile() {
 
         /* Given */
-        World expectedWorld = World.builder().id(1).name("loading_test").build();
+        WorldGenerator worldGenerator = new WorldGenerator();
+
+        World expectedWorld = worldGenerator.generateWorld("loading_test");
+
+        PlayerGenerator playerGenerator = new PlayerGenerator();
+
+        expectedWorld.spawnPlayerAtCenter(playerGenerator.generatePlayer("Sl1ng3r"));
 
         sut.saveWorld(expectedWorld, FOLDER);
 
         /* When */
-        World actualWorld = sut.loadStateFromFile(new File(FOLDER, "world_loading_test.json"));
+        World loadedWorld = sut.loadStateFromFile(new File(FOLDER, "world_loading_test.json"));
 
         /* Then */
-        assertEquals(expectedWorld.getId(), actualWorld.getId());
+        assertEquals(expectedWorld.getId(), loadedWorld.getId());
     }
 }

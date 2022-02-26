@@ -1,6 +1,181 @@
 {
-  "id" : 1,
-  "name" : "loading_test",
-  "gridSideLength" : 5,
-  "unmodifiableRegionMap" : { }
+  "regionMap" : {
+    "Coordinate(x=4, y=0)" : {
+      "coordinate" : {
+        "x" : 4,
+        "y" : 0
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=4, y=1)" : {
+      "coordinate" : {
+        "x" : 4,
+        "y" : 1
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=4, y=2)" : {
+      "coordinate" : {
+        "x" : 4,
+        "y" : 2
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=4, y=3)" : {
+      "coordinate" : {
+        "x" : 4,
+        "y" : 3
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=4, y=4)" : {
+      "coordinate" : {
+        "x" : 4,
+        "y" : 4
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=3, y=0)" : {
+      "coordinate" : {
+        "x" : 3,
+        "y" : 0
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=3, y=1)" : {
+      "coordinate" : {
+        "x" : 3,
+        "y" : 1
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=3, y=2)" : {
+      "coordinate" : {
+        "x" : 3,
+        "y" : 2
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=3, y=3)" : {
+      "coordinate" : {
+        "x" : 3,
+        "y" : 3
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=3, y=4)" : {
+      "coordinate" : {
+        "x" : 3,
+        "y" : 4
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=2, y=0)" : {
+      "coordinate" : {
+        "x" : 2,
+        "y" : 0
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=2, y=1)" : {
+      "coordinate" : {
+        "x" : 2,
+        "y" : 1
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=2, y=2)" : {
+      "coordinate" : {
+        "x" : 2,
+        "y" : 2
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=2, y=3)" : {
+      "coordinate" : {
+        "x" : 2,
+        "y" : 3
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=2, y=4)" : {
+      "coordinate" : {
+        "x" : 2,
+        "y" : 4
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=1, y=0)" : {
+      "coordinate" : {
+        "x" : 1,
+        "y" : 0
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=1, y=1)" : {
+      "coordinate" : {
+        "x" : 1,
+        "y" : 1
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=1, y=2)" : {
+      "coordinate" : {
+        "x" : 1,
+        "y" : 2
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=1, y=3)" : {
+      "coordinate" : {
+        "x" : 1,
+        "y" : 3
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=1, y=4)" : {
+      "coordinate" : {
+        "x" : 1,
+        "y" : 4
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=0, y=0)" : {
+      "coordinate" : {
+        "x" : 0,
+        "y" : 0
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=0, y=1)" : {
+      "coordinate" : {
+        "x" : 0,
+        "y" : 1
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=0, y=2)" : {
+      "coordinate" : {
+        "x" : 0,
+        "y" : 2
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=0, y=3)" : {
+      "coordinate" : {
+        "x" : 0,
+        "y" : 3
+      },
+      "regionName" : "PLAINS"
+    },
+    "Coordinate(x=0, y=4)" : {
+      "coordinate" : {
+        "x" : 0,
+        "y" : 4
+      },
+      "regionName" : "PLAINS"
+    }
+  },
+  "id" : 0,
+  "name" : "loading_test"
 }

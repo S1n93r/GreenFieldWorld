@@ -6,14 +6,12 @@ import com.slinger.greenfieldworld.model.player.Player;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.extern.jackson.Jacksonized;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-@Jacksonized
-@Builder(access = AccessLevel.PROTECTED)
+@Builder(access = AccessLevel.PUBLIC)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class World {
 
@@ -66,8 +64,8 @@ public class World {
         Region spawnRegion = regionMap.get(spawnPosition);
 
         if (spawnRegion == null)
-            throw new IllegalStateException(MessageUtil.format("Can't spawn player. Region at coordinate {0}" +
-                    " does not exist.", spawnPosition));
+            throw new IllegalStateException(MessageUtil.format("Can't spawn player. Region at coordinate" +
+                    " {0}/{1} does not exist.", spawnPosition.getX(), spawnPosition.getY()));
 
         player.spawn(spawnRegion);
     }
