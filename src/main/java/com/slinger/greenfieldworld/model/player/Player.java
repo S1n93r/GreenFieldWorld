@@ -1,50 +1,64 @@
 package com.slinger.greenfieldworld.model.player;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.slinger.greenfieldworld.model.common.MessageUtil;
-import com.slinger.greenfieldworld.model.world.Coordinate;
-import com.slinger.greenfieldworld.model.world.Direction;
 import com.slinger.greenfieldworld.model.world.Region;
 import com.slinger.greenfieldworld.model.world.World;
-import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.extern.jackson.Jacksonized;
+import lombok.Setter;
 
-@Jacksonized
-@Builder(access = AccessLevel.PROTECTED)
+import java.util.HashMap;
+import java.util.Map;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
 
     @Getter
-    private final String name;
+    @JsonIgnore
+    private final Map<String, Action> availableActions = new HashMap<>();
 
     @Getter
-    private Region currentRegion;
+    private final String name;
 
-    private Player(String name, Region currentRegion) {
+    @Setter
+    @JsonIgnore
+    private Region region;
+
+    @Getter
+    @JsonIgnore
+    private World world;
+
+    protected Player(String name) {
+
         this.name = name;
-        this.currentRegion = currentRegion;
+
+        addBasicActions();
     }
 
-    public void spawn(Region region) {
-        currentRegion = region;
+    private void addBasicActions() {
+        addAction(new Move(this));
     }
 
-    public String move(World world, Direction direction) {
+    public void spawn(World world, Region region) {
+        this.world = world;
+        this.region = region;
+    }
 
-        Coordinate currentPosition = currentRegion.getCoordinate();
+    public Region getRegion() {
 
-        Coordinate targetPosition = currentRegion.move(direction);
+        if (region == null)
+            throw new IllegalStateException(MessageUtil.format("Region not set. Player {0} was not spawned" +
+                    " in world."));
 
-        if (targetPosition.equals(currentPosition))
-            return MessageUtil.format("You can't got {0} from here.", direction);
+        return region;
+    }
 
-        Region previousRegion = currentRegion;
+    public void addAction(Action action) {
+        availableActions.put(action.getTriggerWord(), action);
+    }
 
-        currentRegion = world.getRegion(targetPosition);
-
-        return MessageUtil.format("You moved from region {} ({}) to {} ({})", previousRegion, currentPosition,
-                currentRegion, targetPosition);
+    public Action getAction(String input) {
+        return availableActions.get(input);
     }
 }

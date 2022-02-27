@@ -29,6 +29,8 @@ public class RootController {
         PlayerGenerator playerGenerator = new PlayerGenerator();
         Player player = playerGenerator.generatePlayer("Sl1ng3r");
 
+        world.spawnPlayerAtCenter(player);
+
         inputParser = new InputParser(player, world, generateOutputConsumer());
     }
 

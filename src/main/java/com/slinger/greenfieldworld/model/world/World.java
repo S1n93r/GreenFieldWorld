@@ -67,6 +67,6 @@ public class World {
             throw new IllegalStateException(MessageUtil.format("Can't spawn player. Region at coordinate" +
                     " {0}/{1} does not exist.", spawnPosition.getX(), spawnPosition.getY()));
 
-        player.spawn(spawnRegion);
+        player.spawn(this, spawnRegion);
     }
 }

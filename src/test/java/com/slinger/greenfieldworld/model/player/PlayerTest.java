@@ -1,7 +1,6 @@
 package com.slinger.greenfieldworld.model.player;
 
 import com.slinger.greenfieldworld.model.world.Coordinate;
-import com.slinger.greenfieldworld.model.world.Direction;
 import com.slinger.greenfieldworld.model.world.World;
 import com.slinger.greenfieldworld.model.world.WorldGenerator;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,9 @@ class PlayerTest {
     public void createdPlayerIsNotNull() {
 
         /* Given */
-        Player sut = Player.builder().name("Sl1ng3r").build();
+        PlayerGenerator generator = new PlayerGenerator();
+
+        Player sut = generator.generatePlayer("Sl1ng3r");
 
         /* Then */
         assertNotNull(sut);
@@ -25,7 +26,9 @@ class PlayerTest {
     public void createdPlayerHasValuesFromBuilder() {
 
         /* Given */
-        Player sut = Player.builder().name("Sl1ng3r").build();
+        PlayerGenerator generator = new PlayerGenerator();
+
+        Player sut = generator.generatePlayer("Sl1ng3r");
 
         /* Then */
         assertEquals("Sl1ng3r", sut.getName());
@@ -46,9 +49,9 @@ class PlayerTest {
         world.spawnPlayerAtCenter(sut);
 
         /* When */
-        sut.move(world, Direction.NORTH);
+        sut.getAction("move").use("north");
 
         /* Then */
-        assertEquals(Coordinate.of(1, 0), sut.getCurrentRegion().getCoordinate());
+        assertEquals(Coordinate.of(1, 0), sut.getRegion().getCoordinate());
     }
 }

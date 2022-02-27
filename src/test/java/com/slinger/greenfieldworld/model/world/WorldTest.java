@@ -45,6 +45,6 @@ class WorldTest {
         sut.spawnPlayerAtCenter(player);
 
         /* Then */
-        assertEquals(Coordinate.of(1, 1), player.getCurrentRegion().getCoordinate());
+        assertEquals(Coordinate.of(1, 1), player.getRegion().getCoordinate());
     }
 }

@@ -12,17 +12,21 @@ public abstract class Region {
     @Getter
     private final RegionName regionName;
 
-    private boolean hasNorthExit = true;
+    @Getter
+    private boolean northExitAvailable = true;
 
-    private boolean hasEastExit = true;
+    @Getter
+    private boolean eastExitAvailable = true;
 
-    private boolean hasSouthExit = true;
+    @Getter
+    private boolean southExitAvailable = true;
 
-    private boolean hasWestExit = true;
+    @Getter
+    private boolean westExitAvailable = true;
 
-    protected Region(Coordinate coordinate, RegionName regionName) {
+    protected Region(Coordinate coordinate) {
         this.coordinate = coordinate;
-        this.regionName = regionName;
+        this.regionName = setRegionName();
     }
 
     /* TODO: Maybe moving should be entirely handled by an dedicated action or movement class?*/
@@ -34,22 +38,22 @@ public abstract class Region {
         switch (direction) {
 
             case NORTH:
-                if (hasNorthExit)
+                if (northExitAvailable)
                     yShift = -1;
                 break;
 
             case EAST:
-                if (hasEastExit)
+                if (eastExitAvailable)
                     xShift = 1;
                 break;
 
             case SOUTH:
-                if (hasSouthExit)
+                if (southExitAvailable)
                     yShift = 1;
                 break;
 
             case WEST:
-                if (hasWestExit)
+                if (westExitAvailable)
                     xShift = -1;
                 break;
 
@@ -59,4 +63,6 @@ public abstract class Region {
 
         return Coordinate.of(coordinate.getX() + xShift, coordinate.getY() + yShift);
     }
+
+    abstract RegionName setRegionName();
 }

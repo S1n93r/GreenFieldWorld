@@ -2,7 +2,6 @@ package com.slinger.greenfieldworld.controller;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.Player;
-import com.slinger.greenfieldworld.model.world.Direction;
 import com.slinger.greenfieldworld.model.world.World;
 import lombok.Getter;
 
@@ -35,12 +34,12 @@ public class InputParser {
         if (firstWord.equalsIgnoreCase("move"))
             move(words);
         else if (firstWord.equalsIgnoreCase("help"))
-            help(words);
+            help();
         else
             submitOutputConsumer.accept(MessageUtil.format("Command '{0}' is not a valid. Try 'help'."));
     }
 
-    private void help(String[] words) {
+    private void help() {
 
         String availableCommands = SEPARATOR + System.lineSeparator()
                 + "help - shows basic commands" + System.lineSeparator()
@@ -54,23 +53,26 @@ public class InputParser {
         submitOutputConsumer.accept(availableCommands);
     }
 
-    public void move(String[] words) {
+    public void move(String[] inputParams) {
 
-        if (words.length == 1) {
+        if (inputParams.length == 1) {
             submitOutputConsumer.accept(MessageUtil.format("Which direction? Try 'north', 'east', 'south' or 'west'."));
             return;
         }
 
-        String secondWord = words[1];
+        String firstParam = inputParams[0];
+        String secondParam = inputParams[1];
 
-        switch (secondWord) {
+        switch (secondParam) {
 
             case "north":
             case "east":
             case "south":
             case "west":
-                Direction direction = Direction.fromString(secondWord);
-                submitOutputConsumer.accept(MessageUtil.format("You go {0}.", direction.name()));
+
+                String output = player.getAction(firstParam).use(secondParam);
+
+                submitOutputConsumer.accept(output);
                 break;
 
             default:

@@ -8,6 +8,11 @@ import lombok.Getter;
 public class Plains extends Region {
 
     public Plains(Coordinate coordinate) {
-        super(coordinate, RegionName.PLAINS);
+        super(coordinate);
+    }
+
+    @Override
+    RegionName setRegionName() {
+        return RegionName.PLAINS;
     }
 }
