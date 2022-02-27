@@ -2,13 +2,11 @@ package com.slinger.greenfieldworld.model.world;
 
 public enum RegionName {
 
-    PLAINS("Plains"),
-    FOREST("Forest"),
-    WATER("Water"),
-    MOUNTAIN("Mountain"),
-    EMPTY("Empty");
-
-    RegionName(String name) {}
+    PLAINS(),
+    FOREST(),
+    WATER(),
+    MOUNTAIN(),
+    EMPTY();
 
     public static RegionName fromString(String regionName) {
 

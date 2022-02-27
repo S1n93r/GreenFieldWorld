@@ -33,7 +33,13 @@ public class RootController {
     }
 
     private Consumer<String> generateOutputConsumer() {
-        return output -> console.appendText(output + System.lineSeparator());
+        return output -> {
+
+            console.appendText(output + System.lineSeparator());
+
+            console.appendText(input.getText() + System.lineSeparator());
+            input.clear();
+        };
     }
 
     @FXML
@@ -48,10 +54,6 @@ public class RootController {
     }
 
     private void submit() {
-
         inputParser.submitInput(input.getText());
-
-        console.appendText(input.getText() + System.lineSeparator());
-        input.clear();
     }
 }
