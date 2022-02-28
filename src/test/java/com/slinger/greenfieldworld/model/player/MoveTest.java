@@ -13,16 +13,20 @@ class MoveTest {
     @Test
     public void triggerWordIsCorrect() {
 
+        /* Given */
         Player player = mock(Player.class);
 
+        /* When */
         Move sut = new Move(player);
 
-        assertEquals("move", sut.triggerWord);
+        /* Then */
+        assertEquals("move", sut.getTriggerWord());
     }
 
     @Test
     public void usingMoveChangesPositionOfPlayer() {
 
+        /* Given */
         WorldGenerator worldGenerator = new WorldGenerator();
         World world = worldGenerator.generateWorld("Testopia", 5);
 
@@ -33,8 +37,10 @@ class MoveTest {
 
         Move sut = new Move(player);
 
+        /* When */
         sut.use("north");
 
+        /* Then */
         assertEquals(Coordinate.of(2, 1), player.getRegion().getCoordinate());
     }
 }
