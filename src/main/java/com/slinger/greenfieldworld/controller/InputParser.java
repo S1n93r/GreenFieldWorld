@@ -4,10 +4,13 @@ import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.world.World;
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.util.function.Consumer;
 
 public class InputParser {
+
+    public static final String UNKNOWN_COMMAND = "Command '{0}' is not a valid. Try 'help'.";
 
     private static final String SEPARATOR = "--------------------";
 
@@ -19,7 +22,7 @@ public class InputParser {
     @Getter
     private String currentOutput;
 
-    public InputParser(Player player, World world, Consumer<String> submitOutputConsumer) {
+    public InputParser(@NonNull Player player, @NonNull World world, @NonNull Consumer<String> submitOutputConsumer) {
         this.player = player;
         this.world = world;
         this.submitOutputConsumer = submitOutputConsumer;
@@ -36,9 +39,10 @@ public class InputParser {
         else if (firstWord.equalsIgnoreCase("help"))
             help();
         else
-            submitOutputConsumer.accept(MessageUtil.format("Command '{0}' is not a valid. Try 'help'."));
+            submitOutput(UNKNOWN_COMMAND, input);
     }
 
+    /* TODO: Extract this to separate class. */
     private void help() {
 
         String availableCommands = SEPARATOR + System.lineSeparator()
@@ -50,13 +54,14 @@ public class InputParser {
                 + "It is up to you to find out more commands =)." + System.lineSeparator()
                 + SEPARATOR;
 
-        submitOutputConsumer.accept(availableCommands);
+        submitOutput(availableCommands);
     }
 
+    /* TODO: Extract this to separate class. */
     public void move(String[] inputParams) {
 
         if (inputParams.length == 1) {
-            submitOutputConsumer.accept(MessageUtil.format("Which direction? Try 'north', 'east', 'south' or 'west'."));
+            submitOutput("Which direction? Try 'north', 'east', 'south' or 'west'.");
             return;
         }
 
@@ -72,11 +77,16 @@ public class InputParser {
 
                 String output = player.getAction(firstParam).use(secondParam);
 
-                submitOutputConsumer.accept(output);
+                submitOutput(output);
                 break;
 
             default:
-                submitOutputConsumer.accept(MessageUtil.format("You can go north, east, south or west."));
+                submitOutput("You can go north, east, south or west.");
         }
+    }
+
+    private void submitOutput(String output, Object... args) {
+        currentOutput = MessageUtil.format(output, args);
+        submitOutputConsumer.accept(MessageUtil.format(output, args));
     }
 }

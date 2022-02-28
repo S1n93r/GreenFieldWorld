@@ -16,13 +16,6 @@ public class WorldRepository {
 
     private static final File DEFAULT_SAVE_FOLDER = new File("");
 
-    public World loadWorld(String name) {
-
-        World world = null;
-
-        return world;
-    }
-
     public void saveWorld(World world, File folder) {
 
         WorldPersistenceDto dto = WorldPersistenceDto.ofWorld(world);
@@ -40,8 +33,7 @@ public class WorldRepository {
         }
     }
 
-    /* TODO: Loading is currently not working due to issues with regions maps and Coordinate class. */
-    public World loadStateFromFile(File file) {
+    public World loadWorld(File file) {
 
         WorldPersistenceDto dto = null;
 

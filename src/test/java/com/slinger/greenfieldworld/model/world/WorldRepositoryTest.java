@@ -73,7 +73,7 @@ class WorldRepositoryTest {
         sut.saveWorld(expectedWorld, FOLDER);
 
         /* When */
-        World loadedWorld = sut.loadStateFromFile(new File(FOLDER, "world_loading_test.json"));
+        World loadedWorld = sut.loadWorld(new File(FOLDER, "world_loading_test.json"));
 
         /* Then */
         assertEquals(expectedWorld.getId(), loadedWorld.getId());
