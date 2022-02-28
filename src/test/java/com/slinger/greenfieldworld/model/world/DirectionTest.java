@@ -9,10 +9,11 @@ class DirectionTest {
     @Test
     public void directionFromStringHasCorrectValues() {
 
-        /* When */
-        Direction direction = Direction.fromString("north");
-
-        /* Then */
-        assertEquals(Direction.NORTH, direction);
+        /* When, Then */
+        assertEquals(Direction.NORTH, Direction.fromString("north"));
+        assertEquals(Direction.EAST, Direction.fromString("east"));
+        assertEquals(Direction.SOUTH, Direction.fromString("south"));
+        assertEquals(Direction.WEST, Direction.fromString("west"));
+        assertEquals(Direction.NONE, Direction.fromString("unknown"));
     }
 }

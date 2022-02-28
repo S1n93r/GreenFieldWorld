@@ -24,7 +24,7 @@ class MoveTest {
     }
 
     @Test
-    public void usingMoveChangesPositionOfPlayer() {
+    public void usingMoveToChangePlayerPosition() {
 
         /* Given */
         WorldGenerator worldGenerator = new WorldGenerator();
@@ -39,8 +39,25 @@ class MoveTest {
 
         /* When */
         sut.use("north");
+        Coordinate coordinateAfterMovingNorth = player.getRegion().getCoordinate().copy();
+
+        sut.use("east");
+        Coordinate coordinateAfterMovingEast = player.getRegion().getCoordinate().copy();
+
+        sut.use("south");
+        Coordinate coordinateAfterMovingSouth = player.getRegion().getCoordinate().copy();
+
+        sut.use("west");
+        Coordinate coordinateAfterMovingWest = player.getRegion().getCoordinate().copy();
+
+        sut.use("unknown");
+        Coordinate coordinateAfterNotMoving = player.getRegion().getCoordinate().copy();
 
         /* Then */
-        assertEquals(Coordinate.of(2, 1), player.getRegion().getCoordinate());
+        assertEquals(Coordinate.of(2, 1), coordinateAfterMovingNorth);
+        assertEquals(Coordinate.of(3, 1), coordinateAfterMovingEast);
+        assertEquals(Coordinate.of(3, 2), coordinateAfterMovingSouth);
+        assertEquals(Coordinate.of(2, 2), coordinateAfterMovingWest);
+        assertEquals(Coordinate.of(2, 2), coordinateAfterNotMoving);
     }
 }
