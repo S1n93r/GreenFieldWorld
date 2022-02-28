@@ -1,5 +1,6 @@
 package com.slinger.greenfieldworld.controller;
 
+import com.slinger.greenfieldworld.controller.inputparser.InputParser;
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.PlayerGenerator;
 import com.slinger.greenfieldworld.model.world.World;

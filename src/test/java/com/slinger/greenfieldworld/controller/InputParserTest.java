@@ -1,5 +1,6 @@
 package com.slinger.greenfieldworld.controller;
 
+import com.slinger.greenfieldworld.controller.inputparser.InputParser;
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.world.World;
@@ -32,7 +33,6 @@ class InputParserTest {
         /* Then */
         String expectedOutput = MessageUtil.format(InputParser.UNKNOWN_COMMAND, input);
 
-        assertEquals(expectedOutput, sut.getCurrentOutput());
         assertEquals(expectedOutput, outputProperty.get());
     }
 }
