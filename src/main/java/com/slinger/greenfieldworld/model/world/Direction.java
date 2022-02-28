@@ -8,15 +8,15 @@ public enum Direction {
     WEST(),
     NONE();
 
-    public static Direction fromString(String regionName) {
+    public static Direction fromString(String direction) {
 
-        if (regionName.equalsIgnoreCase(NORTH.name())) {
+        if (direction.equalsIgnoreCase(NORTH.name())) {
             return NORTH;
-        } else if (regionName.equalsIgnoreCase(EAST.name())) {
+        } else if (direction.equalsIgnoreCase(EAST.name())) {
             return EAST;
-        } else if (regionName.equalsIgnoreCase(SOUTH.name())) {
+        } else if (direction.equalsIgnoreCase(SOUTH.name())) {
             return SOUTH;
-        } else if (regionName.equalsIgnoreCase(WEST.name())) {
+        } else if (direction.equalsIgnoreCase(WEST.name())) {
             return WEST;
         } else {
             return NONE;
