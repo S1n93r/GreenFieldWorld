@@ -15,6 +15,7 @@ class InputParserTest {
     @Test
     public void unknownCommandTriggersHelpPrompt() {
 
+        /* Given */
         World worldMock = mock(World.class);
 
         Player playerMock = mock(Player.class);
