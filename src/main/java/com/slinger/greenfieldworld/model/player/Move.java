@@ -33,23 +33,19 @@ public class Move extends Action {
         switch (direction) {
 
             case NORTH:
-                if (currentRegion.isNorthExitAvailable())
-                    yShift = -1;
+                yShift = -1;
                 break;
 
             case EAST:
-                if (currentRegion.isEastExitAvailable())
-                    xShift = 1;
+                xShift = 1;
                 break;
 
             case SOUTH:
-                if (currentRegion.isSouthExitAvailable())
-                    yShift = 1;
+                yShift = 1;
                 break;
 
             case WEST:
-                if (currentRegion.isWestExitAvailable())
-                    xShift = -1;
+                xShift = -1;
                 break;
 
             case NONE:
