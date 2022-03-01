@@ -29,8 +29,8 @@
       },
       "regionName" : "PLAINS",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=4, y=3)" : {
@@ -62,8 +62,8 @@
       },
       "regionName" : "PLAINS",
       "randomEvent" : {
-        "empty" : false,
-        "present" : true
+        "empty" : true,
+        "present" : false
       }
     },
     "Coordinate(x=3, y=1)" : {
@@ -84,8 +84,8 @@
       },
       "regionName" : "PLAINS",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=3, y=3)" : {
@@ -117,8 +117,8 @@
       },
       "regionName" : "PLAINS",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=2, y=1)" : {
@@ -128,8 +128,8 @@
       },
       "regionName" : "PLAINS",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=2, y=2)" : {
@@ -172,8 +172,8 @@
       },
       "regionName" : "PLAINS",
       "randomEvent" : {
-        "empty" : false,
-        "present" : true
+        "empty" : true,
+        "present" : false
       }
     },
     "Coordinate(x=1, y=1)" : {
@@ -216,8 +216,8 @@
       },
       "regionName" : "PLAINS",
       "randomEvent" : {
-        "empty" : false,
-        "present" : true
+        "empty" : true,
+        "present" : false
       }
     },
     "Coordinate(x=0, y=0)" : {
@@ -271,8 +271,8 @@
       },
       "regionName" : "PLAINS",
       "randomEvent" : {
-        "empty" : false,
-        "present" : true
+        "empty" : true,
+        "present" : false
       }
     }
   },

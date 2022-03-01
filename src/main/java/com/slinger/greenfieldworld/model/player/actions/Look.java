@@ -10,6 +10,7 @@ import com.slinger.greenfieldworld.model.world.regions.Region;
 
 public class Look extends Action {
 
+    public static final String LOOK_DIRECTION_PROMPT = "You look {0} and see a {1}.";
     private static final String TRIGGER_WORD = "look";
 
     public Look(Player player) {
@@ -65,6 +66,6 @@ public class Look extends Action {
         if (targetRegion == null)
             return MessageUtil.format("To the {0} you can see... The end of the world.", direction);
 
-        return MessageUtil.format("You look {0} and see a {1}.", direction, targetRegion.getRegionName());
+        return MessageUtil.format(LOOK_DIRECTION_PROMPT, direction, targetRegion.getRegionName());
     }
 }

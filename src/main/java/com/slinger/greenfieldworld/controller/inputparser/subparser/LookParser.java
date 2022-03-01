@@ -11,6 +11,9 @@ import java.util.function.Consumer;
 public class LookParser extends Parser {
 
     protected static final String NO_PARAM_PROMPT = "Look where?";
+    protected static final String NO_EVENT_PROMPT = "You don't see anything of interest.";
+    protected static final String DIRECTION_NOT_FOUND_PROMPT = "You should try to look elsewhere.";
+    protected static final String ACTION_NOT_AVAILABLE_PROMPT = "You don't know how to look.";
 
     private final Player player;
 
@@ -24,20 +27,21 @@ public class LookParser extends Parser {
     @Override
     public void parse(String[] words) {
 
+        String actionWord = words[0];
+
+        Action look = player.getAction(actionWord);
+
+        if (look == null) {
+            submitOutputConsumer.accept(ACTION_NOT_AVAILABLE_PROMPT);
+            return;
+        }
+
         if (words.length == 1) {
             submitOutputConsumer.accept(NO_PARAM_PROMPT);
             return;
         }
 
-        String actionWord = words[0];
         String paramWord = words[1];
-
-        Action look = player.getAction(actionWord);
-
-        if (look == null) {
-            submitOutputConsumer.accept("You don't know how to look.");
-            return;
-        }
 
         switch (paramWord) {
 
@@ -54,13 +58,13 @@ public class LookParser extends Parser {
             case "around":
                 Optional<Event> eventOptional = player.getRegion().getRandomEvent();
                 if (eventOptional.isEmpty())
-                    submitOutputConsumer.accept("You don't see anything of interest.");
+                    submitOutputConsumer.accept(NO_EVENT_PROMPT);
                 else
                     submitOutputConsumer.accept(eventOptional.get().begin());
                 break;
 
             default:
-                submitOutputConsumer.accept("You can look north, east, south or west.");
+                submitOutputConsumer.accept(DIRECTION_NOT_FOUND_PROMPT);
         }
     }
 }

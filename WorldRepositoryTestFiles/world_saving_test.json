@@ -117,8 +117,8 @@
       },
       "regionName" : "PLAINS",
       "randomEvent" : {
-        "empty" : false,
-        "present" : true
+        "empty" : true,
+        "present" : false
       }
     },
     "Coordinate(x=2, y=1)" : {
@@ -161,8 +161,8 @@
       },
       "regionName" : "PLAINS",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=1, y=0)" : {
