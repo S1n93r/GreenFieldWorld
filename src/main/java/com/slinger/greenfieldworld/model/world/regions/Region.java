@@ -27,5 +27,9 @@ public abstract class Region {
         return eventChest.getRandomEvent();
     }
 
+    public void addEvent(Event event) {
+        eventChest.addEvent(event);
+    }
+
     abstract RegionName setRegionName();
 }

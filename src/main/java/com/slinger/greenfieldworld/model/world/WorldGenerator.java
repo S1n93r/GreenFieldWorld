@@ -1,5 +1,6 @@
 package com.slinger.greenfieldworld.model.world;
 
+import com.slinger.greenfieldworld.model.world.events.BeggarAppears;
 import com.slinger.greenfieldworld.model.world.regions.Plains;
 import com.slinger.greenfieldworld.model.world.regions.Region;
 
@@ -35,6 +36,8 @@ public class WorldGenerator {
             int y = i / clusterGridSideLength;
 
             Region region = new Plains(Coordinate.of(x, y));
+
+            region.addEvent(new BeggarAppears(25));
 
             world.addRegion(region);
         }

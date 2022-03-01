@@ -13,18 +13,19 @@ class LookParserTest {
     @Test
     public void parsingWithoutParamsTriggersPrompt() {
 
+        /* Given */
         String[] params = {"look"};
 
         Player player = mock(Player.class);
 
         final StringProperty outputProperty = new SimpleStringProperty();
 
-        LookParser lookParser = new LookParser(outputProperty::set, player);
+        LookParser sut = new LookParser(outputProperty::set, player);
 
-        lookParser.parse(params);
+        /* When */
+        sut.parse(params);
 
-        String expectedOutput = LookParser.NO_PARAM_PROMPT;
-
-        assertEquals(expectedOutput, outputProperty.get());
+        /* Then */
+        assertEquals(LookParser.NO_PARAM_PROMPT, outputProperty.get());
     }
 }

@@ -13,16 +13,19 @@ class MoveParserTest {
     @Test
     public void parsingWithoutParamsTriggersPrompt() {
 
+        /* Given */
         String[] params = {"move"};
 
         Player player = mock(Player.class);
 
         final StringProperty outputProperty = new SimpleStringProperty();
 
-        MoveParser moveParser = new MoveParser(outputProperty::set, player);
+        MoveParser sut = new MoveParser(outputProperty::set, player);
 
-        moveParser.parse(params);
+        /* When */
+        sut.parse(params);
 
+        /* Then */
         String expectedOutput = MoveParser.NO_PARAM_PROMPT;
 
         assertEquals(expectedOutput, outputProperty.get());
