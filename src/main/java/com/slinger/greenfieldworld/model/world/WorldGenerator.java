@@ -1,5 +1,8 @@
 package com.slinger.greenfieldworld.model.world;
 
+import com.slinger.greenfieldworld.model.world.regions.Plains;
+import com.slinger.greenfieldworld.model.world.regions.Region;
+
 public class WorldGenerator {
 
     public World generateWorld(String name) {

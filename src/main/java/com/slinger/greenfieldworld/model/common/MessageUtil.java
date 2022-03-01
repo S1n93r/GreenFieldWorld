@@ -2,6 +2,10 @@ package com.slinger.greenfieldworld.model.common;
 
 public final class MessageUtil {
 
+    private MessageUtil() {
+        /* Util */
+    }
+
     public static String format(String message, Object... args) {
 
         String output = message;

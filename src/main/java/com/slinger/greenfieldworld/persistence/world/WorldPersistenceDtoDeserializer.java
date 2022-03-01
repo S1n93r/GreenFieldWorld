@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.slinger.greenfieldworld.model.world.Coordinate;
-import com.slinger.greenfieldworld.model.world.Plains;
-import com.slinger.greenfieldworld.model.world.Region;
 import com.slinger.greenfieldworld.model.world.RegionName;
+import com.slinger.greenfieldworld.model.world.regions.Plains;
+import com.slinger.greenfieldworld.model.world.regions.Region;
 
 import java.io.IOException;
 import java.util.HashMap;

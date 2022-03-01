@@ -3,6 +3,7 @@ package com.slinger.greenfieldworld.model.world;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.Player;
+import com.slinger.greenfieldworld.model.world.regions.Region;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

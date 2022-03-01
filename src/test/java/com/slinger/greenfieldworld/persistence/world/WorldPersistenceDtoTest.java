@@ -1,9 +1,9 @@
 package com.slinger.greenfieldworld.persistence.world;
 
 import com.slinger.greenfieldworld.model.world.Coordinate;
-import com.slinger.greenfieldworld.model.world.Plains;
-import com.slinger.greenfieldworld.model.world.Region;
 import com.slinger.greenfieldworld.model.world.World;
+import com.slinger.greenfieldworld.model.world.regions.Plains;
+import com.slinger.greenfieldworld.model.world.regions.Region;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

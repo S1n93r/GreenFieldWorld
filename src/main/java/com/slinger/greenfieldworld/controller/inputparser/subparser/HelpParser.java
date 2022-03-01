@@ -1,12 +1,14 @@
 package com.slinger.greenfieldworld.controller.inputparser.subparser;
 
+import lombok.NonNull;
+
 import java.util.function.Consumer;
 
 public class HelpParser extends Parser {
 
     protected static final String SEPARATOR = "--------------------";
 
-    public HelpParser(Consumer<String> submitOutputConsumer) {
+    public HelpParser(@NonNull Consumer<String> submitOutputConsumer) {
         super(submitOutputConsumer);
     }
 

@@ -1,5 +1,6 @@
 package com.slinger.greenfieldworld.model.world;
 
+import com.slinger.greenfieldworld.model.world.regions.Plains;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

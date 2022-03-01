@@ -2,14 +2,17 @@ package com.slinger.greenfieldworld.controller.inputparser.subparser;
 
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.actions.Action;
+import lombok.NonNull;
 
 import java.util.function.Consumer;
 
 public class MoveParser extends Parser {
 
+    protected static final String NO_PARAM_PROMPT = "Move where?";
+
     private final Player player;
 
-    public MoveParser(Consumer<String> submitOutputConsumer, Player player) {
+    public MoveParser(@NonNull Consumer<String> submitOutputConsumer, @NonNull Player player) {
 
         super(submitOutputConsumer);
 
@@ -20,7 +23,7 @@ public class MoveParser extends Parser {
     public void parse(String[] words) {
 
         if (words.length == 1) {
-            submitOutputConsumer.accept("Which direction? Try 'north', 'east', 'south' or 'west'.");
+            submitOutputConsumer.accept(NO_PARAM_PROMPT);
             return;
         }
 
@@ -44,6 +47,9 @@ public class MoveParser extends Parser {
 
                 submitOutputConsumer.accept(output);
 
+                break;
+
+            case "to":
                 break;
 
             default:

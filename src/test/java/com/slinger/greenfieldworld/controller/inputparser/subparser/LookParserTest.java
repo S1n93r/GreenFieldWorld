@@ -23,7 +23,7 @@ class LookParserTest {
 
         lookParser.parse(params);
 
-        String expectedOutput = "Which direction? Try 'north', 'east', 'south' or 'west'.";
+        String expectedOutput = LookParser.NO_PARAM_PROMPT;
 
         assertEquals(expectedOutput, outputProperty.get());
     }

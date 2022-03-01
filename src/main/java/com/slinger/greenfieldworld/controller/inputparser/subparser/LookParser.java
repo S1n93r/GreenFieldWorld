@@ -2,14 +2,19 @@ package com.slinger.greenfieldworld.controller.inputparser.subparser;
 
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.actions.Action;
+import com.slinger.greenfieldworld.model.world.events.Event;
+import lombok.NonNull;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class LookParser extends Parser {
 
+    protected static final String NO_PARAM_PROMPT = "Look where?";
+
     private final Player player;
 
-    public LookParser(Consumer<String> submitOutputConsumer, Player player) {
+    public LookParser(@NonNull Consumer<String> submitOutputConsumer, @NonNull Player player) {
 
         super(submitOutputConsumer);
 
@@ -20,7 +25,7 @@ public class LookParser extends Parser {
     public void parse(String[] words) {
 
         if (words.length == 1) {
-            submitOutputConsumer.accept("Which direction? Try 'north', 'east', 'south' or 'west'.");
+            submitOutputConsumer.accept(NO_PARAM_PROMPT);
             return;
         }
 
@@ -44,6 +49,14 @@ public class LookParser extends Parser {
 
                 submitOutputConsumer.accept(output);
 
+                break;
+
+            case "around":
+                Optional<Event> eventOptional = player.getRegion().getRandomEvent();
+                if (eventOptional.isEmpty())
+                    submitOutputConsumer.accept("You don't see anything of interest.");
+                else
+                    submitOutputConsumer.accept(eventOptional.get().begin());
                 break;
 
             default:

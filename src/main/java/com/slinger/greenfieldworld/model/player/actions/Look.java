@@ -5,8 +5,8 @@ import com.slinger.greenfieldworld.model.exceptions.SwitchCaseNotDefinedExceptio
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.world.Coordinate;
 import com.slinger.greenfieldworld.model.world.Direction;
-import com.slinger.greenfieldworld.model.world.Region;
 import com.slinger.greenfieldworld.model.world.World;
+import com.slinger.greenfieldworld.model.world.regions.Region;
 
 public class Look extends Action {
 

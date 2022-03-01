@@ -1,6 +1,8 @@
-package com.slinger.greenfieldworld.model.world;
+package com.slinger.greenfieldworld.model.world.regions;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.slinger.greenfieldworld.model.world.Coordinate;
+import com.slinger.greenfieldworld.model.world.RegionName;
 import lombok.Getter;
 
 @Getter

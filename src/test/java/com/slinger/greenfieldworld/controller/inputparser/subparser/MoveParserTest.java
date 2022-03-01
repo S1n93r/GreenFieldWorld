@@ -23,7 +23,7 @@ class MoveParserTest {
 
         moveParser.parse(params);
 
-        String expectedOutput = "Which direction? Try 'north', 'east', 'south' or 'west'.";
+        String expectedOutput = MoveParser.NO_PARAM_PROMPT;
 
         assertEquals(expectedOutput, outputProperty.get());
     }

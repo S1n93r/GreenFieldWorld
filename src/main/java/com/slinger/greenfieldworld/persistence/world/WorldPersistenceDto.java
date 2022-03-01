@@ -2,8 +2,8 @@ package com.slinger.greenfieldworld.persistence.world;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.slinger.greenfieldworld.model.world.Coordinate;
-import com.slinger.greenfieldworld.model.world.Region;
 import com.slinger.greenfieldworld.model.world.World;
+import com.slinger.greenfieldworld.model.world.regions.Region;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 

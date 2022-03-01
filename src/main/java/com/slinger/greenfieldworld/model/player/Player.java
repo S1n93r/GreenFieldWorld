@@ -6,8 +6,8 @@ import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.actions.Action;
 import com.slinger.greenfieldworld.model.player.actions.Look;
 import com.slinger.greenfieldworld.model.player.actions.Move;
-import com.slinger.greenfieldworld.model.world.Region;
 import com.slinger.greenfieldworld.model.world.World;
+import com.slinger.greenfieldworld.model.world.regions.Region;
 import lombok.Getter;
 import lombok.Setter;
 
