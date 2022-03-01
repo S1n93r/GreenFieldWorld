@@ -3,6 +3,9 @@ package com.slinger.greenfieldworld.model.player;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.slinger.greenfieldworld.model.common.MessageUtil;
+import com.slinger.greenfieldworld.model.player.actions.Action;
+import com.slinger.greenfieldworld.model.player.actions.Look;
+import com.slinger.greenfieldworld.model.player.actions.Move;
 import com.slinger.greenfieldworld.model.world.Region;
 import com.slinger.greenfieldworld.model.world.World;
 import lombok.Getter;
@@ -38,6 +41,7 @@ public class Player {
 
     private void addBasicActions() {
         addAction(new Move(this));
+        addAction(new Look(this));
     }
 
     public void spawn(World world, Region region) {

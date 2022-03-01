@@ -1,7 +1,8 @@
-package com.slinger.greenfieldworld.model.player;
+package com.slinger.greenfieldworld.model.player.actions;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.exceptions.SwitchCaseNotDefinedException;
+import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.world.Coordinate;
 import com.slinger.greenfieldworld.model.world.Direction;
 import com.slinger.greenfieldworld.model.world.Region;
@@ -11,7 +12,7 @@ public class Move extends Action {
 
     private static final String TRIGGER_WORD = "move";
 
-    protected Move(Player player) {
+    public Move(Player player) {
         super(player);
     }
 

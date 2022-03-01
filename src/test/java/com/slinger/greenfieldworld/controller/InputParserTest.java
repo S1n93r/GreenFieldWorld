@@ -23,7 +23,7 @@ class InputParserTest {
 
         final StringProperty outputProperty = new SimpleStringProperty();
 
-        InputParser sut = new InputParser(playerMock, worldMock, outputProperty::setValue);
+        InputParser sut = new InputParser(playerMock, outputProperty::setValue);
 
         String input = "gibberish";
 

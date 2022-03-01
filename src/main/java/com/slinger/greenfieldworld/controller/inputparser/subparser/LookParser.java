@@ -5,11 +5,11 @@ import com.slinger.greenfieldworld.model.player.actions.Action;
 
 import java.util.function.Consumer;
 
-public class MoveParser extends Parser {
+public class LookParser extends Parser {
 
     private final Player player;
 
-    public MoveParser(Consumer<String> submitOutputConsumer, Player player) {
+    public LookParser(Consumer<String> submitOutputConsumer, Player player) {
 
         super(submitOutputConsumer);
 
@@ -27,10 +27,10 @@ public class MoveParser extends Parser {
         String actionWord = words[0];
         String paramWord = words[1];
 
-        Action move = player.getAction(actionWord);
+        Action look = player.getAction(actionWord);
 
-        if (move == null) {
-            submitOutputConsumer.accept("You don't know how to move.");
+        if (look == null) {
+            submitOutputConsumer.accept("You don't know how to look.");
             return;
         }
 
@@ -47,7 +47,7 @@ public class MoveParser extends Parser {
                 break;
 
             default:
-                submitOutputConsumer.accept("You can go north, east, south or west.");
+                submitOutputConsumer.accept("You can look north, east, south or west.");
         }
     }
 }

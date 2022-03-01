@@ -32,7 +32,7 @@ public class RootController {
 
         world.spawnPlayerAtCenter(player);
 
-        inputParser = new InputParser(player, world, generateOutputConsumer());
+        inputParser = new InputParser(player, generateOutputConsumer());
     }
 
     private Consumer<String> generateOutputConsumer() {

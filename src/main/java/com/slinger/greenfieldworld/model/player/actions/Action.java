@@ -1,5 +1,6 @@
-package com.slinger.greenfieldworld.model.player;
+package com.slinger.greenfieldworld.model.player.actions;
 
+import com.slinger.greenfieldworld.model.player.Player;
 import lombok.Getter;
 
 public abstract class Action {
