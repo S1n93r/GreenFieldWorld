@@ -56,6 +56,7 @@ public class LookParser extends Parser {
                 break;
 
             case "around":
+                /* TODO: This should start the action, which should then trigger the event. */
                 Optional<Event> eventOptional = player.getRegion().getRandomEvent();
                 if (eventOptional.isEmpty())
                     submitOutputConsumer.accept(NO_EVENT_PROMPT);

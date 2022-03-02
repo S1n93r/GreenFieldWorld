@@ -45,9 +45,9 @@ public class World {
 
         Region checkRegion = regionMap.get(region.getCoordinate());
 
-        /* TODO: Use logger here. */
         if (checkRegion != null)
-            System.out.println("WARNING: Cluster already exists.");
+            throw new IllegalStateException(MessageUtil.format("Cluster for {0} already exists.",
+                    checkRegion.getCoordinate()));
 
         regionMap.put(region.getCoordinate(), region);
     }

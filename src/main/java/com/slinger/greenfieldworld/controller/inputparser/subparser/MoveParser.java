@@ -46,6 +46,7 @@ public class MoveParser extends Parser {
             case "east":
             case "south":
             case "west":
+                /* TODO: Within the action an event could be triggered. */
                 String output = player.getAction(actionWord).use(paramWord);
 
                 submitOutputConsumer.accept(output);
