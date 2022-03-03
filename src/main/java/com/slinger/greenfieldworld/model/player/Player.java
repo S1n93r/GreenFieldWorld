@@ -31,7 +31,7 @@ public class Player {
     @Getter
     @JsonIgnore
     private World world;
-
+    
     protected Player(String name) {
 
         this.name = name;

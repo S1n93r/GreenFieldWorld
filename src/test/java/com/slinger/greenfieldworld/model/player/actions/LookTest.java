@@ -7,6 +7,7 @@ import com.slinger.greenfieldworld.model.world.WorldGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
 class LookTest {
@@ -46,10 +47,10 @@ class LookTest {
         String lookNowhere = sut.use("unknown");
 
         /* Then */
-        assertEquals("You look NORTH and see a PLAINS.", lookNorth);
-        assertEquals("You look EAST and see a PLAINS.", lookEast);
-        assertEquals("You look SOUTH and see a PLAINS.", lookSouth);
-        assertEquals("You look WEST and see a PLAINS.", lookWest);
+        assertTrue(lookNorth.contains("You look NORTH and see"));
+        assertTrue(lookEast.contains("You look EAST and see"));
+        assertTrue(lookSouth.contains("You look SOUTH and see"));
+        assertTrue(lookWest.contains("You look WEST and see"));
         assertEquals("You did not look in any direction.", lookNowhere);
     }
 }

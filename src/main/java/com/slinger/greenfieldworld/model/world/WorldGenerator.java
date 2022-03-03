@@ -1,7 +1,8 @@
 package com.slinger.greenfieldworld.model.world;
 
-import com.slinger.greenfieldworld.model.world.events.BeggarAppears;
-import com.slinger.greenfieldworld.model.world.regions.Plains;
+import com.slinger.greenfieldworld.model.common.DiceUtil;
+import com.slinger.greenfieldworld.model.world.regions.Forest;
+import com.slinger.greenfieldworld.model.world.regions.Plain;
 import com.slinger.greenfieldworld.model.world.regions.Region;
 
 public class WorldGenerator {
@@ -35,9 +36,13 @@ public class WorldGenerator {
             int x = i % clusterGridSideLength;
             int y = i / clusterGridSideLength;
 
-            Region region = new Plains(Coordinate.of(x, y));
+            int dice = DiceUtil.rollDice(4);
 
-            region.addEvent(new BeggarAppears(25));
+            Region region = new Forest(Coordinate.of(x, y));
+
+            if (dice == 4) {
+                region = new Plain(Coordinate.of(x, y));
+            }
 
             world.addRegion(region);
         }

@@ -28,16 +28,4 @@ class WorldGeneratorTest {
         /* Then */
         assertEquals(9, world.getUnmodifiableRegionMap().size());
     }
-
-    @Test
-    public void afterGeneratingRegionMapHasCorrectRegionTypes() {
-
-        /* Given, When */
-        World world = sut.generateWorld("Test", 3);
-
-        /* Then */
-        assertEquals(RegionName.PLAINS, world.getUnmodifiableRegionMap().get(Coordinate.of(0, 0)).getRegionName());
-        assertEquals(RegionName.PLAINS, world.getUnmodifiableRegionMap().get(Coordinate.of(1, 1)).getRegionName());
-        assertEquals(RegionName.PLAINS, world.getUnmodifiableRegionMap().get(Coordinate.of(2, 2)).getRegionName());
-    }
 }

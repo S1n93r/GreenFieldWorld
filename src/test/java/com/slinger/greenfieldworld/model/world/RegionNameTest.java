@@ -10,7 +10,7 @@ class RegionNameTest {
     public void directionFromStringHasCorrectValues() {
 
         /* When, Then */
-        assertEquals(RegionName.PLAINS, RegionName.fromString("plains"));
+        assertEquals(RegionName.PLAIN, RegionName.fromString("plain"));
         assertEquals(RegionName.FOREST, RegionName.fromString("forest"));
         assertEquals(RegionName.WATER, RegionName.fromString("water"));
         assertEquals(RegionName.MOUNTAIN, RegionName.fromString("mountain"));

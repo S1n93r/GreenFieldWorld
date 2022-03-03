@@ -12,7 +12,7 @@ class EventChestTest {
 
         EventChest eventChest = new EventChest();
 
-        eventChest.addEvent(new BeggarAppears(100));
+        eventChest.addEvent(new BeggarEvent(100));
 
         assertFalse(eventChest.getRandomEvent().isEmpty());
         assertFalse(eventChest.getRandomEvent().isEmpty());
@@ -24,9 +24,9 @@ class EventChestTest {
 
         EventChest eventChest = new EventChest();
 
-        eventChest.addEvent(new BeggarAppears(0));
-        eventChest.addEvent(new BeggarAppears(0));
-        eventChest.addEvent(new BeggarAppears(0));
+        eventChest.addEvent(new BeggarEvent(0));
+        eventChest.addEvent(new BeggarEvent(0));
+        eventChest.addEvent(new BeggarEvent(0));
 
         assertTrue(eventChest.getRandomEvent().isEmpty());
         assertTrue(eventChest.getRandomEvent().isEmpty());

@@ -2,7 +2,7 @@ package com.slinger.greenfieldworld.persistence.world;
 
 import com.slinger.greenfieldworld.model.world.Coordinate;
 import com.slinger.greenfieldworld.model.world.World;
-import com.slinger.greenfieldworld.model.world.regions.Plains;
+import com.slinger.greenfieldworld.model.world.regions.Plain;
 import com.slinger.greenfieldworld.model.world.regions.Region;
 import org.junit.jupiter.api.Test;
 
@@ -32,13 +32,13 @@ class WorldPersistenceDtoTest {
         /* Given */
         Map<Coordinate, Region> regionMap = new HashMap<>();
 
-        Plains plainsA = new Plains(Coordinate.of(0, 0));
-        Plains plainsB = new Plains(Coordinate.of(0, 0));
-        Plains plainsC = new Plains(Coordinate.of(0, 0));
+        Plain plainA = new Plain(Coordinate.of(0, 0));
+        Plain plainB = new Plain(Coordinate.of(0, 0));
+        Plain plainC = new Plain(Coordinate.of(0, 0));
 
-        regionMap.put(plainsA.getCoordinate(), plainsA);
-        regionMap.put(plainsB.getCoordinate(), plainsB);
-        regionMap.put(plainsC.getCoordinate(), plainsC);
+        regionMap.put(plainA.getCoordinate(), plainA);
+        regionMap.put(plainB.getCoordinate(), plainB);
+        regionMap.put(plainC.getCoordinate(), plainC);
 
         WorldPersistenceDto sut = new WorldPersistenceDto(regionMap, 1, "Test-Dto");
 
@@ -57,13 +57,13 @@ class WorldPersistenceDtoTest {
         /* Given */
         World world = World.builder().id(1).name("Test-World").build();
 
-        Plains plainsA = new Plains(Coordinate.of(0, 0));
-        Plains plainsB = new Plains(Coordinate.of(0, 0));
-        Plains plainsC = new Plains(Coordinate.of(0, 0));
+        Plain plainA = new Plain(Coordinate.of(0, 0));
+        Plain plainB = new Plain(Coordinate.of(1, 0));
+        Plain plainC = new Plain(Coordinate.of(2, 0));
 
-        world.addRegion(plainsA);
-        world.addRegion(plainsB);
-        world.addRegion(plainsC);
+        world.addRegion(plainA);
+        world.addRegion(plainB);
+        world.addRegion(plainC);
 
         /* When */
         WorldPersistenceDto sut = WorldPersistenceDto.ofWorld(world);

@@ -1,19 +1,19 @@
 package com.slinger.greenfieldworld.model.world;
 
-import com.slinger.greenfieldworld.model.world.regions.Plains;
+import com.slinger.greenfieldworld.model.world.regions.Plain;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PlainsTest {
+class PlainTest {
 
     @Test
     public void triggerWordIsCorrect() {
 
         /* When */
-        Plains sut = new Plains(Coordinate.of(0, 0));
+        Plain sut = new Plain(Coordinate.of(0, 0));
 
         /* Then */
-        assertEquals("PLAINS", sut.getRegionName().name());
+        assertEquals("PLAIN", sut.getRegionName().name());
     }
 }

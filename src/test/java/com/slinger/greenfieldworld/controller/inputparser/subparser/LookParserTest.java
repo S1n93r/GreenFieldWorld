@@ -2,7 +2,7 @@ package com.slinger.greenfieldworld.controller.inputparser.subparser;
 
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.actions.Look;
-import com.slinger.greenfieldworld.model.world.regions.Plains;
+import com.slinger.greenfieldworld.model.world.regions.Plain;
 import com.slinger.greenfieldworld.model.world.regions.Region;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -81,7 +81,7 @@ class LookParserTest {
         /* Given */
         String[] words = {"look", "around"};
 
-        Region region = mock(Plains.class);
+        Region region = mock(Plain.class);
         Mockito.when(region.getRandomEvent()).thenReturn(Optional.empty());
 
         Player player = mock(Player.class);

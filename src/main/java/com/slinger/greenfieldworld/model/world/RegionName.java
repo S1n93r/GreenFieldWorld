@@ -2,7 +2,7 @@ package com.slinger.greenfieldworld.model.world;
 
 public enum RegionName {
 
-    PLAINS(),
+    PLAIN(),
     FOREST(),
     WATER(),
     MOUNTAIN(),
@@ -10,8 +10,8 @@ public enum RegionName {
 
     public static RegionName fromString(String regionName) {
 
-        if (regionName.equalsIgnoreCase(PLAINS.name())) {
-            return PLAINS;
+        if (regionName.equalsIgnoreCase(PLAIN.name())) {
+            return PLAIN;
         } else if (regionName.equalsIgnoreCase(FOREST.name())) {
             return FOREST;
         } else if (regionName.equalsIgnoreCase(WATER.name())) {

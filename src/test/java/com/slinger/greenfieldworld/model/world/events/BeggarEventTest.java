@@ -4,18 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BeggarAppearsTest {
+class BeggarEventTest {
 
     @Test
     public void beginTriggersBeggarPrompt() {
 
         /* Given */
-        BeggarAppears sut = new BeggarAppears(100);
+        BeggarEvent sut = new BeggarEvent(100);
 
         /* When */
         String prompt = sut.begin();
 
         /* Then */
-        assertEquals(BeggarAppears.BEGGAR_APPEARS_PROMPT, prompt);
+        assertEquals(BeggarEvent.BEGGAR_PROMPT, prompt);
     }
 }

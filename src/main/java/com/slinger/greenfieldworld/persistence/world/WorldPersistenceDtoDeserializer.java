@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.slinger.greenfieldworld.model.world.Coordinate;
 import com.slinger.greenfieldworld.model.world.RegionName;
-import com.slinger.greenfieldworld.model.world.regions.Plains;
+import com.slinger.greenfieldworld.model.world.regions.Plain;
 import com.slinger.greenfieldworld.model.world.regions.Region;
 
 import java.io.IOException;
@@ -49,12 +49,12 @@ public class WorldPersistenceDtoDeserializer extends JsonDeserializer<WorldPersi
                     case "regionName":
                         regionName = RegionName.fromString(p.nextTextValue());
 
-                        Region region = new Plains(Coordinate.of(x, y));
+                        Region region = new Plain(Coordinate.of(x, y));
 
                         switch (regionName) {
 
-                            case PLAINS:
-                                region = new Plains(Coordinate.of(x, y));
+                            case PLAIN:
+                                region = new Plain(Coordinate.of(x, y));
                                 break;
                             case FOREST:
 //                                region = new Plains(Coordinate.of(x, y));
@@ -66,7 +66,7 @@ public class WorldPersistenceDtoDeserializer extends JsonDeserializer<WorldPersi
 //                                region = new Plains(Coordinate.of(x, y));
                                 break;
                             default:
-                                region = new Plains(Coordinate.of(x, y));
+                                region = new Plain(Coordinate.of(x, y));
                         }
 
                         regionMap.put(region.getCoordinate(), region);
