@@ -21,7 +21,7 @@ class DiceUtilTest {
         boolean resultsAreWithinRange = true;
 
         for (int diceResult : diceResults) {
-            if (diceResult < 0 || diceResult > 6)
+            if (diceResult < 1 || diceResult > 6)
                 resultsAreWithinRange = false;
         }
 

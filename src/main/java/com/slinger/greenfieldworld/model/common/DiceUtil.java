@@ -7,6 +7,6 @@ public final class DiceUtil {
     }
 
     public static int rollDice(int sides) {
-        return (int) (Math.random() * sides);
+        return (int) (Math.random() * sides + 1);
     }
 }
