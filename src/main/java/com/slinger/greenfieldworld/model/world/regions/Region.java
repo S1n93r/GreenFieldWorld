@@ -1,7 +1,7 @@
 package com.slinger.greenfieldworld.model.world.regions;
 
 import com.slinger.greenfieldworld.model.world.Coordinate;
-import com.slinger.greenfieldworld.model.world.RegionName;
+import com.slinger.greenfieldworld.model.world.RegionTypeName;
 import com.slinger.greenfieldworld.model.world.events.Event;
 import com.slinger.greenfieldworld.model.world.events.EventChest;
 import lombok.Getter;
@@ -14,13 +14,19 @@ public abstract class Region {
     private final Coordinate coordinate;
 
     @Getter
-    private final RegionName regionName;
+    private final RegionTypeName regionTypeName;
 
-    private final EventChest eventChest = new EventChest();
+    @Getter
+    private final String regionName;
 
-    protected Region(Coordinate coordinate) {
+    private final EventChest eventChest;
+
+    protected Region(Coordinate coordinate, RegionTypeName regionTypeName, String regionName,
+                     EventChest eventChest) {
         this.coordinate = coordinate;
-        this.regionName = setRegionName();
+        this.regionTypeName = regionTypeName;
+        this.regionName = regionName;
+        this.eventChest = eventChest;
     }
 
     public Optional<Event> getRandomEvent() {
@@ -30,8 +36,4 @@ public abstract class Region {
     protected void addEvent(Event event) {
         eventChest.addEvent(event);
     }
-
-    abstract RegionName setRegionName();
-
-    abstract void addEvents();
 }

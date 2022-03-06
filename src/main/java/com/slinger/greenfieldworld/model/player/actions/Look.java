@@ -66,6 +66,6 @@ public class Look extends Action {
         if (targetRegion == null)
             return MessageUtil.format("To the {0} you can see... The end of the world.", direction);
 
-        return MessageUtil.format(LOOK_DIRECTION_PROMPT, direction, targetRegion.getRegionName());
+        return MessageUtil.format(LOOK_DIRECTION_PROMPT, direction, targetRegion.getRegionTypeName());
     }
 }

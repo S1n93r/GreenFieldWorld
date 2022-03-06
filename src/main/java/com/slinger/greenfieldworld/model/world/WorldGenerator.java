@@ -1,9 +1,9 @@
 package com.slinger.greenfieldworld.model.world;
 
 import com.slinger.greenfieldworld.model.common.DiceUtil;
-import com.slinger.greenfieldworld.model.world.regions.Forest;
-import com.slinger.greenfieldworld.model.world.regions.Plain;
 import com.slinger.greenfieldworld.model.world.regions.Region;
+import com.slinger.greenfieldworld.model.world.regions.forest.Glade;
+import com.slinger.greenfieldworld.model.world.regions.plain.FlowerBed;
 
 public class WorldGenerator {
 
@@ -38,10 +38,10 @@ public class WorldGenerator {
 
             int dice = DiceUtil.rollDice(4);
 
-            Region region = new Forest(Coordinate.of(x, y));
+            Region region = new Glade(Coordinate.of(x, y));
 
             if (dice == 4) {
-                region = new Plain(Coordinate.of(x, y));
+                region = new FlowerBed(Coordinate.of(x, y));
             }
 
             world.addRegion(region);

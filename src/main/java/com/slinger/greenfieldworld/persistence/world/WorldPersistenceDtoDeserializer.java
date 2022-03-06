@@ -4,13 +4,27 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.slinger.greenfieldworld.model.world.Coordinate;
-import com.slinger.greenfieldworld.model.world.RegionName;
-import com.slinger.greenfieldworld.model.world.regions.Plain;
+import com.slinger.greenfieldworld.model.world.RegionTypeName;
 import com.slinger.greenfieldworld.model.world.regions.Region;
+import com.slinger.greenfieldworld.model.world.regions.forest.BearCave;
+import com.slinger.greenfieldworld.model.world.regions.forest.BrierWood;
+import com.slinger.greenfieldworld.model.world.regions.forest.ForestRegionName;
+import com.slinger.greenfieldworld.model.world.regions.forest.Glade;
+import com.slinger.greenfieldworld.model.world.regions.mountain.MountainRegionName;
+import com.slinger.greenfieldworld.model.world.regions.plain.FlowerBed;
+import com.slinger.greenfieldworld.model.world.regions.plain.Hill;
+import com.slinger.greenfieldworld.model.world.regions.plain.PlainRegionName;
+import com.slinger.greenfieldworld.model.world.regions.plain.TallGrass;
+import com.slinger.greenfieldworld.model.world.regions.water.HotSprings;
+import com.slinger.greenfieldworld.model.world.regions.water.Lake;
+import com.slinger.greenfieldworld.model.world.regions.water.River;
+import com.slinger.greenfieldworld.model.world.regions.water.WaterRegionName;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class WorldPersistenceDtoDeserializer extends JsonDeserializer<WorldPersistenceDto> {
 
@@ -21,7 +35,7 @@ public class WorldPersistenceDtoDeserializer extends JsonDeserializer<WorldPersi
 
         int x = -1;
         int y = -1;
-        RegionName regionName;
+        RegionTypeName regionTypeName;
 
         Map<Coordinate, Region> regionMap = new HashMap<>();
 
@@ -29,6 +43,8 @@ public class WorldPersistenceDtoDeserializer extends JsonDeserializer<WorldPersi
         String name;
 
         boolean continueParsing = true;
+
+        Set<String> unparsedField = new HashSet<>();
 
         while (continueParsing) {
 
@@ -46,27 +62,106 @@ public class WorldPersistenceDtoDeserializer extends JsonDeserializer<WorldPersi
                         y = p.nextIntValue(-1);
                         break;
 
-                    case "regionName":
-                        regionName = RegionName.fromString(p.nextTextValue());
+                    case "regionTypeName":
+                        regionTypeName = RegionTypeName.fromString(p.nextTextValue());
 
-                        Region region = new Plain(Coordinate.of(x, y));
+                        /* Default */
+                        Region region = new FlowerBed(Coordinate.of(x, y));
 
-                        switch (regionName) {
+                        String regionName = p.nextFieldName();
+
+                        switch (regionTypeName) {
 
                             case PLAIN:
-                                region = new Plain(Coordinate.of(x, y));
+
+                                switch (PlainRegionName.fromString(regionName)) {
+
+                                    case FLOWER_BED:
+                                        region = new FlowerBed(Coordinate.of(x, y));
+                                        break;
+
+                                    case HILL:
+                                        region = new Hill(Coordinate.of(x, y));
+                                        break;
+
+                                    case TALL_GRASS:
+                                        region = new TallGrass(Coordinate.of(x, y));
+                                        break;
+
+                                    default:
+                                        /* Default is declared before switch. */
+                                }
+
                                 break;
+
                             case FOREST:
-//                                region = new Plains(Coordinate.of(x, y));
+
+                                switch (ForestRegionName.fromString(regionName)) {
+
+                                    case BEAR_CAVE:
+                                        region = new BearCave(Coordinate.of(x, y));
+                                        break;
+
+                                    case BRIER_WOOD:
+                                        region = new BrierWood(Coordinate.of(x, y));
+                                        break;
+
+                                    case GLADE:
+                                        region = new Glade(Coordinate.of(x, y));
+                                        break;
+
+                                    default:
+                                        /* Default is declared before switch. */
+                                }
+
                                 break;
+
                             case WATER:
-//                                region = new Plains(Coordinate.of(x, y));
+
+                                switch (WaterRegionName.fromString(regionName)) {
+
+                                    case HOT_SPRINGS:
+                                        region = new HotSprings(Coordinate.of(x, y));
+                                        break;
+
+                                    case LAKE:
+                                        region = new Lake(Coordinate.of(x, y));
+                                        break;
+
+                                    case RIVER:
+                                        region = new River(Coordinate.of(x, y));
+                                        break;
+
+                                    default:
+                                        /* Default is declared before switch. */
+                                }
+
                                 break;
+
                             case MOUNTAIN:
-//                                region = new Plains(Coordinate.of(x, y));
+
+                                switch (MountainRegionName.fromString(regionName)) {
+
+                                    case ABANDONED_MINE:
+                                        region = new Glade(Coordinate.of(x, y));
+                                        break;
+
+                                    case FOOTHILLS:
+                                        region = new BearCave(Coordinate.of(x, y));
+                                        break;
+
+                                    case UPLANDS:
+                                        region = new BrierWood(Coordinate.of(x, y));
+                                        break;
+
+                                    default:
+                                        /* Default is declared before switch. */
+                                }
+
                                 break;
+
                             default:
-                                region = new Plain(Coordinate.of(x, y));
+                                /* Default is declared before switch. */
                         }
 
                         regionMap.put(region.getCoordinate(), region);
@@ -86,6 +181,7 @@ public class WorldPersistenceDtoDeserializer extends JsonDeserializer<WorldPersi
                         break;
 
                     default:
+                        /* Some fields can be ignored. */
                 }
             }
         }

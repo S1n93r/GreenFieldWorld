@@ -2,8 +2,8 @@ package com.slinger.greenfieldworld.persistence.world;
 
 import com.slinger.greenfieldworld.model.world.Coordinate;
 import com.slinger.greenfieldworld.model.world.World;
-import com.slinger.greenfieldworld.model.world.regions.Plain;
 import com.slinger.greenfieldworld.model.world.regions.Region;
+import com.slinger.greenfieldworld.model.world.regions.plain.FlowerBed;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -32,13 +32,13 @@ class WorldPersistenceDtoTest {
         /* Given */
         Map<Coordinate, Region> regionMap = new HashMap<>();
 
-        Plain plainA = new Plain(Coordinate.of(0, 0));
-        Plain plainB = new Plain(Coordinate.of(0, 0));
-        Plain plainC = new Plain(Coordinate.of(0, 0));
+        FlowerBed flowerBedA = new FlowerBed(Coordinate.of(0, 0));
+        FlowerBed flowerBedB = new FlowerBed(Coordinate.of(0, 0));
+        FlowerBed flowerBedC = new FlowerBed(Coordinate.of(0, 0));
 
-        regionMap.put(plainA.getCoordinate(), plainA);
-        regionMap.put(plainB.getCoordinate(), plainB);
-        regionMap.put(plainC.getCoordinate(), plainC);
+        regionMap.put(flowerBedA.getCoordinate(), flowerBedA);
+        regionMap.put(flowerBedB.getCoordinate(), flowerBedB);
+        regionMap.put(flowerBedC.getCoordinate(), flowerBedC);
 
         WorldPersistenceDto sut = new WorldPersistenceDto(regionMap, 1, "Test-Dto");
 
@@ -57,13 +57,13 @@ class WorldPersistenceDtoTest {
         /* Given */
         World world = World.builder().id(1).name("Test-World").build();
 
-        Plain plainA = new Plain(Coordinate.of(0, 0));
-        Plain plainB = new Plain(Coordinate.of(1, 0));
-        Plain plainC = new Plain(Coordinate.of(2, 0));
+        FlowerBed flowerBedA = new FlowerBed(Coordinate.of(0, 0));
+        FlowerBed flowerBedB = new FlowerBed(Coordinate.of(1, 0));
+        FlowerBed flowerBedC = new FlowerBed(Coordinate.of(2, 0));
 
-        world.addRegion(plainA);
-        world.addRegion(plainB);
-        world.addRegion(plainC);
+        world.addRegion(flowerBedA);
+        world.addRegion(flowerBedB);
+        world.addRegion(flowerBedC);
 
         /* When */
         WorldPersistenceDto sut = WorldPersistenceDto.ofWorld(world);
