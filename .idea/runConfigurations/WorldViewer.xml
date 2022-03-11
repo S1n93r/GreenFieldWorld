@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="WorldViewer" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="com.slinger.greenfieldworld.model.world.generator.WorldViewer" />
+    <module name="GreenFieldWorld.test" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.slinger.greenfieldworld.model.world.generator.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
