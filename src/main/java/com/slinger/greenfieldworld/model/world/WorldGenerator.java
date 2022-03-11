@@ -7,17 +7,21 @@ import com.slinger.greenfieldworld.model.world.regions.plain.FlowerBed;
 import com.slinger.greenfieldworld.model.world.regions.plain.TallGrass;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class WorldGenerator {
 
     private static final int DEFAULT_REGION_GRID_SIDE_LENGTH = 5;
 
-    /* TODO: Make map size dependant instead of fix */
-    private final static int MAX_MOUNTAINS = 4;
-    private final static int MAX_MOUNTAIN_SIZE = 7;
+    /**
+     * Percent mountains per grid side length unit. A 5x5 map can have a max of 5 mountains.
+     */
+    private final static int MAX_MOUNTAIN_NUMBER_RATIO = 100;
+
+    /**
+     * Percent mountain size per grid side length. Mountains on a 5x5 map can have a max size of 1x1 (1,65x1,65).
+     */
+    private final static int MAX_MOUNTAIN_SIZE_RATIO = 33;
 
     public World generateWorld(String name) {
         return generateWorld(name, DEFAULT_REGION_GRID_SIDE_LENGTH);
@@ -32,12 +36,10 @@ public class WorldGenerator {
         return world;
     }
 
-    private Map<Coordinate, Region> generateRegions(World world) {
+    private void generateRegions(World world) {
 
         generatePlains(world);
         addMountains(world);
-
-        return new HashMap<>();
     }
 
     private void generatePlains(World world) {
@@ -61,7 +63,9 @@ public class WorldGenerator {
 
     private void addMountains(World world) {
 
-        int numberOfMountains = DiceUtil.rollDice(MAX_MOUNTAINS);
+        int maxNumberOfMountains = world.getGridSideLength() * MAX_MOUNTAIN_NUMBER_RATIO / 100;
+
+        int numberOfMountains = DiceUtil.rollDice(maxNumberOfMountains);
 
         for (int i = 0; i < numberOfMountains; i++) {
             addMountain(world);
@@ -72,7 +76,9 @@ public class WorldGenerator {
 
         int gridSideLength = world.getGridSideLength();
 
-        int mountainSize = DiceUtil.rollDice(MAX_MOUNTAIN_SIZE);
+        int maxMountainSize = gridSideLength * MAX_MOUNTAIN_SIZE_RATIO / 100;
+
+        int mountainSize = DiceUtil.rollDice(maxMountainSize);
 
         int mountainUpperLeftX = DiceUtil.rollDice(gridSideLength) - 1;
         int mountainUpperLeftY = DiceUtil.rollDice(gridSideLength) - 1;
