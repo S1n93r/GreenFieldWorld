@@ -2,8 +2,10 @@ package com.slinger.greenfieldworld.model.world.generator;
 
 import com.slinger.greenfieldworld.model.world.Coordinate;
 import com.slinger.greenfieldworld.model.world.World;
+import com.slinger.greenfieldworld.model.world.WorldGenerator;
 import com.slinger.greenfieldworld.model.world.regions.Region;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
@@ -12,7 +14,12 @@ public class WorldViewerController {
     @FXML
     private GridPane worldGrid;
 
-    public void loadWorld(World world) {
+    @FXML
+    private Button generateWorld;
+
+    private void loadWorld(World world) {
+
+        worldGrid.getChildren().clear();
 
         for (Region region : world.getUnmodifiableRegionMap().values()) {
 
@@ -24,5 +31,13 @@ public class WorldViewerController {
 
             worldGrid.add(label, coordinate.getX(), coordinate.getY());
         }
+    }
+
+    @FXML
+    private void generateWorld() {
+
+        WorldGenerator generator = new WorldGenerator();
+
+        loadWorld(generator.generateWorld("Test World", 10));
     }
 }

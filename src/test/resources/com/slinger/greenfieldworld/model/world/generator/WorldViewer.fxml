@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="20.0"
@@ -11,5 +12,7 @@
     </padding>
 
     <GridPane fx:id="worldGrid"/>
+
+    <Button fx:id="generateWorld" onAction="#generateWorld" text="Generate World (10x10)"/>
 
 </VBox>
