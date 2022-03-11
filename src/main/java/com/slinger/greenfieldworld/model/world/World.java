@@ -42,13 +42,6 @@ public class World {
     }
 
     public void addRegion(Region region) {
-
-        Region checkRegion = regionMap.get(region.getCoordinate());
-
-        if (checkRegion != null)
-            throw new IllegalStateException(MessageUtil.format("Cluster for {0} already exists.",
-                    checkRegion.getCoordinate()));
-
         regionMap.put(region.getCoordinate(), region);
     }
 

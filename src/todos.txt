@@ -1,0 +1,4 @@
+Next:
+[ ] - adjust world generator to generate new regions
+[ ] - adjust event system
+[ ] - implement basic encounters
