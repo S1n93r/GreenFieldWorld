@@ -13,6 +13,6 @@
 
     <GridPane fx:id="worldGrid"/>
 
-    <Button fx:id="generateWorld" onAction="#generateWorld" text="Generate World (10x10)"/>
+    <Button fx:id="generateWorld" onAction="#generateWorld" text="Generate World (20x20)"/>
 
 </VBox>

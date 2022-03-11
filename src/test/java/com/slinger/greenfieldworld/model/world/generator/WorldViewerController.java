@@ -38,6 +38,6 @@ public class WorldViewerController {
 
         WorldGenerator generator = new WorldGenerator();
 
-        loadWorld(generator.generateWorld("Test World", 10));
+        loadWorld(generator.generateWorld("Test World", 20));
     }
 }
