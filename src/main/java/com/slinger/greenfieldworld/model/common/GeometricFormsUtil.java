@@ -77,15 +77,16 @@ public class GeometricFormsUtil {
         int x = r, y = 0;
 
         /* Adding the initial coordinate on the axes after translation. */
-        coordinateList.add(Coordinate.of(x + xCentre, y + yCentre));
+        Coordinate end = Coordinate.of(x + xCentre, y + yCentre);
 
         /* When radius is zero, only a single coordinate will be added. */
         if (r > 0) {
 
-            coordinateList.add(Coordinate.of(-x + xCentre, -y + yCentre));
-            coordinateList.add(Coordinate.of(y + xCentre, x + yCentre));
-            coordinateList.add(Coordinate.of(-y + xCentre, -x + yCentre));
-        }
+            Coordinate start = Coordinate.of(-x + xCentre, -y + yCentre);
+
+            coordinateList.addAll(GeometricFormsUtil.getCoordinatesOfHorizontalLine(start, end));
+        } else
+            coordinateList.add(end);
 
         /* Initialising the value p. */
         int p = 1 - r;
@@ -109,20 +110,28 @@ public class GeometricFormsUtil {
                 break;
 
             /* Adding the generated point and its reflections on the other eights after translation. */
-            coordinateList.add(Coordinate.of(x + xCentre, y + yCentre));
+            end = Coordinate.of(x + xCentre, y + yCentre);
+            Coordinate start = Coordinate.of(-x + xCentre, y + yCentre);
 
-            coordinateList.add(Coordinate.of(-x + xCentre, y + yCentre));
-            coordinateList.add(Coordinate.of(x + xCentre, -y + yCentre));
-            coordinateList.add(Coordinate.of(-x + xCentre, -y + yCentre));
+            coordinateList.addAll(GeometricFormsUtil.getCoordinatesOfHorizontalLine(start, end));
+
+            end = Coordinate.of(x + xCentre, -y + yCentre);
+            start = Coordinate.of(-x + xCentre, -y + yCentre);
+
+            coordinateList.addAll(GeometricFormsUtil.getCoordinatesOfHorizontalLine(start, end));
 
             /* If the generated point is on the line x = y then perimeter points have already been added. */
             if (x != y) {
 
-                coordinateList.add(Coordinate.of(y + xCentre, x + yCentre));
+                end = Coordinate.of(y + xCentre, x + yCentre);
+                start = Coordinate.of(-y + xCentre, x + yCentre);
 
-                coordinateList.add(Coordinate.of(-y + xCentre, x + yCentre));
-                coordinateList.add(Coordinate.of(y + xCentre, -x + yCentre));
-                coordinateList.add(Coordinate.of(-y + xCentre, -x + yCentre));
+                coordinateList.addAll(GeometricFormsUtil.getCoordinatesOfHorizontalLine(start, end));
+
+                end = Coordinate.of(y + xCentre, -x + yCentre);
+                start = Coordinate.of(-y + xCentre, -x + yCentre);
+
+                coordinateList.addAll(GeometricFormsUtil.getCoordinatesOfHorizontalLine(start, end));
             }
         }
 
