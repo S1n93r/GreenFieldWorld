@@ -1,0 +1,20 @@
+.region-tile{
+    -fx-pref-width: 24px;
+    -fx-pref-height: 24px;
+
+    &-plain {
+        -fx-background-color: yellow;
+    }
+
+    &-forest {
+        -fx-background-color: green;
+    }
+
+    &-water {
+        -fx-background-color: blue;
+    }
+
+    &-mountain {
+        -fx-background-color: gray;
+    }
+}

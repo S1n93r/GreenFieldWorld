@@ -5,17 +5,18 @@ import com.slinger.greenfieldworld.model.world.World;
 import com.slinger.greenfieldworld.model.world.WorldGenerator;
 import com.slinger.greenfieldworld.model.world.regions.Region;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 public class WorldViewerController {
 
-    @FXML
-    private GridPane worldGrid;
+    private static final String STYLE_CLASS_PLAIN_TILE = "region-tile-plain";
+    private static final String STYLE_CLASS_FOREST_TILE = "region-tile-forest";
+    private static final String STYLE_CLASS_WATER_TILE = "region-tile-water";
+    private static final String STYLE_CLASS_MOUNTAIN_TILE = "region-tile-mountain";
 
     @FXML
-    private Button generateWorld;
+    private GridPane worldGrid;
 
     private void loadWorld(World world) {
 
@@ -25,11 +26,31 @@ public class WorldViewerController {
 
             Coordinate coordinate = region.getCoordinate();
 
-            Label label = new Label(region.getRegionTypeName().name().substring(0, 1));
+            HBox hBox = new HBox();
 
-            label.setStyle("-fx-padding: 4px 8px");
+            switch (region.getRegionTypeName()) {
 
-            worldGrid.add(label, coordinate.getX(), coordinate.getY());
+                case PLAIN:
+                    hBox.getStyleClass().add(STYLE_CLASS_PLAIN_TILE);
+                    break;
+
+                case FOREST:
+                    hBox.getStyleClass().add(STYLE_CLASS_FOREST_TILE);
+                    break;
+
+                case WATER:
+                    hBox.getStyleClass().add(STYLE_CLASS_WATER_TILE);
+                    break;
+
+                case MOUNTAIN:
+                    hBox.getStyleClass().add(STYLE_CLASS_MOUNTAIN_TILE);
+                    break;
+
+                case EMPTY:
+                default:
+            }
+
+            worldGrid.add(hBox, coordinate.getX(), coordinate.getY());
         }
     }
 
