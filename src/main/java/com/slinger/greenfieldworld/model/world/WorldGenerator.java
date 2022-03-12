@@ -1,13 +1,13 @@
 package com.slinger.greenfieldworld.model.world;
 
 import com.slinger.greenfieldworld.model.common.DiceUtil;
+import com.slinger.greenfieldworld.model.common.GeometricFormsUtil;
 import com.slinger.greenfieldworld.model.world.regions.Region;
 import com.slinger.greenfieldworld.model.world.regions.forest.Glade;
 import com.slinger.greenfieldworld.model.world.regions.mountain.Foothills;
 import com.slinger.greenfieldworld.model.world.regions.plain.FlowerBed;
 import com.slinger.greenfieldworld.model.world.regions.plain.TallGrass;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WorldGenerator {
@@ -22,7 +22,7 @@ public class WorldGenerator {
     /**
      * Percent ratio of mountain max size relative to the map side length.
      */
-    private final static int MAX_MOUNTAIN_SIZE_RATIO = 33;
+    private final static int MAX_MOUNTAIN_RADIUS_RATIO = 33;
 
 
     /**
@@ -33,7 +33,7 @@ public class WorldGenerator {
     /**
      * Percent ratio of forest max size relative to the map side length.
      */
-    private final static int MAX_FOREST_SIZE_RATIO = 50;
+    private final static int MAX_FOREST_RADIUS_RATIO = 50;
 
     public World generateWorld(String name) {
         return generateWorld(name, DEFAULT_REGION_GRID_SIDE_LENGTH);
@@ -89,28 +89,15 @@ public class WorldGenerator {
 
         int gridSideLength = world.getGridSideLength();
 
-        int maxMountainSize = gridSideLength * MAX_MOUNTAIN_SIZE_RATIO / 100;
+        int maxMountainRadius = gridSideLength * MAX_MOUNTAIN_RADIUS_RATIO / 100;
 
-        int mountainSize = DiceUtil.rollDice(maxMountainSize);
+        int mountainRadius = DiceUtil.rollDice(maxMountainRadius);
 
-        int mountainUpperLeftX = DiceUtil.rollDice(gridSideLength) - 1;
-        int mountainUpperLeftY = DiceUtil.rollDice(gridSideLength) - 1;
+        int mountainCenterX = DiceUtil.rollDice(gridSideLength) - 1;
+        int mountainCenterY = DiceUtil.rollDice(gridSideLength) - 1;
 
-        List<Coordinate> coordinateList = new ArrayList<>();
-
-        List<Coordinate> xCoordinateList = new ArrayList<>();
-
-        for (int i = 0; i < mountainSize; i++) {
-
-            Coordinate coordinate = Coordinate.of(mountainUpperLeftX + i, mountainUpperLeftY);
-
-            xCoordinateList.add(coordinate);
-            coordinateList.add(coordinate);
-        }
-
-        for (int i = 1; i < mountainSize; i++)
-            for (Coordinate coordinate : xCoordinateList)
-                coordinateList.add(Coordinate.of(coordinate.getX(), coordinate.getY() + i));
+        List<Coordinate> coordinateList = GeometricFormsUtil.midPointAlgorithmDrawCircleFilled(
+                mountainCenterX, mountainCenterY, mountainRadius);
 
         for (Coordinate coordinate : coordinateList)
             if (world.getUnmodifiableRegionMap().containsKey(coordinate))
@@ -134,28 +121,15 @@ public class WorldGenerator {
 
         int gridSideLength = world.getGridSideLength();
 
-        int maxForestSize = gridSideLength * MAX_FOREST_SIZE_RATIO / 100;
+        int maxForestRadius = gridSideLength * MAX_FOREST_RADIUS_RATIO / 100;
 
-        int forestSize = DiceUtil.rollDice(maxForestSize);
+        int forestRadius = DiceUtil.rollDice(maxForestRadius);
 
-        int forestUpperLeftX = DiceUtil.rollDice(gridSideLength) - 1;
-        int forestUpperLeftY = DiceUtil.rollDice(gridSideLength) - 1;
+        int forestCenterX = DiceUtil.rollDice(gridSideLength) - 1;
+        int forestCenterY = DiceUtil.rollDice(gridSideLength) - 1;
 
-        List<Coordinate> coordinateList = new ArrayList<>();
-
-        List<Coordinate> xCoordinateList = new ArrayList<>();
-
-        for (int i = 0; i < forestSize; i++) {
-
-            Coordinate coordinate = Coordinate.of(forestUpperLeftX + i, forestUpperLeftY);
-
-            xCoordinateList.add(coordinate);
-            coordinateList.add(coordinate);
-        }
-
-        for (int i = 1; i < forestSize; i++)
-            for (Coordinate coordinate : xCoordinateList)
-                coordinateList.add(Coordinate.of(coordinate.getX(), coordinate.getY() + i));
+        List<Coordinate> coordinateList = GeometricFormsUtil.midPointAlgorithmDrawCircleFilled(
+                forestCenterX, forestCenterY, forestRadius);
 
         for (Coordinate coordinate : coordinateList)
             if (world.getUnmodifiableRegionMap().containsKey(coordinate))
