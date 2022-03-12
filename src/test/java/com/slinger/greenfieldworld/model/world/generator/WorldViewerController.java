@@ -10,11 +10,6 @@ import javafx.scene.layout.HBox;
 
 public class WorldViewerController {
 
-    private static final String STYLE_CLASS_PLAIN_TILE = "region-tile-plain";
-    private static final String STYLE_CLASS_FOREST_TILE = "region-tile-forest";
-    private static final String STYLE_CLASS_WATER_TILE = "region-tile-water";
-    private static final String STYLE_CLASS_MOUNTAIN_TILE = "region-tile-mountain";
-
     @FXML
     private GridPane worldGrid;
 
@@ -28,27 +23,31 @@ public class WorldViewerController {
 
             HBox hBox = new HBox();
 
+            String styling = "-fx-pref-width: 24px;-fx-pref-height: 24px;";
+
             switch (region.getRegionTypeName()) {
 
                 case PLAIN:
-                    hBox.getStyleClass().add(STYLE_CLASS_PLAIN_TILE);
+                    styling += "-fx-background-color: yellow;";
                     break;
 
                 case FOREST:
-                    hBox.getStyleClass().add(STYLE_CLASS_FOREST_TILE);
+                    styling += "-fx-background-color: green;";
                     break;
 
                 case WATER:
-                    hBox.getStyleClass().add(STYLE_CLASS_WATER_TILE);
+                    styling += "-fx-background-color: blue;";
                     break;
 
                 case MOUNTAIN:
-                    hBox.getStyleClass().add(STYLE_CLASS_MOUNTAIN_TILE);
+                    styling += "-fx-background-color: gray;";
                     break;
 
                 case EMPTY:
                 default:
             }
+
+            hBox.setStyle(styling);
 
             worldGrid.add(hBox, coordinate.getX(), coordinate.getY());
         }

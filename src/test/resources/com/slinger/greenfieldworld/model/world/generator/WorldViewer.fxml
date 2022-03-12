@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="20.0" stylesheets="WorldViewer.css"
+<VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="20.0"
       fx:controller="com.slinger.greenfieldworld.model.world.generator.WorldViewerController">
 
     <padding>

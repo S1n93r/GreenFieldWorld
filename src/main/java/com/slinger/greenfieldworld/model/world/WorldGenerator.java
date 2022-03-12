@@ -22,7 +22,7 @@ public class WorldGenerator {
     /**
      * Percent ratio of mountain max size relative to the map side length.
      */
-    private final static int MAX_MOUNTAIN_RADIUS_RATIO = 33;
+    private final static int MAX_MOUNTAIN_RADIUS_RATIO = 15;
 
 
     /**
@@ -33,7 +33,7 @@ public class WorldGenerator {
     /**
      * Percent ratio of forest max size relative to the map side length.
      */
-    private final static int MAX_FOREST_RADIUS_RATIO = 50;
+    private final static int MAX_FOREST_RADIUS_RATIO = 25;
 
     public World generateWorld(String name) {
         return generateWorld(name, DEFAULT_REGION_GRID_SIDE_LENGTH);
