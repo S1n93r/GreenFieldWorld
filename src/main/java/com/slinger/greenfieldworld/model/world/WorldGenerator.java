@@ -19,16 +19,25 @@ public class WorldGenerator {
 
     private static final int DEFAULT_REGION_GRID_SIDE_LENGTH = 5;
 
-    private final static int MAX_MOUNTAIN_NUMBER_RATIO = 15;
-    private final static int MAX_MOUNTAIN_RADIUS_RATIO = 20;
+    private static final int MAX_MOUNTAIN_NUMBER_RATIO = 15;
+    private static final int MAX_MOUNTAIN_RADIUS_RATIO = 20;
 
-    private final static int MAX_FOREST_NUMBER_RATIO = 50;
-    private final static int MAX_FOREST_RADIUS_RATIO = 15;
+    private static final int MAX_FOREST_NUMBER_RATIO = 50;
+    private static final int MAX_FOREST_RADIUS_RATIO = 15;
 
-    private final static int MAX_LAKE_NUMBER_RATIO = 5;
-    private final static int MAX_LAKE_RADIUS_RATIO = 10;
+    private static final int MAX_LAKE_NUMBER_RATIO = 5;
+    private static final int MAX_LAKE_RADIUS_RATIO = 10;
 
-    private final static int MAX_RIVER_NUMBER_RATIO = 5;
+    private static final int MAX_RIVER_NUMBER_RATIO = 5;
+
+    private static final int NORTH = 1;
+    private static final int NORTH_EAST = 2;
+    private static final int EAST = 3;
+    private static final int SOUTH_EAST = 4;
+    private static final int SOUTH = 5;
+    private static final int SOUTH_WEST = 6;
+    private static final int WEST = 7;
+    private static final int NORTH_WEST = 8;
 
     public World generateWorld(String name) {
         return generateWorld(name, DEFAULT_REGION_GRID_SIDE_LENGTH);
@@ -194,42 +203,42 @@ public class WorldGenerator {
 
         switch (initialDirectionDice) {
 
-            case 1: //North
+            case NORTH:
                 Collections.addAll(possibleDirections,
                         Coordinate.of(-1, -1), Coordinate.of(0, -1), Coordinate.of(1, -1));
                 break;
 
-            case 2:
+            case NORTH_EAST:
                 Collections.addAll(possibleDirections,
                         Coordinate.of(0, -1), Coordinate.of(1, -1), Coordinate.of(1, 0));
                 break;
 
-            case 3: //East
+            case EAST:
                 Collections.addAll(possibleDirections,
                         Coordinate.of(1, -1), Coordinate.of(1, 0), Coordinate.of(1, 1));
                 break;
 
-            case 4:
+            case SOUTH_EAST:
                 Collections.addAll(possibleDirections,
                         Coordinate.of(1, 0), Coordinate.of(1, 1), Coordinate.of(0, 1));
                 break;
 
-            case 5: //South
+            case SOUTH:
                 Collections.addAll(possibleDirections,
                         Coordinate.of(1, 1), Coordinate.of(0, 1), Coordinate.of(-1, 1));
                 break;
 
-            case 6:
+            case SOUTH_WEST:
                 Collections.addAll(possibleDirections,
                         Coordinate.of(0, 1), Coordinate.of(-1, 1), Coordinate.of(-1, 0));
                 break;
 
-            case 7: //West
+            case WEST:
                 Collections.addAll(possibleDirections,
                         Coordinate.of(-1, 1), Coordinate.of(-1, 0), Coordinate.of(-1, -1));
                 break;
 
-            case 8:
+            case NORTH_WEST:
                 Collections.addAll(possibleDirections,
                         Coordinate.of(-1, 0), Coordinate.of(-1, -1), Coordinate.of(0, -1));
                 break;
