@@ -7,8 +7,12 @@ import com.slinger.greenfieldworld.model.world.regions.forest.Glade;
 import com.slinger.greenfieldworld.model.world.regions.mountain.Foothills;
 import com.slinger.greenfieldworld.model.world.regions.plain.FlowerBed;
 import com.slinger.greenfieldworld.model.world.regions.plain.TallGrass;
+import com.slinger.greenfieldworld.model.world.regions.water.Head;
 import com.slinger.greenfieldworld.model.world.regions.water.Lake;
+import com.slinger.greenfieldworld.model.world.regions.water.River;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WorldGenerator {
@@ -23,6 +27,8 @@ public class WorldGenerator {
 
     private final static int MAX_LAKE_NUMBER_RATIO = 5;
     private final static int MAX_LAKE_RADIUS_RATIO = 10;
+
+    private final static int MAX_RIVER_NUMBER_RATIO = 5;
 
     public World generateWorld(String name) {
         return generateWorld(name, DEFAULT_REGION_GRID_SIDE_LENGTH);
@@ -43,6 +49,7 @@ public class WorldGenerator {
         addLakes(world);
         addForests(world);
         addMountains(world);
+        addRivers(world);
     }
 
     private void generatePlains(World world) {
@@ -156,5 +163,117 @@ public class WorldGenerator {
         for (Coordinate coordinate : coordinateList)
             if (world.getUnmodifiableRegionMap().containsKey(coordinate))
                 world.addRegion(new Lake(coordinate));
+    }
+
+    /* TODO: If forest generation remains the same as for mountains, methods can be unified. */
+    private void addRivers(World world) {
+
+        int maxNumberOfRivers = world.getGridSideLength() * MAX_RIVER_NUMBER_RATIO / 100;
+
+        int numberOfLakes = DiceUtil.rollDice(maxNumberOfRivers);
+
+        for (int i = 0; i < numberOfLakes; i++) {
+            addRiver(world);
+        }
+    }
+
+    private void addRiver(World world) {
+
+        List<Coordinate> coordinateList = new ArrayList<>(world.getUnmodifiableRegionMap().keySet());
+        Collections.shuffle(coordinateList);
+
+        Coordinate randomStart = coordinateList.get(0);
+
+        world.addRegion(new Head(randomStart));
+
+        int riverLength = DiceUtil.rollDice(world.getGridSideLength());
+
+        List<Coordinate> possibleDirections = new ArrayList<>();
+
+        int initialDirectionDice = DiceUtil.rollDice(8);
+
+        switch (initialDirectionDice) {
+
+            case 1: //North
+                Collections.addAll(possibleDirections,
+                        Coordinate.of(-1, -1), Coordinate.of(0, -1), Coordinate.of(1, -1));
+                break;
+
+            case 2:
+                Collections.addAll(possibleDirections,
+                        Coordinate.of(0, -1), Coordinate.of(1, -1), Coordinate.of(1, 0));
+                break;
+
+            case 3: //East
+                Collections.addAll(possibleDirections,
+                        Coordinate.of(1, -1), Coordinate.of(1, 0), Coordinate.of(1, 1));
+                break;
+
+            case 4:
+                Collections.addAll(possibleDirections,
+                        Coordinate.of(1, 0), Coordinate.of(1, 1), Coordinate.of(0, 1));
+                break;
+
+            case 5: //South
+                Collections.addAll(possibleDirections,
+                        Coordinate.of(1, 1), Coordinate.of(0, 1), Coordinate.of(-1, 1));
+                break;
+
+            case 6:
+                Collections.addAll(possibleDirections,
+                        Coordinate.of(0, 1), Coordinate.of(-1, 1), Coordinate.of(-1, 0));
+                break;
+
+            case 7: //West
+                Collections.addAll(possibleDirections,
+                        Coordinate.of(-1, 1), Coordinate.of(-1, 0), Coordinate.of(-1, -1));
+                break;
+
+            case 8:
+                Collections.addAll(possibleDirections,
+                        Coordinate.of(-1, 0), Coordinate.of(-1, -1), Coordinate.of(0, -1));
+                break;
+
+            default:
+                Collections.addAll(possibleDirections, Coordinate.of(0, 0));
+        }
+
+        List<Coordinate> riverCoordinates = new ArrayList<>();
+
+        Coordinate previousCoordinate = randomStart;
+
+        for (int i = 0; i < riverLength; i++) {
+
+            int nextDirectionDice = DiceUtil.rollDice(4);
+
+            Coordinate nextDirectionCoordinate;
+
+            switch (nextDirectionDice) {
+
+                case 1:
+                    nextDirectionCoordinate = possibleDirections.get(1);
+                    break;
+
+                case 2:
+                    nextDirectionCoordinate = possibleDirections.get(2);
+                    break;
+
+                case 3:
+                case 4:
+                default:
+                    nextDirectionCoordinate = possibleDirections.get(0);
+            }
+
+            Coordinate coordinate = Coordinate.of(
+                    previousCoordinate.getX() + nextDirectionCoordinate.getX(),
+                    previousCoordinate.getY() + nextDirectionCoordinate.getY());
+
+            riverCoordinates.add(coordinate);
+            previousCoordinate = coordinate;
+        }
+
+        for (Coordinate coordinate : riverCoordinates)
+            if (world.getUnmodifiableRegionMap().containsKey(coordinate))
+                world.addRegion(new River(coordinate));
     }
 }
