@@ -2,11 +2,16 @@ package com.slinger.greenfieldworld.model.world;
 
 import com.slinger.greenfieldworld.model.common.DiceUtil;
 import com.slinger.greenfieldworld.model.common.GeometricFormsUtil;
+import com.slinger.greenfieldworld.model.exceptions.SwitchCaseNotDefinedException;
 import com.slinger.greenfieldworld.model.world.regions.Region;
+import com.slinger.greenfieldworld.model.world.regions.forest.BearCave;
 import com.slinger.greenfieldworld.model.world.regions.forest.Glade;
+import com.slinger.greenfieldworld.model.world.regions.mountain.AbandonedMine;
 import com.slinger.greenfieldworld.model.world.regions.mountain.Foothills;
 import com.slinger.greenfieldworld.model.world.regions.plain.FlowerBed;
+import com.slinger.greenfieldworld.model.world.regions.plain.Hill;
 import com.slinger.greenfieldworld.model.world.regions.plain.TallGrass;
+import com.slinger.greenfieldworld.model.world.regions.water.Embankment;
 import com.slinger.greenfieldworld.model.world.regions.water.Head;
 import com.slinger.greenfieldworld.model.world.regions.water.Lake;
 import com.slinger.greenfieldworld.model.world.regions.water.River;
@@ -29,6 +34,8 @@ public class WorldGenerator {
     private static final int MAX_LAKE_RADIUS_RATIO = 10;
 
     private static final int MAX_RIVER_NUMBER_RATIO = 5;
+
+    private static final int MAX_POI_NUMBER_RATIO = 5;
 
     private static final int NORTH = 1;
     private static final int NORTH_EAST = 2;
@@ -59,6 +66,7 @@ public class WorldGenerator {
         addForests(world);
         addMountains(world);
         addRivers(world);
+        addPOIs(world);
     }
 
     private void generatePlains(World world) {
@@ -84,7 +92,7 @@ public class WorldGenerator {
 
         int maxNumberOfMountains = world.getGridSideLength() * MAX_MOUNTAIN_NUMBER_RATIO / 100;
 
-        int numberOfMountains = DiceUtil.rollDice(maxNumberOfMountains);
+        int numberOfMountains = maxNumberOfMountains / 2 + DiceUtil.rollDice(maxNumberOfMountains / 2);
 
         for (int i = 0; i < numberOfMountains; i++) {
             addMountain(world);
@@ -115,7 +123,7 @@ public class WorldGenerator {
 
         int maxNumberOfForests = world.getGridSideLength() * MAX_FOREST_NUMBER_RATIO / 100;
 
-        int numberOfForests = DiceUtil.rollDice(maxNumberOfForests);
+        int numberOfForests = maxNumberOfForests / 2 + DiceUtil.rollDice(maxNumberOfForests / 2);
 
         for (int i = 0; i < numberOfForests; i++) {
             addForest(world);
@@ -147,7 +155,7 @@ public class WorldGenerator {
 
         int maxNumberOfLakes = world.getGridSideLength() * MAX_LAKE_NUMBER_RATIO / 100;
 
-        int numberOfLakes = DiceUtil.rollDice(maxNumberOfLakes);
+        int numberOfLakes = maxNumberOfLakes / 2 + DiceUtil.rollDice(maxNumberOfLakes / 2);
 
         for (int i = 0; i < numberOfLakes; i++) {
             addLake(world);
@@ -195,7 +203,7 @@ public class WorldGenerator {
 
         world.addRegion(new Head(randomStart));
 
-        int riverLength = DiceUtil.rollDice(world.getGridSideLength());
+        int riverLength = world.getGridSideLength() / 2 + DiceUtil.rollDice(world.getGridSideLength() / 2);
 
         List<Coordinate> possibleDirections = new ArrayList<>();
 
@@ -284,5 +292,52 @@ public class WorldGenerator {
         for (Coordinate coordinate : riverCoordinates)
             if (world.getUnmodifiableRegionMap().containsKey(coordinate))
                 world.addRegion(new River(coordinate));
+    }
+
+    private void addPOIs(World world) {
+
+        int maxNumberOfPOIs = world.getUnmodifiableRegionMap().size() * MAX_POI_NUMBER_RATIO / 100;
+
+        int numberOfPOIs = maxNumberOfPOIs / 2 + DiceUtil.rollDice(maxNumberOfPOIs / 2);
+
+        List<Region> regionsAvailable = new ArrayList<>(world.getUnmodifiableRegionMap().values());
+        Collections.shuffle(regionsAvailable);
+
+        List<Region> regionsToTurn = new ArrayList<>();
+
+        for (int i = 0; i < numberOfPOIs; i++)
+            regionsToTurn.add(regionsAvailable.get(i));
+
+        for (Region region : regionsToTurn) {
+            addPOI(region, world);
+        }
+    }
+
+    private void addPOI(Region regionToTurn, World world) {
+
+        switch (regionToTurn.getRegionTypeName()) {
+
+            case PLAIN:
+                world.addRegion(new Hill(regionToTurn.getCoordinate()));
+                break;
+
+            case FOREST:
+                world.addRegion(new BearCave(regionToTurn.getCoordinate()));
+                break;
+
+            case WATER:
+                world.addRegion(new Embankment(regionToTurn.getCoordinate()));
+                break;
+
+            case MOUNTAIN:
+                world.addRegion(new AbandonedMine(regionToTurn.getCoordinate()));
+                break;
+
+            case EMPTY:
+                break;
+
+            default:
+                throw new SwitchCaseNotDefinedException();
+        }
     }
 }

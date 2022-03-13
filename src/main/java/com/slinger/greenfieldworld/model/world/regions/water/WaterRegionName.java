@@ -2,6 +2,8 @@ package com.slinger.greenfieldworld.model.world.regions.water;
 
 public enum WaterRegionName {
 
+    EMBANKMENT,
+    HEAD,
     HOT_SPRINGS,
     LAKE,
     RIVER,
@@ -10,7 +12,11 @@ public enum WaterRegionName {
 
     public static WaterRegionName fromString(String regionName) {
 
-        if (regionName.equalsIgnoreCase(HOT_SPRINGS.name())) {
+        if (regionName.equalsIgnoreCase(EMBANKMENT.name())) {
+            return EMBANKMENT;
+        } else if (regionName.equalsIgnoreCase(HEAD.name())) {
+            return HEAD;
+        } else if (regionName.equalsIgnoreCase(HOT_SPRINGS.name())) {
             return HOT_SPRINGS;
         } else if (regionName.equalsIgnoreCase(LAKE.name())) {
             return LAKE;
