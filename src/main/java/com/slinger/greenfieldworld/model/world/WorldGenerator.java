@@ -7,6 +7,7 @@ import com.slinger.greenfieldworld.model.world.regions.forest.Glade;
 import com.slinger.greenfieldworld.model.world.regions.mountain.Foothills;
 import com.slinger.greenfieldworld.model.world.regions.plain.FlowerBed;
 import com.slinger.greenfieldworld.model.world.regions.plain.TallGrass;
+import com.slinger.greenfieldworld.model.world.regions.water.Lake;
 
 import java.util.List;
 
@@ -14,26 +15,14 @@ public class WorldGenerator {
 
     private static final int DEFAULT_REGION_GRID_SIDE_LENGTH = 5;
 
-    /**
-     * Percent ratio of max number of mountains relative to the map side length.
-     */
-    private final static int MAX_MOUNTAIN_NUMBER_RATIO = 100;
+    private final static int MAX_MOUNTAIN_NUMBER_RATIO = 15;
+    private final static int MAX_MOUNTAIN_RADIUS_RATIO = 20;
 
-    /**
-     * Percent ratio of mountain max size relative to the map side length.
-     */
-    private final static int MAX_MOUNTAIN_RADIUS_RATIO = 15;
-
-
-    /**
-     * Percent ratio of max number of forests relative to the map side length.
-     */
     private final static int MAX_FOREST_NUMBER_RATIO = 50;
+    private final static int MAX_FOREST_RADIUS_RATIO = 15;
 
-    /**
-     * Percent ratio of forest max size relative to the map side length.
-     */
-    private final static int MAX_FOREST_RADIUS_RATIO = 25;
+    private final static int MAX_LAKE_NUMBER_RATIO = 5;
+    private final static int MAX_LAKE_RADIUS_RATIO = 10;
 
     public World generateWorld(String name) {
         return generateWorld(name, DEFAULT_REGION_GRID_SIDE_LENGTH);
@@ -51,8 +40,9 @@ public class WorldGenerator {
     private void generateRegions(World world) {
 
         generatePlains(world);
-        addMountains(world);
+        addLakes(world);
         addForests(world);
+        addMountains(world);
     }
 
     private void generatePlains(World world) {
@@ -134,5 +124,37 @@ public class WorldGenerator {
         for (Coordinate coordinate : coordinateList)
             if (world.getUnmodifiableRegionMap().containsKey(coordinate))
                 world.addRegion(new Glade(coordinate));
+    }
+
+    /* TODO: If forest generation remains the same as for mountains, methods can be unified. */
+    private void addLakes(World world) {
+
+        int maxNumberOfLakes = world.getGridSideLength() * MAX_LAKE_NUMBER_RATIO / 100;
+
+        int numberOfLakes = DiceUtil.rollDice(maxNumberOfLakes);
+
+        for (int i = 0; i < numberOfLakes; i++) {
+            addLake(world);
+        }
+    }
+
+    /* TODO: If forest generation remains the same as for mountains, methods can be unified. */
+    private void addLake(World world) {
+
+        int gridSideLength = world.getGridSideLength();
+
+        int maxLakeRadius = gridSideLength * MAX_LAKE_RADIUS_RATIO / 100;
+
+        int lakeRadius = DiceUtil.rollDice(maxLakeRadius);
+
+        int lakeCenterX = DiceUtil.rollDice(gridSideLength) - 1;
+        int lakeCenterY = DiceUtil.rollDice(gridSideLength) - 1;
+
+        List<Coordinate> coordinateList = GeometricFormsUtil.midPointAlgorithmDrawCircleFilled(
+                lakeCenterX, lakeCenterY, lakeRadius);
+
+        for (Coordinate coordinate : coordinateList)
+            if (world.getUnmodifiableRegionMap().containsKey(coordinate))
+                world.addRegion(new Lake(coordinate));
     }
 }

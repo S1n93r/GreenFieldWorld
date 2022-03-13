@@ -1,5 +1,6 @@
 package com.slinger.greenfieldworld.model.world.generator;
 
+import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.world.Coordinate;
 import com.slinger.greenfieldworld.model.world.World;
 import com.slinger.greenfieldworld.model.world.WorldGenerator;
@@ -23,24 +24,27 @@ public class WorldViewerController {
 
             HBox hBox = new HBox();
 
-            String styling = "-fx-pref-width: 24px;-fx-pref-height: 24px;";
+            int squareSize = 10;
+
+            String styling = MessageUtil.format(
+                    "-fx-pref-width: {0}px;-fx-pref-height: {1}px;", squareSize, squareSize);
 
             switch (region.getRegionTypeName()) {
 
                 case PLAIN:
-                    styling += "-fx-background-color: yellow;";
+                    styling += "-fx-background-color: #41980a;";
                     break;
 
                 case FOREST:
-                    styling += "-fx-background-color: green;";
+                    styling += "-fx-background-color: #136d15;";
                     break;
 
                 case WATER:
-                    styling += "-fx-background-color: blue;";
+                    styling += "-fx-background-color: #009cf9;";
                     break;
 
                 case MOUNTAIN:
-                    styling += "-fx-background-color: gray;";
+                    styling += "-fx-background-color: #35424A;";
                     break;
 
                 case EMPTY:
@@ -58,6 +62,6 @@ public class WorldViewerController {
 
         WorldGenerator generator = new WorldGenerator();
 
-        loadWorld(generator.generateWorld("Test World", 20));
+        loadWorld(generator.generateWorld("Test World", 50));
     }
 }
