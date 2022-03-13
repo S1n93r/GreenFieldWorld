@@ -12,13 +12,19 @@ import com.slinger.greenfieldworld.model.world.regions.mountain.MountainRegionNa
 import com.slinger.greenfieldworld.model.world.regions.plain.PlainRegionName;
 import com.slinger.greenfieldworld.model.world.regions.water.WaterRegionName;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 public class WorldViewerController {
 
+    private static final int MAP_SIZE = 500;
+
     @FXML
     private GridPane worldGrid;
+
+    @FXML
+    private TextField gridSideLengthInput;
 
     private void loadWorld(World world) {
 
@@ -69,7 +75,7 @@ public class WorldViewerController {
                     throw new SwitchCaseNotDefinedException();
             }
 
-            int squareSize = 10;
+            int squareSize = MAP_SIZE / world.getGridSideLength();
 
             String styling = MessageUtil.format(
                     "-fx-pref-width: {0}px;-fx-pref-height: {1}px; -fx-background-color: {2};",
@@ -84,8 +90,21 @@ public class WorldViewerController {
     @FXML
     private void generateWorld() {
 
+        String gridSideLengthInput = this.gridSideLengthInput.getText();
+
+        if (gridSideLengthInput.isBlank() || gridSideLengthInput.isEmpty()) {
+
+            System.err.println(MessageUtil.format("Can't generate map. Grid side length can't be blank or 0."));
+
+            return;
+        }
+
         WorldGenerator generator = new WorldGenerator();
 
-        loadWorld(generator.generateWorld("Test World", 50));
+        if (gridSideLengthInput.replaceAll("[0-9]", "").length() == 0)
+            loadWorld(generator.generateWorld("Test World", Integer.parseInt(gridSideLengthInput)));
+        else
+            System.err.println(MessageUtil.format("Can't generate map. Grid side length should only contain" +
+                    " numbers."));
     }
 }
