@@ -23,9 +23,6 @@ public class Inventory {
 
     private final List<AccessorySlot> accessorySlotList = new ArrayList<>(2);
 
-    private final AccessorySlot accessorySlotA = new AccessorySlot();
-    private final AccessorySlot accessorySlotB = new AccessorySlot();
-
     private final BackpackSlot backpackSlot = new BackpackSlot();
     private final BeltBagSlot beltBagSlot = new BeltBagSlot();
 
