@@ -2,6 +2,8 @@ package com.slinger.greenfieldworld.model.player.inventory;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.items.Item;
+import com.slinger.greenfieldworld.model.items.storage.Backpack;
+import com.slinger.greenfieldworld.model.items.storage.BeltBag;
 import com.slinger.greenfieldworld.model.player.inventory.equipment.*;
 
 public class Inventory {
@@ -17,34 +19,23 @@ public class Inventory {
     private final BeltBagSlot beltBagSlot = new BeltBagSlot();
 
     public String storeInBackpack(Item item) {
-
-        if (!backpackSlot.isOccupied())
-            return MessageUtil.format("You don't have a backpack to store items.");
-
-        boolean storingSuccessful = backpackSlot.getItem().store(item);
-
-        if (storingSuccessful)
-            return MessageUtil.format("You put {0} into your backpack.", item.getName());
-
-        return MessageUtil.format("You can't put {0} into your backpack. Your backpack is full.",
-                item.getName());
+        return backpackSlot.store(item);
     }
 
     public String storeInBeltBag(Item item) {
-
-        if (!beltBagSlot.isOccupied())
-            return "You don't have a bag on your belt to store items.";
-
-        boolean storingSuccessful = beltBagSlot.getItem().store(item);
-
-        if (storingSuccessful)
-            return MessageUtil.format("You put {0} into your belt bag.", item.getName());
-
-        return MessageUtil.format("You can't put {0} into your belt bag. Your belt bag is full.",
-                item.getName());
+        return beltBagSlot.store(item);
     }
 
-    public void equip(Item item) {
+    public String equip(Item item) {
 
+        if (item instanceof Backpack) {
+            backpackSlot.equip((Backpack) item);
+            return MessageUtil.format("You put {0} on your back.", item.getNameWithArticle());
+        } else if (item instanceof BeltBag) {
+            beltBagSlot.equip((BeltBag) item);
+            return MessageUtil.format("You strap {0} to your belt.", item.getNameWithArticle());
+        }
+
+        return MessageUtil.format("You can't equip {0} right now.", item.getNameWithArticle());
     }
 }

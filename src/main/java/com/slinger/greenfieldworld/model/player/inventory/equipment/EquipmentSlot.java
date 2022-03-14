@@ -5,8 +5,7 @@ import lombok.Getter;
 
 public abstract class EquipmentSlot<T extends Item> {
 
-    @Getter
-    private T item;
+    protected T item;
 
     @Getter
     private boolean occupied;
