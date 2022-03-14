@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/* TODO: Some of these tests should be moved to equipment slot tests. */
 class InventoryTest {
 
     @Test
@@ -26,8 +27,8 @@ class InventoryTest {
         String outputBeltBag = sut.equip(leatherPouch, lootBag);
 
         /* Then */
-        assertEquals("You put a leather backpack on your back.", outputBackpack);
-        assertEquals("You strap a leather pouch to your belt.", outputBeltBag);
+        assertEquals("You equip a leather backpack.", outputBackpack);
+        assertEquals("You equip a leather pouch.", outputBeltBag);
     }
 
     @Test
@@ -53,10 +54,10 @@ class InventoryTest {
 
         /* Then */
         assertEquals("You swap your old leather backpack for a new leather backpack.", outputBackpack);
-        assertEquals(leatherBackpackTwo, lootBag.getUnmodifiableItemList().get(0));
+        assertEquals(leatherBackpackOne, lootBag.getUnmodifiableItemList().get(0));
 
         assertEquals("You swap your old leather pouch for a new leather pouch.", outputBeltBag);
-        assertEquals(leatherPouchTwo, lootBag.getUnmodifiableItemList().get(1));
+        assertEquals(leatherPouchOne, lootBag.getUnmodifiableItemList().get(1));
     }
 
     @Test

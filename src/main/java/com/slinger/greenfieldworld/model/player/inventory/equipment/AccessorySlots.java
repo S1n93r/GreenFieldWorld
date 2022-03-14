@@ -34,9 +34,4 @@ public class AccessorySlots extends EquipmentSlot<Accessory> {
 
         return accessorySlotList.get(0).equip(item, bagEquippedFrom);
     }
-
-    @Override
-    String setSuccessfulEquipOutput() {
-        return SUCCESS_OUTPUT;
-    }
 }

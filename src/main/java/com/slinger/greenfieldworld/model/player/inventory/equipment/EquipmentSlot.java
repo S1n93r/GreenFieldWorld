@@ -7,26 +7,27 @@ import com.slinger.greenfieldworld.model.items.storage.Bag;
 public abstract class EquipmentSlot<T extends Item> {
 
     private static final String SWAP_OUTPUT = "You swap your old {0} for a new {1}.";
+    private static final String EQUIP_OUTPUT = "You equip {0}.";
 
     protected T item;
 
     public String equip(T item, Bag bagEquippedFrom) {
 
-        String output = MessageUtil.format("");
+        if (this.item == null) {
+            this.item = item;
+            return MessageUtil.format(EQUIP_OUTPUT, item.getNameWithArticle());
+        }
 
         T previousItem = this.item;
 
+        bagEquippedFrom.store(previousItem);
+
         this.item = item;
 
-        if (previousItem != null)
-            bagEquippedFrom.store(previousItem);
-
-        return output;
+        return MessageUtil.format(SWAP_OUTPUT, previousItem.getName(), item.getName());
     }
 
     public boolean isOccupied() {
         return item != null;
     }
-
-    abstract String setSuccessfulEquipOutput();
 }

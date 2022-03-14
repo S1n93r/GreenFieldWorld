@@ -17,9 +17,4 @@ public class BeltBagSlot extends EquipmentSlot<BeltBag> {
 
         return this.item.store(item);
     }
-
-    @Override
-    String setSuccessfulEquipOutput() {
-        return SUCCESS_OUTPUT;
-    }
 }
