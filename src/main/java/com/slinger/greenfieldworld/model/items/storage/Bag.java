@@ -5,6 +5,7 @@ import com.slinger.greenfieldworld.model.items.Item;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Bag extends Item {
@@ -30,6 +31,10 @@ public abstract class Bag extends Item {
         itemList.add(item);
 
         return MessageUtil.format(OUTPUT_STORING_SUCCESSFUL, item.getNameWithArticle(), getName());
+    }
+
+    public List<Item> getUnmodifiableItemList() {
+        return Collections.unmodifiableList(itemList);
     }
 
     abstract int setStorageSize();

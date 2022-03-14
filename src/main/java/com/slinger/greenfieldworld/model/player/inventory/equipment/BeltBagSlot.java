@@ -6,6 +6,8 @@ import com.slinger.greenfieldworld.model.items.storage.BeltBag;
 
 public class BeltBagSlot extends EquipmentSlot<BeltBag> {
 
+    private static final String SUCCESS_OUTPUT = "You strap {0} to your belt.";
+
     private static final String OUTPUT_NO_BELT_BAG = "You don't have a belt bag to store items in.";
 
     public String store(Item item) {
@@ -14,5 +16,10 @@ public class BeltBagSlot extends EquipmentSlot<BeltBag> {
             return MessageUtil.format(OUTPUT_NO_BELT_BAG);
 
         return this.item.store(item);
+    }
+
+    @Override
+    String setSuccessfulEquipOutput() {
+        return SUCCESS_OUTPUT;
     }
 }

@@ -3,6 +3,7 @@ package com.slinger.greenfieldworld.model.player.inventory;
 import com.slinger.greenfieldworld.model.items.MinyaraFLower;
 import com.slinger.greenfieldworld.model.items.storage.LeatherBackpack;
 import com.slinger.greenfieldworld.model.items.storage.LeatherPouch;
+import com.slinger.greenfieldworld.model.items.storage.LootBag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,12 +15,15 @@ class InventoryTest {
 
         /* Given */
         Inventory sut = new Inventory();
+
+        LootBag lootBag = new LootBag();
+
         LeatherBackpack leatherBackpack = new LeatherBackpack();
         LeatherPouch leatherPouch = new LeatherPouch();
 
         /* When */
-        String outputBackpack = sut.equip(leatherBackpack);
-        String outputBeltBag = sut.equip(leatherPouch);
+        String outputBackpack = sut.equip(leatherBackpack, lootBag);
+        String outputBeltBag = sut.equip(leatherPouch, lootBag);
 
         /* Then */
         assertEquals("You put a leather backpack on your back.", outputBackpack);
@@ -32,22 +36,27 @@ class InventoryTest {
         /* Given */
         Inventory sut = new Inventory();
 
+        LootBag lootBag = new LootBag();
+
         LeatherBackpack leatherBackpackOne = new LeatherBackpack();
         LeatherPouch leatherPouchOne = new LeatherPouch();
 
-        sut.equip(leatherBackpackOne);
-        sut.equip(leatherPouchOne);
+        sut.equip(leatherBackpackOne, lootBag);
+        sut.equip(leatherPouchOne, lootBag);
 
         LeatherBackpack leatherBackpackTwo = new LeatherBackpack();
         LeatherPouch leatherPouchTwo = new LeatherPouch();
 
         /* When */
-        String outputBackpack = sut.equip(leatherBackpackTwo);
-        String outputBeltBag = sut.equip(leatherPouchTwo);
+        String outputBackpack = sut.equip(leatherBackpackTwo, lootBag);
+        String outputBeltBag = sut.equip(leatherPouchTwo, lootBag);
 
         /* Then */
         assertEquals("You swap your old leather backpack for a new leather backpack.", outputBackpack);
+        assertEquals(leatherBackpackTwo, lootBag.getUnmodifiableItemList().get(0));
+
         assertEquals("You swap your old leather pouch for a new leather pouch.", outputBeltBag);
+        assertEquals(leatherPouchTwo, lootBag.getUnmodifiableItemList().get(1));
     }
 
     @Test
@@ -73,11 +82,13 @@ class InventoryTest {
         /* Given */
         Inventory sut = new Inventory();
 
+        LootBag lootBag = new LootBag();
+
         LeatherBackpack leatherBackpack = new LeatherBackpack();
         LeatherPouch leatherPouch = new LeatherPouch();
 
-        sut.equip(leatherBackpack);
-        sut.equip(leatherPouch);
+        sut.equip(leatherBackpack, lootBag);
+        sut.equip(leatherPouch, lootBag);
 
         for (int i = 0; i < leatherBackpack.getStorageSize(); i++) {
             sut.storeInBackpack(new MinyaraFLower());
@@ -104,11 +115,13 @@ class InventoryTest {
         /* Given */
         Inventory sut = new Inventory();
 
+        LootBag lootBag = new LootBag();
+
         LeatherBackpack leatherBackpack = new LeatherBackpack();
         LeatherPouch leatherPouch = new LeatherPouch();
 
-        sut.equip(leatherBackpack);
-        sut.equip(leatherPouch);
+        sut.equip(leatherBackpack, lootBag);
+        sut.equip(leatherPouch, lootBag);
 
         /* When */
         String outputBackpack = sut.storeInBackpack(new MinyaraFLower());
