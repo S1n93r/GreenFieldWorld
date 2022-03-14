@@ -28,12 +28,28 @@ public class Inventory {
 
     public String equip(Item item) {
 
+        /* TODO: Consolidate to on case considering Bag class after Bag class offers a bag type field. */
         if (item instanceof Backpack) {
-            backpackSlot.equip((Backpack) item);
-            return MessageUtil.format("You put {0} on your back.", item.getNameWithArticle());
+
+            /* TODO: Needs to go to hand slot, when stripped of. */
+            Backpack previousBackpack = backpackSlot.equip((Backpack) item);
+
+            if (previousBackpack == null)
+                return MessageUtil.format("You put {0} on your back.", item.getNameWithArticle());
+            else
+                return MessageUtil.format("You swap your old {0} for a new {1}.",
+                        previousBackpack.getName(), item.getName());
+
         } else if (item instanceof BeltBag) {
-            beltBagSlot.equip((BeltBag) item);
-            return MessageUtil.format("You strap {0} to your belt.", item.getNameWithArticle());
+
+            /* TODO: Needs to go to hand slot, when stripped of. */
+            BeltBag previousBeltBag = beltBagSlot.equip((BeltBag) item);
+
+            if (previousBeltBag == null)
+                return MessageUtil.format("You strap {0} to your belt.", item.getNameWithArticle());
+            else
+                return MessageUtil.format("You swap your old {0} for a new {1}.",
+                        previousBeltBag.getName(), item.getName());
         }
 
         return MessageUtil.format("You can't equip {0} right now.", item.getNameWithArticle());
