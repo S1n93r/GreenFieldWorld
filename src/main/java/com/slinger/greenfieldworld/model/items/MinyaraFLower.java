@@ -11,11 +11,11 @@ public class MinyaraFLower extends Item {
     @Override
 
     protected String setName() {
-        return null;
+        return NAME;
     }
 
     @Override
     protected String setDescription() {
-        return null;
+        return DESCRIPTION;
     }
 }

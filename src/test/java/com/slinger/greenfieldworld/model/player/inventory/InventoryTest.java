@@ -59,6 +59,23 @@ class InventoryTest {
     @Test
     public void storingItemInBackpackWhileBackpackIsFullShowsSpecificMessage() {
 
+        /* Given */
+        Inventory sut = new Inventory();
+
+        LeatherBackpack leatherBackpack = new LeatherBackpack();
+
+        sut.equip(leatherBackpack);
+
+        for (int i = 0; i < leatherBackpack.getStorageSize(); i++) {
+            sut.storeInBackpack(new MinyaraFLower());
+        }
+
+        /* When */
+        String output = sut.storeInBackpack(new MinyaraFLower());
+
+        /* Then */
+        assertEquals("You can't put a minyara flower into your leather backpack." +
+                " Your leather backpack is full.", output);
     }
 
     @Test

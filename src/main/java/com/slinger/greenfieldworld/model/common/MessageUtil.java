@@ -14,6 +14,7 @@ public final class MessageUtil {
 
             Object object = args[i];
 
+            /* TODO: Could be replaceAll() for being able to push multiple call outs for same name. */
             output = output.replaceFirst("\\{" + i + "\\}", object.toString());
         }
 
