@@ -1,6 +1,7 @@
 package com.slinger.greenfieldworld.model.player.inventory;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
+import com.slinger.greenfieldworld.model.exceptions.SwitchCaseNotDefinedException;
 import com.slinger.greenfieldworld.model.items.Item;
 import com.slinger.greenfieldworld.model.items.storage.Backpack;
 import com.slinger.greenfieldworld.model.items.storage.BeltBag;
@@ -51,6 +52,7 @@ public class Inventory {
                         previousBeltBag.getName(), item.getName());
         }
 
-        return MessageUtil.format("You can't equip {0} right now.", item.getNameWithArticle());
+        throw new SwitchCaseNotDefinedException("The item you try to equip is of a type not known to the equip " +
+                "function.");
     }
 }
