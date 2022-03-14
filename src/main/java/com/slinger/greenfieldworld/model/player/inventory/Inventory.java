@@ -28,7 +28,6 @@ public class Inventory {
 
     public String equip(Item item) {
 
-        /* TODO: Consolidate to on case considering Bag class after Bag class offers a bag type field. */
         if (item instanceof Backpack) {
 
             /* TODO: Needs to go to hand slot, when stripped of. */

@@ -1,5 +1,6 @@
 package com.slinger.greenfieldworld.model.player.inventory;
 
+import com.slinger.greenfieldworld.model.items.MinyaraFLower;
 import com.slinger.greenfieldworld.model.items.storage.LeatherBackpack;
 import org.junit.jupiter.api.Test;
 
@@ -43,6 +44,16 @@ class InventoryTest {
     @Test
     public void storingItemInBackpackWhileNoBackpackIsEquippedShowsSpecificMessage() {
 
+        /* Given */
+        Inventory sut = new Inventory();
+
+        MinyaraFLower minyaraFLower = new MinyaraFLower();
+
+        /* When */
+        String output = sut.storeInBackpack(minyaraFLower);
+
+        /* Then */
+        assertEquals("You don't have a backpack to store items in.", output);
     }
 
     @Test

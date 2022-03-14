@@ -10,11 +10,17 @@ public abstract class Item {
     @Getter
     private final String name;
 
+    @Getter
+    private final String description;
+
     protected Item() {
-        this.name = setName();
+        name = setName();
+        description = setDescription();
     }
 
     protected abstract String setName();
+
+    protected abstract String setDescription();
 
     public String getNameWithArticle() {
 
