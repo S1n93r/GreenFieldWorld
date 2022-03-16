@@ -3,9 +3,8 @@ package com.slinger.greenfieldworld.model.player;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.slinger.greenfieldworld.model.common.MessageUtil;
-import com.slinger.greenfieldworld.model.player.actions.Action;
-import com.slinger.greenfieldworld.model.player.actions.Look;
-import com.slinger.greenfieldworld.model.player.actions.Move;
+import com.slinger.greenfieldworld.model.player.actions.*;
+import com.slinger.greenfieldworld.model.player.inventory.Inventory;
 import com.slinger.greenfieldworld.model.world.World;
 import com.slinger.greenfieldworld.model.world.regions.Region;
 import lombok.Getter;
@@ -23,15 +22,14 @@ public class Player {
 
     @Getter
     private final String name;
-
+    private final Inventory inventory = new Inventory();
     @Setter
     @JsonIgnore
     private Region region;
-
     @Getter
     @JsonIgnore
     private World world;
-    
+
     protected Player(String name) {
 
         this.name = name;
@@ -40,8 +38,11 @@ public class Player {
     }
 
     private void addBasicActions() {
+
         addAction(new Move(this));
         addAction(new Look(this));
+        addAction(new Check(this, inventory));
+        addAction(new Equip(this, inventory));
     }
 
     public void spawn(World world, Region region) {

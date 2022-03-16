@@ -4,6 +4,8 @@ import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.items.Item;
 import com.slinger.greenfieldworld.model.items.storage.BeltBag;
 
+import java.util.List;
+
 public class BeltBagSlot extends EquipmentSlot<BeltBag> {
 
     private static final String SUCCESS_OUTPUT = "You strap {0} to your belt.";
@@ -16,5 +18,9 @@ public class BeltBagSlot extends EquipmentSlot<BeltBag> {
             return MessageUtil.format(OUTPUT_NO_BELT_BAG);
 
         return this.item.store(item);
+    }
+
+    public List<Item> getUnmodifiableItemList() {
+        return this.item.getUnmodifiableItemList();
     }
 }

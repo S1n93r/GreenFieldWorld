@@ -1,5 +1,6 @@
 package com.slinger.greenfieldworld.model.player.inventory;
 
+import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.exceptions.SwitchCaseNotDefinedException;
 import com.slinger.greenfieldworld.model.items.Item;
 import com.slinger.greenfieldworld.model.items.equipment.accessory.Accessory;
@@ -12,6 +13,8 @@ import com.slinger.greenfieldworld.model.items.storage.BeltBag;
 import com.slinger.greenfieldworld.model.player.inventory.equipment.*;
 
 public class Inventory {
+
+    private static final String ITEM_LIST_SEPARATOR = "----------";
 
     private final HeadSlot headSlot = new HeadSlot();
 
@@ -51,5 +54,65 @@ public class Inventory {
 
         throw new SwitchCaseNotDefinedException("The item you try to equip is of a type not known to the equip " +
                 "function.");
+    }
+
+    public String check() {
+        return checkBackpack() + System.lineSeparator() + checkBeltBag();
+    }
+
+    private String checkBackpack() {
+
+        StringBuilder output = new StringBuilder("Backpack:" + System.lineSeparator());
+        output.append(ITEM_LIST_SEPARATOR).append(System.lineSeparator());
+
+        if (!backpackSlot.isOccupied()) {
+
+            output.append(MessageUtil.format("You don't have a backpack.")).append(System.lineSeparator());
+            output.append(ITEM_LIST_SEPARATOR).append(System.lineSeparator());
+
+            return output.toString();
+        }
+
+        int itemIndex = 1;
+
+        for (Item item : backpackSlot.getUnmodifiableItemList()) {
+
+            output.append(MessageUtil.format("[{0}] - {1}", itemIndex, item.getName()))
+                    .append(System.lineSeparator());
+
+            itemIndex++;
+        }
+
+        output.append(ITEM_LIST_SEPARATOR);
+
+        return output.toString();
+    }
+
+    private String checkBeltBag() {
+
+        StringBuilder output = new StringBuilder("Belt bag:" + System.lineSeparator());
+        output.append(ITEM_LIST_SEPARATOR).append(System.lineSeparator());
+
+        if (!beltBagSlot.isOccupied()) {
+
+            output.append(MessageUtil.format("You don't have a belt bag.")).append(System.lineSeparator());
+            output.append(ITEM_LIST_SEPARATOR).append(System.lineSeparator());
+
+            return output.toString();
+        }
+
+        int itemIndex = 1 + backpackSlot.getUnmodifiableItemList().size();
+
+        for (Item item : beltBagSlot.getUnmodifiableItemList()) {
+
+            output.append(MessageUtil.format("[{0}] - {1}", itemIndex, item.getName()))
+                    .append(System.lineSeparator());
+
+            itemIndex++;
+        }
+
+        output.append(ITEM_LIST_SEPARATOR).append(System.lineSeparator());
+
+        return output.toString();
     }
 }
