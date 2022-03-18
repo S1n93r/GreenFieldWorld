@@ -4,6 +4,7 @@ import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.items.Item;
 import com.slinger.greenfieldworld.model.items.storage.BeltBag;
 
+import java.util.Collections;
 import java.util.List;
 
 public class BeltBagSlot extends EquipmentSlot<BeltBag> {
@@ -45,14 +46,26 @@ public class BeltBagSlot extends EquipmentSlot<BeltBag> {
     }
 
     public String getBagName() {
+
+        if (item == null)
+            return MessageUtil.emptyString();
+
         return item.getName();
     }
 
     public String getBagNameWithArticle() {
+
+        if (item == null)
+            return MessageUtil.emptyString();
+
         return item.getNameWithArticle();
     }
 
     public List<Item> getUnmodifiableItemList() {
+
+        if (item == null)
+            return Collections.emptyList();
+
         return this.item.getUnmodifiableItemList();
     }
 }

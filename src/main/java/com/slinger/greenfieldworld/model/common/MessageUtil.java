@@ -2,6 +2,8 @@ package com.slinger.greenfieldworld.model.common;
 
 public final class MessageUtil {
 
+    private static final String EMPTY = "";
+
     private MessageUtil() {
         /* Util */
     }
@@ -19,5 +21,9 @@ public final class MessageUtil {
         }
 
         return output;
+    }
+
+    public static String emptyString() {
+        return EMPTY;
     }
 }

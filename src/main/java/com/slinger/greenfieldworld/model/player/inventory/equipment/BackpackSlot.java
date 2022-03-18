@@ -46,10 +46,18 @@ public class BackpackSlot extends EquipmentSlot<Backpack> {
     }
 
     public String getBagName() {
+
+        if (item == null)
+            return MessageUtil.emptyString();
+
         return item.getName();
     }
 
     public String getBagNameWithArticle() {
+
+        if (item == null)
+            return MessageUtil.emptyString();
+
         return item.getNameWithArticle();
     }
 

@@ -2,6 +2,7 @@ package com.slinger.greenfieldworld.model.player.actions;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.items.Item;
+import com.slinger.greenfieldworld.model.items.storage.LootBag;
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.inventory.Inventory;
 import com.slinger.greenfieldworld.model.player.inventory.equipment.BackpackSlot;
@@ -10,6 +11,13 @@ import com.slinger.greenfieldworld.model.player.inventory.equipment.BeltBagSlot;
 public class Equip extends InventoryInteraction {
 
     private static final String TRIGGER_WORD = "equip";
+
+    private static final String OUTPUT_ITEM_NAME_NOT_FOUND = "Item '{0}' not found.";
+    private static final String OUTPUT_ITEM_INDEX_NOT_FOUND = "Item at index '{0}' not found.";
+
+    private static final String OUTPUT_EQUIP = "You equip {0}.";
+    private static final String OUTPUT_EQUIP_SWAP = "You put your old {0} into your {1} and equip your new {2}.";
+    private static final String OUTPUT_EQUIP_SWAP_LOOT = "You put your old {0} into the {1} and equip your new {2}.";
 
     public Equip(Player player, Inventory inventory) {
         super(player, inventory);
@@ -37,12 +45,12 @@ public class Equip extends InventoryInteraction {
             item = player.getAvailableLootBag().fetchItem(itemName);
 
         if (item == null)
-            inventory.fetchItem(itemName);
+            item = inventory.fetchItem(itemName);
 
         if (item == null)
-            return MessageUtil.format("Item '{0}' not found.", itemName);
+            return MessageUtil.format(OUTPUT_ITEM_NAME_NOT_FOUND, itemName);
 
-        return equipITem(item);
+        return equipItem(item);
     }
 
     private String equipByItemIndex(int itemIndex) {
@@ -55,17 +63,17 @@ public class Equip extends InventoryInteraction {
             inventory.fetchItem(itemIndex);
 
         if (item == null)
-            return MessageUtil.format("Item at index '{0}' not found.", itemIndex);
+            return MessageUtil.format(OUTPUT_ITEM_INDEX_NOT_FOUND, itemIndex);
 
-        return equipITem(item);
+        return equipItem(item);
     }
 
-    private String equipITem(Item item) {
+    private String equipItem(Item item) {
 
         Item previousItemEquipped = inventory.equip(item);
 
         if (previousItemEquipped == null)
-            return MessageUtil.format("You equip {0}.", item.getNameWithArticle());
+            return MessageUtil.format(OUTPUT_EQUIP, item.getNameWithArticle());
 
         BackpackSlot backpack = inventory.getBackpackSlot();
         BeltBagSlot beltBag = inventory.getBeltBagSlot();
@@ -74,24 +82,26 @@ public class Equip extends InventoryInteraction {
 
             backpack.store(previousItemEquipped);
 
-            return MessageUtil.format("You put your old {0} into your {1} and equip your new {2}.",
+            return MessageUtil.format(OUTPUT_EQUIP_SWAP,
                     previousItemEquipped.getName(), backpack.getBagName(), item.getName());
 
         } else if (beltBag.hasSpace()) {
 
-            backpack.store(previousItemEquipped);
+            beltBag.store(previousItemEquipped);
 
-            return MessageUtil.format("You put your old {0} into your {1} and equip your new {2}.",
-                    previousItemEquipped.getName(), beltBag.getBagName(), item.getName());
+            return MessageUtil.format(OUTPUT_EQUIP_SWAP, previousItemEquipped.getName(), beltBag.getBagName(),
+                    item.getName());
 
         } else {
 
-            if (player.getAvailableLootBag() == null)
+            LootBag lootBag = player.getAvailableLootBag();
+
+            if (lootBag == null)
                 throw new IllegalStateException("The loot bag can only be null if the item was equipped from either " +
                         "backpack or belt bag. For some reason back pack and belt bag are full after equipping.");
 
-            return MessageUtil.format("You put away your old {} and equip a new {}.",
-                    previousItemEquipped.getName(), item.getName());
+            return MessageUtil.format(OUTPUT_EQUIP_SWAP_LOOT, previousItemEquipped.getName(), lootBag.getName(),
+                    item.getName());
         }
     }
 }
