@@ -25,7 +25,7 @@ class EquipTest {
 
         String output = sut.use("leather backpack");
 
-        assertEquals("", output);
+        assertEquals("You equip a leather backpack.", output);
     }
 
     @Test
@@ -44,6 +44,43 @@ class EquipTest {
 
         String output = sut.use("0");
 
-        assertEquals("", output);
+        assertEquals("You equip a leather backpack.", output);
+    }
+
+    @Test
+    public void equippingWithUnknownNamePromptsSpecificMessage() {
+
+        PlayerGenerator generator = new PlayerGenerator();
+        Player player = generator.generatePlayer("Sl1ng3r");
+
+        LootBag lootBag = new LootBag();
+        lootBag.store(new LeatherBackpack());
+
+        player.setAvailableLootBag(lootBag);
+
+        Equip sut = (Equip) player.getAction("equip");
+
+        String output = sut.use("unknown");
+
+        assertEquals("Item 'unknown' not found.", output);
+    }
+
+    @Test
+    public void equippingWithUnknownIndexPromptsSpecificMessage() {
+
+        /* Given */
+        PlayerGenerator generator = new PlayerGenerator();
+        Player player = generator.generatePlayer("Sl1ng3r");
+
+        LootBag lootBag = new LootBag();
+        lootBag.store(new LeatherBackpack());
+
+        player.setAvailableLootBag(lootBag);
+
+        Equip sut = (Equip) player.getAction("equip");
+
+        String output = sut.use("12");
+
+        assertEquals("Item at index '12' not found.", output);
     }
 }

@@ -54,7 +54,16 @@ public abstract class Bag extends Item {
     }
 
     public Item fetchItem(int index) {
-        return itemList.get(index);
+
+        try {
+
+            Item item = itemList.get(index);
+
+            return itemList.get(index);
+
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     }
 
     public boolean hasSpace() {

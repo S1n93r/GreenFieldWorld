@@ -20,6 +20,38 @@ public class BeltBagSlot extends EquipmentSlot<BeltBag> {
         return this.item.store(item);
     }
 
+    public Item fetchItemFromBag(String itemName) {
+
+        if (item == null)
+            return null;
+
+        return item.fetchItem(itemName);
+    }
+
+    public Item fetchItemFromBag(int itemIndex) {
+
+        if (item == null)
+            return null;
+
+        return item.fetchItem(itemIndex);
+    }
+
+    public boolean hasSpace() {
+
+        if (item == null)
+            return false;
+
+        return item.hasSpace();
+    }
+
+    public String getBagName() {
+        return item.getName();
+    }
+
+    public String getBagNameWithArticle() {
+        return item.getNameWithArticle();
+    }
+
     public List<Item> getUnmodifiableItemList() {
         return this.item.getUnmodifiableItemList();
     }

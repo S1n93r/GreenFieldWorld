@@ -23,7 +23,7 @@ class InventoryTest {
 
         /* Then */
         assertNull(returnedItem);
-        assertEquals(leatherBackpack, sut.getBackpackSlot().getItem());
+        assertEquals(leatherBackpack.getName(), sut.getBackpackSlot().getBagName());
     }
 
     @Test
@@ -41,6 +41,6 @@ class InventoryTest {
 
         /* Then */
         assertEquals(oldLeatherBackpack, returnedItem);
-        assertEquals(newLeatherBackpack, sut.getBackpackSlot().getItem());
+        assertEquals(newLeatherBackpack.getName(), sut.getBackpackSlot().getBagName());
     }
 }

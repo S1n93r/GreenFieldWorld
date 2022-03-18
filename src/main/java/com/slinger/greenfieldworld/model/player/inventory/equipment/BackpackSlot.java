@@ -4,6 +4,7 @@ import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.items.Item;
 import com.slinger.greenfieldworld.model.items.storage.Backpack;
 
+import java.util.Collections;
 import java.util.List;
 
 public class BackpackSlot extends EquipmentSlot<Backpack> {
@@ -20,7 +21,43 @@ public class BackpackSlot extends EquipmentSlot<Backpack> {
         return this.item.store(item);
     }
 
+    public Item fetchItemFromBag(String itemName) {
+
+        if (item == null)
+            return null;
+
+        return item.fetchItem(itemName);
+    }
+
+    public Item fetchItemFromBag(int itemIndex) {
+
+        if (item == null)
+            return null;
+
+        return item.fetchItem(itemIndex);
+    }
+
+    public boolean hasBagSpace() {
+
+        if (item == null)
+            return false;
+
+        return item.hasSpace();
+    }
+
+    public String getBagName() {
+        return item.getName();
+    }
+
+    public String getBagNameWithArticle() {
+        return item.getNameWithArticle();
+    }
+
     public List<Item> getUnmodifiableItemList() {
+
+        if (item == null)
+            return Collections.emptyList();
+
         return this.item.getUnmodifiableItemList();
     }
 }

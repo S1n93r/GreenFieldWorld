@@ -68,20 +68,20 @@ public class Inventory {
 
     public Item fetchItem(String itemName) {
 
-        Item item = backpackSlot.getItem().fetchItem(itemName);
+        Item item = backpackSlot.fetchItemFromBag(itemName);
 
         if (item == null)
-            item = beltBagSlot.getItem().fetchItem(itemName);
+            item = beltBagSlot.fetchItemFromBag(itemName);
 
         return item;
     }
 
     public Item fetchItem(int itemIndex) {
 
-        Item item = backpackSlot.getItem().fetchItem(itemIndex);
+        Item item = backpackSlot.fetchItemFromBag(itemIndex);
 
         if (item == null)
-            item = beltBagSlot.getItem().fetchItem(itemIndex - backpackSlot.getUnmodifiableItemList().size());
+            item = beltBagSlot.fetchItemFromBag(itemIndex - backpackSlot.getUnmodifiableItemList().size());
 
         return item;
     }
