@@ -1,7 +1,7 @@
 package com.slinger.greenfieldworld.model.player.inventory.equipment;
 
+import com.slinger.greenfieldworld.model.items.Item;
 import com.slinger.greenfieldworld.model.items.equipment.accessory.Accessory;
-import com.slinger.greenfieldworld.model.items.storage.Bag;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,16 +22,16 @@ public class AccessorySlots extends EquipmentSlot<Accessory> {
     }
 
     @Override
-    public String equip(Accessory item, Bag bagEquippedFrom) {
+    public Item equip(Accessory item) {
 
         if (!accessorySlotA.isOccupied())
-            return accessorySlotA.equip(item, bagEquippedFrom);
+            return accessorySlotA.equip(item);
 
         if (!accessorySlotB.isOccupied())
-            return accessorySlotB.equip(item, bagEquippedFrom);
+            return accessorySlotB.equip(item);
 
         Collections.reverse(accessorySlotList);
 
-        return accessorySlotList.get(0).equip(item, bagEquippedFrom);
+        return accessorySlotList.get(0).equip(item);
     }
 }

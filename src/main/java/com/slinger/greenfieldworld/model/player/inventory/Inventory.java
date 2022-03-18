@@ -8,24 +8,30 @@ import com.slinger.greenfieldworld.model.items.equipment.bodyarmor.BodyArmor;
 import com.slinger.greenfieldworld.model.items.equipment.headgear.Headgear;
 import com.slinger.greenfieldworld.model.items.equipment.legarmor.LegArmor;
 import com.slinger.greenfieldworld.model.items.storage.Backpack;
-import com.slinger.greenfieldworld.model.items.storage.Bag;
 import com.slinger.greenfieldworld.model.items.storage.BeltBag;
 import com.slinger.greenfieldworld.model.player.inventory.equipment.*;
+import lombok.Getter;
 
 public class Inventory {
 
     private static final String ITEM_LIST_SEPARATOR = "----------";
 
+    @Getter
     private final HeadSlot headSlot = new HeadSlot();
 
+    @Getter
     private final ChestSlot chestSlot = new ChestSlot();
 
+    @Getter
     private final LegsSlot legsSlot = new LegsSlot();
 
+    @Getter
     private final AccessorySlots accessorySlots = new AccessorySlots();
 
+    @Getter
     private final BackpackSlot backpackSlot = new BackpackSlot();
 
+    @Getter
     private final BeltBagSlot beltBagSlot = new BeltBagSlot();
 
     public String storeInBackpack(Item item) {
@@ -36,20 +42,20 @@ public class Inventory {
         return beltBagSlot.store(item);
     }
 
-    public String equip(Item item, Bag bagEquippedFrom) {
+    public Item equip(Item item) {
 
         if (item instanceof Headgear) {
-            return headSlot.equip((Headgear) item, bagEquippedFrom);
+            return headSlot.equip((Headgear) item);
         } else if (item instanceof BodyArmor) {
-            return chestSlot.equip((BodyArmor) item, bagEquippedFrom);
+            return chestSlot.equip((BodyArmor) item);
         } else if (item instanceof LegArmor) {
-            return legsSlot.equip((LegArmor) item, bagEquippedFrom);
+            return legsSlot.equip((LegArmor) item);
         } else if (item instanceof Accessory) {
-            return accessorySlots.equip((Accessory) item, bagEquippedFrom);
+            return accessorySlots.equip((Accessory) item);
         } else if (item instanceof Backpack) {
-            return backpackSlot.equip((Backpack) item, bagEquippedFrom);
+            return backpackSlot.equip((Backpack) item);
         } else if (item instanceof BeltBag) {
-            return beltBagSlot.equip((BeltBag) item, bagEquippedFrom);
+            return beltBagSlot.equip((BeltBag) item);
         }
 
         throw new SwitchCaseNotDefinedException("The item you try to equip is of a type not known to the equip " +
@@ -58,6 +64,26 @@ public class Inventory {
 
     public String check() {
         return checkBackpack() + System.lineSeparator() + checkBeltBag();
+    }
+
+    public Item fetchItem(String itemName) {
+
+        Item item = backpackSlot.getItem().fetchItem(itemName);
+
+        if (item == null)
+            item = beltBagSlot.getItem().fetchItem(itemName);
+
+        return item;
+    }
+
+    public Item fetchItem(int itemIndex) {
+
+        Item item = backpackSlot.getItem().fetchItem(itemIndex);
+
+        if (item == null)
+            item = beltBagSlot.getItem().fetchItem(itemIndex - backpackSlot.getUnmodifiableItemList().size());
+
+        return item;
     }
 
     private String checkBackpack() {
@@ -73,7 +99,7 @@ public class Inventory {
             return output.toString();
         }
 
-        int itemIndex = 1;
+        int itemIndex = 0;
 
         for (Item item : backpackSlot.getUnmodifiableItemList()) {
 
@@ -101,7 +127,7 @@ public class Inventory {
             return output.toString();
         }
 
-        int itemIndex = 1 + backpackSlot.getUnmodifiableItemList().size();
+        int itemIndex = backpackSlot.getUnmodifiableItemList().size();
 
         for (Item item : beltBagSlot.getUnmodifiableItemList()) {
 

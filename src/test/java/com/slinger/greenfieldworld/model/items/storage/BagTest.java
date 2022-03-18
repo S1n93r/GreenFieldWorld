@@ -47,7 +47,7 @@ class BagTest {
         sut.store(rustyIronRing);
 
         /* When */
-        Item item = sut.getItem("minyara flower");
+        Item item = sut.fetchItem("minyara flower");
 
         /* Then */
         assertEquals(minyaraFLower, item);
@@ -68,7 +68,7 @@ class BagTest {
         sut.store(rustyIronRing);
 
         /* When */
-        Item item = sut.getItem(2);
+        Item item = sut.fetchItem(1);
 
         /* Then */
         assertEquals(minyaraFLower, item);

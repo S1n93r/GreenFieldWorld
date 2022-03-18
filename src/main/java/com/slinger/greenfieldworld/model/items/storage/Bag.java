@@ -24,30 +24,41 @@ public abstract class Bag extends Item {
 
     public String store(Item item) {
 
+        if (hasSpace()) {
+
+            itemList.add(item);
+
+            return MessageUtil.format(OUTPUT_STORING_SUCCESSFUL, item.getNameWithArticle(), getName());
+        }
+
         /* TODO: remove second use of getName() as soon as MessageUtil can handle multiple {0}s. */
-        if (itemList.size() == storageSize)
-            return MessageUtil.format(OUTPUT_BAG_FULL, item.getNameWithArticle(), getName(), getName());
-
-        itemList.add(item);
-
-        return MessageUtil.format(OUTPUT_STORING_SUCCESSFUL, item.getNameWithArticle(), getName());
+        return MessageUtil.format(OUTPUT_BAG_FULL, item.getNameWithArticle(), getName(), getName());
     }
 
     public List<Item> getUnmodifiableItemList() {
         return Collections.unmodifiableList(itemList);
     }
 
-    public Item getItem(String name) {
+    public Item fetchItem(String name) {
 
-        for (Item item : itemList)
-            if (item.getName().equalsIgnoreCase(name))
+        for (Item item : itemList) {
+            if (item.getName().equalsIgnoreCase(name)) {
+
+                itemList.remove(item);
+
                 return item;
+            }
+        }
 
         return null;
     }
 
-    public Item getItem(int index) {
-        return itemList.get(index - 1);
+    public Item fetchItem(int index) {
+        return itemList.get(index);
+    }
+
+    public boolean hasSpace() {
+        return itemList.size() < storageSize;
     }
 
     abstract int setStorageSize();
