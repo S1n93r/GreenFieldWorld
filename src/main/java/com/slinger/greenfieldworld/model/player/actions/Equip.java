@@ -1,6 +1,7 @@
 package com.slinger.greenfieldworld.model.player.actions;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
+import com.slinger.greenfieldworld.model.items.storage.LootBag;
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.inventory.Inventory;
 
@@ -19,6 +20,17 @@ public class Equip extends InventoryInteraction {
 
     @Override
     public String use(String parameter) {
+
+        LootBag lootBag = player.getAvailableLootBag();
+
+        return MessageUtil.format("");
+    }
+
+    private String equipByItemName() {
+        return MessageUtil.format("");
+    }
+
+    private String equipByItemIndex() {
         return MessageUtil.format("");
     }
 }

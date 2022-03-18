@@ -37,5 +37,18 @@ public abstract class Bag extends Item {
         return Collections.unmodifiableList(itemList);
     }
 
+    public Item getItem(String name) {
+
+        for (Item item : itemList)
+            if (item.getName().equalsIgnoreCase(name))
+                return item;
+
+        return null;
+    }
+
+    public Item getItem(int index) {
+        return itemList.get(index - 1);
+    }
+
     abstract int setStorageSize();
 }

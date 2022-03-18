@@ -3,6 +3,7 @@ package com.slinger.greenfieldworld.model.player;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.slinger.greenfieldworld.model.common.MessageUtil;
+import com.slinger.greenfieldworld.model.items.storage.LootBag;
 import com.slinger.greenfieldworld.model.player.actions.*;
 import com.slinger.greenfieldworld.model.player.inventory.Inventory;
 import com.slinger.greenfieldworld.model.world.World;
@@ -23,12 +24,19 @@ public class Player {
     @Getter
     private final String name;
     private final Inventory inventory = new Inventory();
+
     @Setter
     @JsonIgnore
     private Region region;
+
     @Getter
     @JsonIgnore
     private World world;
+
+    @Getter
+    @Setter
+    @JsonIgnore
+    private LootBag availableLootBag;
 
     protected Player(String name) {
 

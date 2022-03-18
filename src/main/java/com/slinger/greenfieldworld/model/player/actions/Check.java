@@ -26,6 +26,8 @@ public class Check extends InventoryInteraction {
             case "inventory":
                 return inventory.check();
 
+            case "loot":
+
             case "status:":
                 break;
 
