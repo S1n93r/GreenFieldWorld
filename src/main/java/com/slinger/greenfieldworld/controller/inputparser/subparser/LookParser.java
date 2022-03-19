@@ -27,6 +27,7 @@ public class LookParser extends Parser {
     @Override
     public void parse(String[] words) {
 
+        /* TODO: This part just screams "abstract me!", from here... */
         String actionWord = words[0];
 
         Action look = player.getAction(actionWord);
@@ -42,6 +43,7 @@ public class LookParser extends Parser {
         }
 
         String paramWord = words[1];
+        /* TODO: ...to here. */
 
         switch (paramWord) {
 
