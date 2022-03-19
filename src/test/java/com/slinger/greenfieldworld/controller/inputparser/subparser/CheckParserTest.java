@@ -2,7 +2,7 @@ package com.slinger.greenfieldworld.controller.inputparser.subparser;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.Player;
-import com.slinger.greenfieldworld.model.player.actions.Check;
+import com.slinger.greenfieldworld.model.player.actions.check.Check;
 import com.slinger.greenfieldworld.model.player.inventory.Inventory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

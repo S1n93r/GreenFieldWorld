@@ -1,7 +1,9 @@
 package com.slinger.greenfieldworld.controller.inputparser.subparser;
 
+import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.actions.Action;
+import com.slinger.greenfieldworld.model.player.actions.look.LookParam;
 import lombok.NonNull;
 
 import java.util.function.Consumer;
@@ -9,7 +11,8 @@ import java.util.function.Consumer;
 public class LookParser extends Parser {
 
     protected static final String NO_PARAM_PROMPT = "Look where?";
-    protected static final String ACTION_NOT_AVAILABLE_PROMPT = "You don't know how to look.";
+    protected static final String PARAM_UNKNOWN = "You don't know how to look towards '{0}'";
+    protected static final String ACTION_NOT_AVAILABLE_PROMPT = "You are unable to look.";
 
     private final Player player;
 
@@ -39,6 +42,18 @@ public class LookParser extends Parser {
 
         String paramWord = words[1];
 
-        submitOutputConsumer.accept(player.getAction(actionWord).use(paramWord));
+        LookParam lookParam = LookParam.fromString(paramWord);
+
+        switch (lookParam) {
+
+            case NORTH:
+            case EAST:
+            case SOUTH:
+            case WEST:
+                submitOutputConsumer.accept(player.getAction(actionWord).use(paramWord));
+
+            default:
+                submitOutputConsumer.accept(MessageUtil.format(PARAM_UNKNOWN, paramWord));
+        }
     }
 }

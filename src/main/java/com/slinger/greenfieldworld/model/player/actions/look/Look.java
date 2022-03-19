@@ -1,37 +1,37 @@
-package com.slinger.greenfieldworld.model.player.actions;
+package com.slinger.greenfieldworld.model.player.actions.look;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
-import com.slinger.greenfieldworld.model.exceptions.SwitchCaseNotDefinedException;
 import com.slinger.greenfieldworld.model.player.Player;
+import com.slinger.greenfieldworld.model.player.actions.Action;
 import com.slinger.greenfieldworld.model.world.Coordinate;
-import com.slinger.greenfieldworld.model.world.Direction;
 import com.slinger.greenfieldworld.model.world.World;
 import com.slinger.greenfieldworld.model.world.regions.Region;
 
-public class Move extends Action {
+public class Look extends Action {
 
-    private static final String TRIGGER_WORD = "move";
+    protected static final String LOOK_DIRECTION_PROMPT = "You look {0} and see a {1}.";
+    protected static final String TRIGGER_WORD = "look";
 
-    public Move(Player player) {
+    public Look(Player player) {
         super(player);
     }
 
     @Override
-    String setTriggerWord() {
+    protected String setTriggerWord() {
         return TRIGGER_WORD;
     }
 
     @Override
     public String use(String parameter) {
 
-        Direction direction = Direction.fromString(parameter);
+        LookParam lookParam = LookParam.fromString(parameter);
 
         Region currentRegion = player.getRegion();
 
         int xShift = 0;
         int yShift = 0;
 
-        switch (direction) {
+        switch (lookParam) {
 
             case NORTH:
                 yShift = -1;
@@ -49,11 +49,8 @@ public class Move extends Action {
                 xShift = -1;
                 break;
 
-            case NONE:
-                return MessageUtil.format("You did not move.");
-
             default:
-                throw new SwitchCaseNotDefinedException(MessageUtil.format("Case {0} not found.", direction));
+                return MessageUtil.format("You did not look in any direction.");
         }
 
         World world = player.getWorld();
@@ -63,10 +60,8 @@ public class Move extends Action {
                 currentRegion.getCoordinate().getY() + yShift));
 
         if (targetRegion == null)
-            return MessageUtil.format("Border reached. You can't go {0} from here.", direction);
+            return MessageUtil.format("To the {0} you can see... The end of the world.", lookParam);
 
-        player.setRegion(targetRegion);
-
-        return MessageUtil.format("You move {0}.", direction);
+        return MessageUtil.format(LOOK_DIRECTION_PROMPT, lookParam, targetRegion.getRegionTypeName());
     }
 }

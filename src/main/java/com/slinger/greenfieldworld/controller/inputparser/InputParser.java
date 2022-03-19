@@ -37,8 +37,10 @@ public class InputParser {
 
         Parser parser = parserMap.get(firstWord.toLowerCase(Locale.ROOT));
 
-        if (parser != null)
+        if (parser != null) {
             parser.parse(words);
+            return;
+        }
 
         submitOutputConsumer.accept(MessageUtil.format(UNKNOWN_COMMAND, input));
     }

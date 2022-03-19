@@ -8,8 +8,8 @@ import java.util.function.Consumer;
 
 public class EquipParser extends Parser {
 
-    protected static final String ACTION_NOT_AVAILABLE_PROMPT = "You don't know how to look.";
-    protected static final String NO_PARAM_PROMPT = "Check what?";
+    protected static final String ACTION_NOT_AVAILABLE_PROMPT = "Your are unable to equip.";
+    protected static final String NO_PARAM_PROMPT = "Equip what?";
 
     private final Player player;
 

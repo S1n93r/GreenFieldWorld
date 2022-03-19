@@ -1,7 +1,7 @@
 package com.slinger.greenfieldworld.controller.inputparser.subparser;
 
 import com.slinger.greenfieldworld.model.player.Player;
-import com.slinger.greenfieldworld.model.player.actions.Move;
+import com.slinger.greenfieldworld.model.player.actions.move.Move;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.junit.jupiter.api.Test;
@@ -68,6 +68,6 @@ class MoveParserTest {
         sut.parse(words);
 
         /* Then */
-        assertEquals("You did not move.", outputProperty.get());
+        assertEquals("You don't know how to move towards 'unknown'", outputProperty.get());
     }
 }

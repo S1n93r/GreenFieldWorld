@@ -3,15 +3,17 @@ package com.slinger.greenfieldworld.controller.inputparser.subparser;
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.actions.Action;
+import com.slinger.greenfieldworld.model.player.actions.check.CheckParam;
 import lombok.NonNull;
 
 import java.util.function.Consumer;
 
 public class CheckParser extends Parser {
 
-    protected static final String ACTION_NOT_AVAILABLE_PROMPT = "You don't know how to look.";
+    protected static final String ACTION_NOT_AVAILABLE_PROMPT = "Your are unable to check.";
     protected static final String NO_PARAM_PROMPT = "Check what?";
     protected static final String PARAM_NOT_FOUND_PROMPT = "You don't know how to check '{0}'";
+    protected static final String ACTION_PARAM_NOT_IMPLEMENTED = "WARNING: Action parameter not implemented.";
 
     private final Player player;
 
@@ -41,11 +43,17 @@ public class CheckParser extends Parser {
 
         String paramWords = words[1];
 
-        switch (paramWords) {
+        CheckParam checkParam = CheckParam.fromString(paramWords);
 
-            case "status":
-            case "inventory":
-                check.use(paramWords);
+        switch (checkParam) {
+
+            case INVENTORY:
+                submitOutputConsumer.accept(check.use(paramWords));
+                break;
+
+            case LOOT:
+            case STATUS:
+                submitOutputConsumer.accept(ACTION_PARAM_NOT_IMPLEMENTED);
                 break;
 
             default:

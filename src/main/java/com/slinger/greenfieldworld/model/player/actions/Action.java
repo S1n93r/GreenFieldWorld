@@ -17,7 +17,7 @@ public abstract class Action {
         this.player = player;
     }
 
-    abstract String setTriggerWord();
+    protected abstract String setTriggerWord();
 
     public abstract String use(String parameter);
 }

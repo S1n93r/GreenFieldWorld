@@ -1,8 +1,9 @@
-package com.slinger.greenfieldworld.model.player.actions;
+package com.slinger.greenfieldworld.model.player.actions.check;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.exceptions.SwitchCaseNotDefinedException;
 import com.slinger.greenfieldworld.model.player.Player;
+import com.slinger.greenfieldworld.model.player.actions.InventoryInteraction;
 import com.slinger.greenfieldworld.model.player.inventory.Inventory;
 
 public class Check extends InventoryInteraction {
@@ -14,22 +15,24 @@ public class Check extends InventoryInteraction {
     }
 
     @Override
-    String setTriggerWord() {
+    protected String setTriggerWord() {
         return TRIGGER_WORD;
     }
 
     @Override
     public String use(String parameter) {
 
-        switch (parameter) {
+        CheckParam checkParam = CheckParam.fromString(parameter);
 
-            case "inventory":
+        switch (checkParam) {
+
+            case INVENTORY:
                 return inventory.check();
 
-            case "loot":
+            case LOOT:
                 break;
 
-            case "status:":
+            case STATUS:
                 break;
 
             default:

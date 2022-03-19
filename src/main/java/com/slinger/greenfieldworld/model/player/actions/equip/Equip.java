@@ -1,9 +1,11 @@
-package com.slinger.greenfieldworld.model.player.actions;
+package com.slinger.greenfieldworld.model.player.actions.equip;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
+import com.slinger.greenfieldworld.model.exceptions.SwitchCaseNotDefinedException;
 import com.slinger.greenfieldworld.model.items.Item;
 import com.slinger.greenfieldworld.model.items.storage.LootBag;
 import com.slinger.greenfieldworld.model.player.Player;
+import com.slinger.greenfieldworld.model.player.actions.InventoryInteraction;
 import com.slinger.greenfieldworld.model.player.inventory.Inventory;
 import com.slinger.greenfieldworld.model.player.inventory.equipment.BackpackSlot;
 import com.slinger.greenfieldworld.model.player.inventory.equipment.BeltBagSlot;
@@ -24,17 +26,26 @@ public class Equip extends InventoryInteraction {
     }
 
     @Override
-    String setTriggerWord() {
+    protected String setTriggerWord() {
         return TRIGGER_WORD;
     }
 
     @Override
     public String use(String parameter) {
 
-        if (parameter.replaceAll("[0-9]", "").length() == 0)
-            return equipByItemIndex(Integer.parseInt(parameter));
-        else
-            return equipByItemName(parameter);
+        EquipParam equipParam = EquipParam.fromString(parameter);
+
+        switch (equipParam) {
+
+            case BY_NAME:
+                return equipByItemName(parameter);
+
+            case BY_INDEX:
+                return equipByItemIndex(Integer.parseInt(parameter));
+
+            default:
+                throw new SwitchCaseNotDefinedException();
+        }
     }
 
     private String equipByItemName(String itemName) {
