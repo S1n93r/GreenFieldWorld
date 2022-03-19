@@ -10,8 +10,8 @@ import com.slinger.greenfieldworld.model.world.regions.Region;
 
 public class Look extends Action {
 
-    public static final String LOOK_DIRECTION_PROMPT = "You look {0} and see a {1}.";
-    private static final String TRIGGER_WORD = "look";
+    protected static final String LOOK_DIRECTION_PROMPT = "You look {0} and see a {1}.";
+    protected static final String TRIGGER_WORD = "look";
 
     public Look(Player player) {
         super(player);

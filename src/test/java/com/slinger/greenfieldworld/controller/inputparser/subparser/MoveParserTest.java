@@ -68,6 +68,6 @@ class MoveParserTest {
         sut.parse(words);
 
         /* Then */
-        assertEquals(MoveParser.DIRECTION_NOT_FOUND_PROMPT, outputProperty.get());
+        assertEquals("You did not move.", outputProperty.get());
     }
 }

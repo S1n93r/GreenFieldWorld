@@ -5,11 +5,11 @@
         "x" : 4,
         "y" : 0
       },
-      "regionTypeName" : "PLAIN",
-      "regionName" : "TALL_GRASS",
+      "regionTypeName" : "MOUNTAIN",
+      "regionName" : "FOOTHILLS",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=4, y=1)" : {
@@ -17,11 +17,11 @@
         "x" : 4,
         "y" : 1
       },
-      "regionTypeName" : "PLAIN",
-      "regionName" : "TALL_GRASS",
+      "regionTypeName" : "MOUNTAIN",
+      "regionName" : "FOOTHILLS",
       "randomEvent" : {
-        "empty" : false,
-        "present" : true
+        "empty" : true,
+        "present" : false
       }
     },
     "Coordinate(x=4, y=2)" : {
@@ -29,8 +29,8 @@
         "x" : 4,
         "y" : 2
       },
-      "regionTypeName" : "MOUNTAIN",
-      "regionName" : "FOOTHILLS",
+      "regionTypeName" : "PLAIN",
+      "regionName" : "TALL_GRASS",
       "randomEvent" : {
         "empty" : false,
         "present" : true
@@ -41,8 +41,8 @@
         "x" : 4,
         "y" : 3
       },
-      "regionTypeName" : "FOREST",
-      "regionName" : "GLADE",
+      "regionTypeName" : "PLAIN",
+      "regionName" : "TALL_GRASS",
       "randomEvent" : {
         "empty" : true,
         "present" : false
@@ -53,8 +53,8 @@
         "x" : 4,
         "y" : 4
       },
-      "regionTypeName" : "FOREST",
-      "regionName" : "GLADE",
+      "regionTypeName" : "PLAIN",
+      "regionName" : "FLOWER_BED",
       "randomEvent" : {
         "empty" : true,
         "present" : false
@@ -68,8 +68,8 @@
       "regionTypeName" : "MOUNTAIN",
       "regionName" : "FOOTHILLS",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=3, y=1)" : {
@@ -89,8 +89,8 @@
         "x" : 3,
         "y" : 2
       },
-      "regionTypeName" : "MOUNTAIN",
-      "regionName" : "FOOTHILLS",
+      "regionTypeName" : "PLAIN",
+      "regionName" : "FLOWER_BED",
       "randomEvent" : {
         "empty" : true,
         "present" : false
@@ -101,8 +101,8 @@
         "x" : 3,
         "y" : 3
       },
-      "regionTypeName" : "FOREST",
-      "regionName" : "GLADE",
+      "regionTypeName" : "PLAIN",
+      "regionName" : "TALL_GRASS",
       "randomEvent" : {
         "empty" : true,
         "present" : false
@@ -113,11 +113,11 @@
         "x" : 3,
         "y" : 4
       },
-      "regionTypeName" : "FOREST",
-      "regionName" : "GLADE",
+      "regionTypeName" : "PLAIN",
+      "regionName" : "TALL_GRASS",
       "randomEvent" : {
-        "empty" : false,
-        "present" : true
+        "empty" : true,
+        "present" : false
       }
     },
     "Coordinate(x=2, y=0)" : {
@@ -128,8 +128,8 @@
       "regionTypeName" : "MOUNTAIN",
       "regionName" : "FOOTHILLS",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=2, y=1)" : {
@@ -149,8 +149,8 @@
         "x" : 2,
         "y" : 2
       },
-      "regionTypeName" : "MOUNTAIN",
-      "regionName" : "FOOTHILLS",
+      "regionTypeName" : "FOREST",
+      "regionName" : "BEAR_CAVE",
       "randomEvent" : {
         "empty" : true,
         "present" : false
@@ -164,8 +164,8 @@
       "regionTypeName" : "FOREST",
       "regionName" : "GLADE",
       "randomEvent" : {
-        "empty" : false,
-        "present" : true
+        "empty" : true,
+        "present" : false
       }
     },
     "Coordinate(x=2, y=4)" : {
@@ -176,8 +176,8 @@
       "regionTypeName" : "FOREST",
       "regionName" : "GLADE",
       "randomEvent" : {
-        "empty" : false,
-        "present" : true
+        "empty" : true,
+        "present" : false
       }
     },
     "Coordinate(x=1, y=0)" : {
@@ -185,8 +185,8 @@
         "x" : 1,
         "y" : 0
       },
-      "regionTypeName" : "MOUNTAIN",
-      "regionName" : "FOOTHILLS",
+      "regionTypeName" : "FOREST",
+      "regionName" : "GLADE",
       "randomEvent" : {
         "empty" : true,
         "present" : false
@@ -197,11 +197,11 @@
         "x" : 1,
         "y" : 1
       },
-      "regionTypeName" : "MOUNTAIN",
-      "regionName" : "FOOTHILLS",
+      "regionTypeName" : "FOREST",
+      "regionName" : "GLADE",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=1, y=2)" : {
@@ -209,8 +209,8 @@
         "x" : 1,
         "y" : 2
       },
-      "regionTypeName" : "MOUNTAIN",
-      "regionName" : "FOOTHILLS",
+      "regionTypeName" : "FOREST",
+      "regionName" : "GLADE",
       "randomEvent" : {
         "empty" : true,
         "present" : false
@@ -221,11 +221,11 @@
         "x" : 1,
         "y" : 3
       },
-      "regionTypeName" : "PLAIN",
-      "regionName" : "TALL_GRASS",
+      "regionTypeName" : "FOREST",
+      "regionName" : "GLADE",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=1, y=4)" : {
@@ -233,8 +233,8 @@
         "x" : 1,
         "y" : 4
       },
-      "regionTypeName" : "PLAIN",
-      "regionName" : "TALL_GRASS",
+      "regionTypeName" : "FOREST",
+      "regionName" : "GLADE",
       "randomEvent" : {
         "empty" : true,
         "present" : false
@@ -245,11 +245,11 @@
         "x" : 0,
         "y" : 0
       },
-      "regionTypeName" : "MOUNTAIN",
-      "regionName" : "FOOTHILLS",
+      "regionTypeName" : "FOREST",
+      "regionName" : "GLADE",
       "randomEvent" : {
-        "empty" : false,
-        "present" : true
+        "empty" : true,
+        "present" : false
       }
     },
     "Coordinate(x=0, y=1)" : {
@@ -257,11 +257,11 @@
         "x" : 0,
         "y" : 1
       },
-      "regionTypeName" : "MOUNTAIN",
-      "regionName" : "FOOTHILLS",
+      "regionTypeName" : "FOREST",
+      "regionName" : "GLADE",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=0, y=2)" : {
@@ -269,8 +269,8 @@
         "x" : 0,
         "y" : 2
       },
-      "regionTypeName" : "MOUNTAIN",
-      "regionName" : "FOOTHILLS",
+      "regionTypeName" : "WATER",
+      "regionName" : "RIVER",
       "randomEvent" : {
         "empty" : true,
         "present" : false
@@ -281,11 +281,11 @@
         "x" : 0,
         "y" : 3
       },
-      "regionTypeName" : "PLAIN",
-      "regionName" : "TALL_GRASS",
+      "regionTypeName" : "FOREST",
+      "regionName" : "GLADE",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     },
     "Coordinate(x=0, y=4)" : {
@@ -293,11 +293,11 @@
         "x" : 0,
         "y" : 4
       },
-      "regionTypeName" : "PLAIN",
-      "regionName" : "TALL_GRASS",
+      "regionTypeName" : "FOREST",
+      "regionName" : "GLADE",
       "randomEvent" : {
-        "empty" : true,
-        "present" : false
+        "empty" : false,
+        "present" : true
       }
     }
   },

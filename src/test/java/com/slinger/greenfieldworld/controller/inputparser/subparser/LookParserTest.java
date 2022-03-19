@@ -2,14 +2,10 @@ package com.slinger.greenfieldworld.controller.inputparser.subparser;
 
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.actions.Look;
-import com.slinger.greenfieldworld.model.world.regions.Region;
-import com.slinger.greenfieldworld.model.world.regions.plain.FlowerBed;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -72,30 +68,6 @@ class LookParserTest {
         sut.parse(words);
 
         /* Then */
-        assertEquals(LookParser.DIRECTION_NOT_FOUND_PROMPT, outputProperty.get());
-    }
-
-    @Test
-    public void parsingWithoutEventTriggersPrompt() {
-
-        /* Given */
-        String[] words = {"look", "around"};
-
-        Region region = mock(FlowerBed.class);
-        Mockito.when(region.getRandomEvent()).thenReturn(Optional.empty());
-
-        Player player = mock(Player.class);
-        Mockito.when(player.getAction("look")).thenReturn(new Look(player));
-        Mockito.when(player.getRegion()).thenReturn(region);
-
-        final StringProperty outputProperty = new SimpleStringProperty();
-
-        LookParser sut = new LookParser(outputProperty::set, player);
-
-        /* When */
-        sut.parse(words);
-
-        /* Then */
-        assertEquals(LookParser.NO_EVENT_PROMPT, outputProperty.get());
+        assertEquals("You did not look in any direction.", outputProperty.get());
     }
 }
