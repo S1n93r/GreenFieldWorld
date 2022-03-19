@@ -1,8 +1,7 @@
-package com.slinger.greenfieldworld.model.player.actions;
+package com.slinger.greenfieldworld.model.player.actions.move;
 
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.PlayerGenerator;
-import com.slinger.greenfieldworld.model.player.actions.move.Move;
 import com.slinger.greenfieldworld.model.world.Coordinate;
 import com.slinger.greenfieldworld.model.world.World;
 import com.slinger.greenfieldworld.model.world.WorldGenerator;

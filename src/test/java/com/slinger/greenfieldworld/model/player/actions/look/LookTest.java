@@ -1,8 +1,7 @@
-package com.slinger.greenfieldworld.model.player.actions;
+package com.slinger.greenfieldworld.model.player.actions.look;
 
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.PlayerGenerator;
-import com.slinger.greenfieldworld.model.player.actions.look.Look;
 import com.slinger.greenfieldworld.model.world.World;
 import com.slinger.greenfieldworld.model.world.WorldGenerator;
 import org.junit.jupiter.api.Test;

@@ -10,6 +10,7 @@ public enum LookParam {
 
     public static LookParam fromString(String checkParam) {
 
+        /* TODO: This feels like to much work. Maybe I should just pass params to action and let action handle it. */
         if (checkParam.equalsIgnoreCase(NORTH.name()))
             return NORTH;
         else if (checkParam.equalsIgnoreCase(EAST.name()))

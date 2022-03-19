@@ -35,7 +35,7 @@ public abstract class Region {
         this.regionName = regionName;
         this.eventChest = eventChest;
 
-        regionInventory = new RegionInventory(this);
+        regionInventory = new RegionInventory();
     }
 
     public Optional<Event> getRandomEvent() {

@@ -1,4 +1,4 @@
-package com.slinger.greenfieldworld.model.player.actions;
+package com.slinger.greenfieldworld.model.player.actions.check;
 
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.PlayerGenerator;

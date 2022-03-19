@@ -1,4 +1,4 @@
-package com.slinger.greenfieldworld.model.player.actions;
+package com.slinger.greenfieldworld.model.player.actions.equip;
 
 import com.slinger.greenfieldworld.model.items.equipment.accessory.RustyIronRing;
 import com.slinger.greenfieldworld.model.items.equipment.headgear.LinenHood;
@@ -7,7 +7,6 @@ import com.slinger.greenfieldworld.model.items.storage.LeatherPouch;
 import com.slinger.greenfieldworld.model.items.storage.LootBag;
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.PlayerGenerator;
-import com.slinger.greenfieldworld.model.player.actions.equip.Equip;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

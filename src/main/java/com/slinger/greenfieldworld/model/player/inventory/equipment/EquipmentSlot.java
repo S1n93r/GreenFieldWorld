@@ -20,6 +20,15 @@ public abstract class EquipmentSlot<T extends Item> {
         return previousItem;
     }
 
+    public Item remove() {
+
+        Item removedItem = this.item;
+
+        this.item = null;
+
+        return removedItem;
+    }
+
     public boolean isOccupied() {
         return item != null;
     }

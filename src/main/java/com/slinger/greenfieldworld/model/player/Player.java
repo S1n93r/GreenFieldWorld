@@ -9,6 +9,7 @@ import com.slinger.greenfieldworld.model.player.actions.check.Check;
 import com.slinger.greenfieldworld.model.player.actions.equip.Equip;
 import com.slinger.greenfieldworld.model.player.actions.look.Look;
 import com.slinger.greenfieldworld.model.player.actions.move.Move;
+import com.slinger.greenfieldworld.model.player.actions.unequip.Remove;
 import com.slinger.greenfieldworld.model.player.inventory.Inventory;
 import com.slinger.greenfieldworld.model.world.World;
 import com.slinger.greenfieldworld.model.world.regions.Region;
@@ -55,6 +56,7 @@ public class Player {
         addAction(new Look(this));
         addAction(new Check(this, inventory));
         addAction(new Equip(this, inventory));
+        addAction(new Remove(this, inventory));
     }
 
     public void spawn(World world, Region region) {

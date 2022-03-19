@@ -17,13 +17,13 @@ public class Inventory {
     private static final String ITEM_LIST_SEPARATOR = "----------";
 
     @Getter
-    private final HeadSlot headSlot = new HeadSlot();
+    private final HeadgearSlot headgearSlot = new HeadgearSlot();
 
     @Getter
-    private final ChestSlot chestSlot = new ChestSlot();
+    private final BodyArmorSlot bodyArmorSlot = new BodyArmorSlot();
 
     @Getter
-    private final LegsSlot legsSlot = new LegsSlot();
+    private final LegArmorSlot legArmorSlot = new LegArmorSlot();
 
     @Getter
     private final AccessorySlots accessorySlots = new AccessorySlots();
@@ -45,11 +45,11 @@ public class Inventory {
     public Item equip(Item item) {
 
         if (item instanceof Headgear) {
-            return headSlot.equip((Headgear) item);
+            return headgearSlot.equip((Headgear) item);
         } else if (item instanceof BodyArmor) {
-            return chestSlot.equip((BodyArmor) item);
+            return bodyArmorSlot.equip((BodyArmor) item);
         } else if (item instanceof LegArmor) {
-            return legsSlot.equip((LegArmor) item);
+            return legArmorSlot.equip((LegArmor) item);
         } else if (item instanceof Accessory) {
             return accessorySlots.equip((Accessory) item);
         } else if (item instanceof Backpack) {
