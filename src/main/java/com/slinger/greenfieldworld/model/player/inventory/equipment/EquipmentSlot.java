@@ -1,10 +1,18 @@
 package com.slinger.greenfieldworld.model.player.inventory.equipment;
 
 import com.slinger.greenfieldworld.model.items.Item;
+import lombok.Getter;
 
 public abstract class EquipmentSlot<T extends Item> {
 
+    @Getter
+    private final EquipmentSlotType type;
+
     protected T item;
+
+    protected EquipmentSlot() {
+        type = setEquipmentSlotType();
+    }
 
     public Item equip(T item) {
 
@@ -32,4 +40,6 @@ public abstract class EquipmentSlot<T extends Item> {
     public boolean isOccupied() {
         return item != null;
     }
+
+    abstract EquipmentSlotType setEquipmentSlotType();
 }

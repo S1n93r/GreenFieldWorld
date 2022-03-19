@@ -34,4 +34,9 @@ public class AccessorySlots extends EquipmentSlot<Accessory> {
 
         return accessorySlotList.get(0).equip(item);
     }
+
+    @Override
+    EquipmentSlotType setEquipmentSlotType() {
+        return EquipmentSlotType.ACCESSORY;
+    }
 }

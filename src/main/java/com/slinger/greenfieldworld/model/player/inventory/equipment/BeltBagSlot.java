@@ -68,4 +68,9 @@ public class BeltBagSlot extends EquipmentSlot<BeltBag> {
 
         return this.item.getUnmodifiableItemList();
     }
+
+    @Override
+    EquipmentSlotType setEquipmentSlotType() {
+        return EquipmentSlotType.BELT_BAG;
+    }
 }

@@ -28,7 +28,7 @@ class RemoveTest {
 
         player.setAvailableLootBag(lootBag);
 
-        String equipOutput = player.getAction("equip").use("linen hood");
+        player.getAction("equip").use("linen hood");
 
         Remove sut = (Remove) player.getAction("remove");
 
@@ -36,8 +36,6 @@ class RemoveTest {
         String output = sut.use("headgear");
 
         /* Then */
-        assertEquals("You remove your linen hood from your class" +
-                " com.slinger.greenfieldworld.model.player.inventory.equipment.HeadgearSlot and put it to the " +
-                "regional inventory.", output);
+        assertEquals("You remove your linen hood (HEADGEAR) and put it to the regional inventory.", output);
     }
 }

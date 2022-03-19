@@ -18,9 +18,8 @@ public class Remove extends InventoryInteraction {
 
     private static final String OUTPUT_ACTION_PARAM_UNKNOWN = "You don't know how to remove '{0}'.";
 
-    private static final String OUTPUT_REMOVE_SUCCESS_THE = "You remove your {0} from your {1} and put it to the {2}.";
-    private static final String OUTPUT_REMOVE_SUCCESS_YOUR = "You remove your {0} from your {1} and put it to your " +
-            "{2}.";
+    private static final String OUTPUT_REMOVE_SUCCESS_THE = "You remove your {0} ({1}) and put it to the {2}.";
+    private static final String OUTPUT_REMOVE_SUCCESS_YOUR = "You remove your {0} ({1}) and put it to your {2}.";
 
     public Remove(Player player, Inventory inventory) {
         super(player, inventory);
@@ -83,12 +82,12 @@ public class Remove extends InventoryInteraction {
             bagNameForItemDrop = beltBag.getBagName();
 
         } else
-            return MessageUtil.format(OUTPUT_REMOVE_SUCCESS_THE, removedItem.getName(), equipmentSlot.getClass(),
+            return MessageUtil.format(OUTPUT_REMOVE_SUCCESS_THE, removedItem.getName(), equipmentSlot.getType(),
                     player.getRegion().getRegionInventory().getName());
 
 
         /* TODO: Add slot type name to EquipmentSlot class. */
-        return MessageUtil.format(OUTPUT_REMOVE_SUCCESS_YOUR, removedItem.getName(), equipmentSlot.getClass(),
+        return MessageUtil.format(OUTPUT_REMOVE_SUCCESS_YOUR, removedItem.getName(), equipmentSlot.getType(),
                 bagNameForItemDrop);
     }
 }

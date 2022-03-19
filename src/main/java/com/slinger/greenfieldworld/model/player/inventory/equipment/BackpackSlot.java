@@ -68,4 +68,9 @@ public class BackpackSlot extends EquipmentSlot<Backpack> {
 
         return this.item.getUnmodifiableItemList();
     }
+
+    @Override
+    EquipmentSlotType setEquipmentSlotType() {
+        return EquipmentSlotType.BACKPACK;
+    }
 }
