@@ -3,7 +3,6 @@ package com.slinger.greenfieldworld.controller;
 import com.slinger.greenfieldworld.controller.inputparser.InputParser;
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.Player;
-import com.slinger.greenfieldworld.model.world.World;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.junit.jupiter.api.Test;
@@ -17,8 +16,6 @@ class InputParserTest {
     public void unknownCommandTriggersHelpPrompt() {
 
         /* Given */
-        World worldMock = mock(World.class);
-
         Player playerMock = mock(Player.class);
 
         final StringProperty outputProperty = new SimpleStringProperty();
