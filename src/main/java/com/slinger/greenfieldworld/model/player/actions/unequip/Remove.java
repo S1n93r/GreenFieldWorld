@@ -12,14 +12,14 @@ import com.slinger.greenfieldworld.model.player.inventory.equipment.EquipmentSlo
 
 public class Remove extends InventoryInteraction {
 
-    private static final String TRIGGER_WORD = "remove";
+    protected static final String TRIGGER_WORD = "remove";
 
-    private static final String OUTPUT_SLOT_IS_EMPTY = "You don't wear anything on your {0}.";
+    protected static final String OUTPUT_SLOT_IS_EMPTY = "You don't wear anything on your {0}.";
 
-    private static final String OUTPUT_ACTION_PARAM_UNKNOWN = "You don't know how to remove '{0}'.";
+    protected static final String OUTPUT_ACTION_PARAM_UNKNOWN = "You don't know how to remove '{0}'.";
 
-    private static final String OUTPUT_REMOVE_SUCCESS_THE = "You remove your {0} ({1}) and put it to the {2}.";
-    private static final String OUTPUT_REMOVE_SUCCESS_YOUR = "You remove your {0} ({1}) and put it to your {2}.";
+    protected static final String OUTPUT_REMOVE_SUCCESS_THE = "You remove your {0} and put it to the {1}.";
+    protected static final String OUTPUT_REMOVE_SUCCESS_YOUR = "You remove your {0} and put it into your {1}.";
 
     public Remove(Player player, Inventory inventory) {
         super(player, inventory);
@@ -82,12 +82,11 @@ public class Remove extends InventoryInteraction {
             bagNameForItemDrop = beltBag.getBagName();
 
         } else
-            return MessageUtil.format(OUTPUT_REMOVE_SUCCESS_THE, removedItem.getName(), equipmentSlot.getType(),
+            return MessageUtil.format(OUTPUT_REMOVE_SUCCESS_THE, removedItem.getName(),
                     player.getRegion().getRegionInventory().getName());
 
 
         /* TODO: Add slot type name to EquipmentSlot class. */
-        return MessageUtil.format(OUTPUT_REMOVE_SUCCESS_YOUR, removedItem.getName(), equipmentSlot.getType(),
-                bagNameForItemDrop);
+        return MessageUtil.format(OUTPUT_REMOVE_SUCCESS_YOUR, removedItem.getName(), bagNameForItemDrop);
     }
 }
