@@ -8,9 +8,10 @@ import com.slinger.greenfieldworld.model.world.WorldGenerator;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class RootController {
@@ -18,6 +19,8 @@ public class RootController {
     private static final String INPUT_MARKER = " > ";
 
     private final InputParser inputParser;
+
+    private List<String> recentInputs = new ArrayList<>();
 
     @FXML
     private TextArea console;
@@ -54,9 +57,24 @@ public class RootController {
     }
 
     @FXML
-    private void onEnterPressed(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ENTER)
-            submit();
+    private void onKeyPressed(KeyEvent keyEvent) {
+
+        switch (keyEvent.getCode()) {
+
+            case ENTER:
+                submit();
+                break;
+
+            case UP:
+                /* TODO: Recover last input. */
+                break;
+
+            case DOWN:
+                /* TODO: Recover next input. */
+                break;
+
+            default: //Nothing happens for unregistered keys.
+        }
     }
 
     private void submit() {

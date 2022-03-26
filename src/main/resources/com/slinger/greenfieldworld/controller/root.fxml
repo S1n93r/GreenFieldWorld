@@ -16,7 +16,7 @@
     <TextArea fx:id="console" editable="false" focusTraversable="false" VBox.vgrow="ALWAYS"/>
 
     <HBox>
-        <TextField fx:id="input" HBox.hgrow="ALWAYS" onKeyPressed="#onEnterPressed"/>
+        <TextField fx:id="input" HBox.hgrow="ALWAYS" onKeyPressed="#onKeyPressed"/>
         <Button text="Submit" onAction="#onSubmitButtonPressed" focusTraversable="false"/>
     </HBox>
 
