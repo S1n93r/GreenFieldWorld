@@ -51,6 +51,7 @@ public class LookParser extends Parser {
             case SOUTH:
             case WEST:
                 submitOutputConsumer.accept(player.getAction(actionWord).use(paramWord));
+                break;
 
             default:
                 submitOutputConsumer.accept(MessageUtil.format(PARAM_UNKNOWN, paramWord));
