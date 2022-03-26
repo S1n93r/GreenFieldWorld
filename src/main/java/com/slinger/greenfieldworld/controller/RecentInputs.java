@@ -10,7 +10,8 @@ public class RecentInputs {
     private static final int DEFAUlT_MAX_COVERABLE_INPUTS = 10;
     private final List<String> recoveableInputs = new ArrayList<>();
 
-    private int indexCurrentInput;
+    private int indexPreviousInput;
+    private int indexNextInput;
 
     private int maxRecoverableInput = DEFAUlT_MAX_COVERABLE_INPUTS;
 
@@ -28,7 +29,7 @@ public class RecentInputs {
         }
 
         recoveableInputs.add(input);
-        indexCurrentInput = recoveableInputs.indexOf(input);
+        setIndexCurrentInput(recoveableInputs.indexOf(input) + 1);
     }
 
     public String getPreviousInput() {
@@ -39,12 +40,14 @@ public class RecentInputs {
         if (recoveableInputs.size() == 1)
             return recoveableInputs.get(0);
 
-        if (indexCurrentInput == 0)
+        if (indexPreviousInput < 0)
             return MessageUtil.emptyString();
 
-        indexCurrentInput--;
+        String previousInput = recoveableInputs.get(indexPreviousInput);
 
-        return recoveableInputs.get(indexCurrentInput);
+        setIndexCurrentInput(indexPreviousInput);
+
+        return previousInput;
     }
 
     public String getNextInput() {
@@ -55,11 +58,18 @@ public class RecentInputs {
         if (recoveableInputs.size() == 1)
             return MessageUtil.emptyString();
 
-        if (indexCurrentInput == recoveableInputs.size() - 1)
+        if (indexNextInput > recoveableInputs.size())
             return MessageUtil.emptyString();
 
-        indexCurrentInput++;
+        String nextInput = recoveableInputs.get(indexNextInput);
 
-        return recoveableInputs.get(indexCurrentInput);
+        setIndexCurrentInput(indexNextInput);
+
+        return nextInput;
+    }
+
+    private void setIndexCurrentInput(int indexCurrentInput) {
+        indexPreviousInput = indexCurrentInput - 1;
+        indexNextInput = indexCurrentInput + 1;
     }
 }

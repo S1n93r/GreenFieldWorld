@@ -26,4 +26,8 @@ public final class MessageUtil {
     public static String emptyString() {
         return EMPTY;
     }
+
+    public static boolean isBlankOrEmpty(String string) {
+        return string.isBlank() || string.isEmpty();
+    }
 }

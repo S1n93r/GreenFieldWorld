@@ -1,6 +1,7 @@
 package com.slinger.greenfieldworld.controller;
 
 import com.slinger.greenfieldworld.controller.inputparser.InputParser;
+import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.PlayerGenerator;
 import com.slinger.greenfieldworld.model.world.World;
@@ -10,8 +11,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
 public class RootController {
@@ -20,7 +19,7 @@ public class RootController {
 
     private final InputParser inputParser;
 
-    private List<String> recentInputs = new ArrayList<>();
+    private RecentInputs recentInputs = new RecentInputs();
 
     @FXML
     private TextArea console;
@@ -43,7 +42,11 @@ public class RootController {
     private Consumer<String> generateOutputConsumer() {
         return output -> {
 
-            console.appendText(INPUT_MARKER + input.getText() + System.lineSeparator());
+            String currentInput = input.getText();
+
+            recentInputs.addInput(currentInput);
+
+            console.appendText(INPUT_MARKER + currentInput + System.lineSeparator());
 
             console.appendText(output + System.lineSeparator());
 
@@ -66,11 +69,17 @@ public class RootController {
                 break;
 
             case UP:
-                /* TODO: Recover last input. */
+                String previousInput = recentInputs.getPreviousInput();
+
+                if (!MessageUtil.isBlankOrEmpty(previousInput))
+                    input.setText(previousInput);
                 break;
 
             case DOWN:
-                /* TODO: Recover next input. */
+                String nextInput = recentInputs.getNextInput();
+
+                if (!MessageUtil.isBlankOrEmpty(nextInput))
+                    input.setText(nextInput);
                 break;
 
             default: //Nothing happens for unregistered keys.

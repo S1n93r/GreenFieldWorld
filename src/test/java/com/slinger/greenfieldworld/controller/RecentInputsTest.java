@@ -26,10 +26,12 @@ class RecentInputsTest {
         actualInputs.add(sut.getPreviousInput());
         actualInputs.add(sut.getPreviousInput());
         actualInputs.add(sut.getPreviousInput());
+        actualInputs.add(sut.getPreviousInput());
 
         /* Then */
         List<String> expectedInputs = new ArrayList<>();
 
+        expectedInputs.add("Input 4");
         expectedInputs.add("Input 3");
         expectedInputs.add("Input 2");
         expectedInputs.add("");
@@ -60,9 +62,9 @@ class RecentInputsTest {
         List<String> expectedInputs = new ArrayList<>();
 
         expectedInputs.add("");
+        expectedInputs.add("Input 4");
         expectedInputs.add("Input 3");
-        expectedInputs.add("Input 2");
-        expectedInputs.add("Input 3");
+        expectedInputs.add("Input 4");
 
         assertEquals(expectedInputs, actualInputs);
     }
