@@ -15,6 +15,8 @@ import java.util.function.Consumer;
 
 public class RootController {
 
+    private static final String INPUT_MARKER = " > ";
+
     private final InputParser inputParser;
 
     @FXML
@@ -38,9 +40,10 @@ public class RootController {
     private Consumer<String> generateOutputConsumer() {
         return output -> {
 
+            console.appendText(INPUT_MARKER + input.getText() + System.lineSeparator());
+
             console.appendText(output + System.lineSeparator());
 
-            console.appendText(input.getText() + System.lineSeparator());
             input.clear();
         };
     }
