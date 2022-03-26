@@ -58,7 +58,7 @@ public class RecentInputs {
         if (recoveableInputs.size() == 1)
             return MessageUtil.emptyString();
 
-        if (indexNextInput > recoveableInputs.size())
+        if (indexNextInput > recoveableInputs.size() - 1)
             return MessageUtil.emptyString();
 
         String nextInput = recoveableInputs.get(indexNextInput);
