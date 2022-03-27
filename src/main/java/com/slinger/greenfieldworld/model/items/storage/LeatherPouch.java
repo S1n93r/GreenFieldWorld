@@ -4,6 +4,9 @@ public class LeatherPouch extends BeltBag {
 
     private static final String NAME = "leather pouch";
 
+    private static final int MAX_STACK_SIZE = 1;
+    private static final int STORAGE_SIZE = 1;
+
     /* TODO: Add proper description. */
     private static final String DESCRIPTION = "An ordinary leather pouch.";
 
@@ -18,7 +21,12 @@ public class LeatherPouch extends BeltBag {
     }
 
     @Override
+    protected int setMaxStackSize() {
+        return MAX_STACK_SIZE;
+    }
+
+    @Override
     int setStorageSize() {
-        return 1;
+        return STORAGE_SIZE;
     }
 }

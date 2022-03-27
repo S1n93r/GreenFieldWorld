@@ -7,6 +7,9 @@ public class RegionInventory extends Backpack {
 
     private static final String NAME = "regional inventory";
 
+    private static final int MAX_STACK_SIZE = 1;
+    private static final int STORAGE_SIZE = 100;
+
     @Override
     public String setName() {
         return NAME;
@@ -18,7 +21,12 @@ public class RegionInventory extends Backpack {
     }
 
     @Override
+    protected int setMaxStackSize() {
+        return MAX_STACK_SIZE;
+    }
+
+    @Override
     int setStorageSize() {
-        return 100;
+        return STORAGE_SIZE;
     }
 }
