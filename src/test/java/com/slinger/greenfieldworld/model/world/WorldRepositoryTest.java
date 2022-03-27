@@ -3,8 +3,8 @@ package com.slinger.greenfieldworld.model.world;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.slinger.greenfieldworld.model.player.PlayerGenerator;
-import com.slinger.greenfieldworld.persistence.world.WorldPersistenceDto;
-import com.slinger.greenfieldworld.persistence.world.WorldRepository;
+import com.slinger.greenfieldworld.persistence.WorldPersistenceDto;
+import com.slinger.greenfieldworld.persistence.WorldRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

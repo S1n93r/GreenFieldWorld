@@ -1,4 +1,4 @@
-package com.slinger.greenfieldworld.persistence.world;
+package com.slinger.greenfieldworld.persistence;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.slinger.greenfieldworld.model.world.Coordinate;

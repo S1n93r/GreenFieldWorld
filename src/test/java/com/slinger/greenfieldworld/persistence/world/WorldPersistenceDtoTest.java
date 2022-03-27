@@ -4,6 +4,7 @@ import com.slinger.greenfieldworld.model.world.Coordinate;
 import com.slinger.greenfieldworld.model.world.World;
 import com.slinger.greenfieldworld.model.world.regions.Region;
 import com.slinger.greenfieldworld.model.world.regions.plain.FlowerBed;
+import com.slinger.greenfieldworld.persistence.WorldPersistenceDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
