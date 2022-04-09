@@ -5,6 +5,8 @@ public enum RemoveParam {
     ACCESSORY_ONE,
     ACCESSORY_TWO,
     BODY_ARMOR,
+    HAND_LEFT,
+    HAND_RIGHT,
     HEADGEAR,
     LEG_ARMOR,
     UNKNOWN;
@@ -13,6 +15,8 @@ public enum RemoveParam {
     private static final String COMMAND_ACCESSORY_TWO = "accessory two";
     private static final String COMMAND_BODY_ARMOR = "body armor";
     private static final String COMMAND_HEADGEAR = "headgear";
+    private static final String COMMAND_HAND_LEFT = "hand left";
+    private static final String COMMAND_HAND_RIGHT = "hand right";
     private static final String COMMAND_LEG_ARMOR = "leg armor";
 
     public static RemoveParam fromString(String checkParam) {
@@ -26,6 +30,10 @@ public enum RemoveParam {
             return BODY_ARMOR;
         else if (checkParam.equalsIgnoreCase(COMMAND_HEADGEAR))
             return HEADGEAR;
+        else if (checkParam.equalsIgnoreCase(COMMAND_HAND_LEFT))
+            return HAND_LEFT;
+        else if (checkParam.equalsIgnoreCase(COMMAND_HAND_RIGHT))
+            return HAND_RIGHT;
         else if (checkParam.equalsIgnoreCase(COMMAND_LEG_ARMOR))
             return LEG_ARMOR;
         else

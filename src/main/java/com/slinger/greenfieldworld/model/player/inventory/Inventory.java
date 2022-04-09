@@ -3,8 +3,10 @@ package com.slinger.greenfieldworld.model.player.inventory;
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.exceptions.SwitchCaseNotDefinedException;
 import com.slinger.greenfieldworld.model.items.Item;
+import com.slinger.greenfieldworld.model.items.equipment.Equipment;
 import com.slinger.greenfieldworld.model.items.equipment.accessory.Accessory;
 import com.slinger.greenfieldworld.model.items.equipment.bodyarmor.BodyArmor;
+import com.slinger.greenfieldworld.model.items.equipment.hand.Hand;
 import com.slinger.greenfieldworld.model.items.equipment.headgear.Headgear;
 import com.slinger.greenfieldworld.model.items.equipment.legarmor.LegArmor;
 import com.slinger.greenfieldworld.model.items.storage.Backpack;
@@ -17,6 +19,9 @@ public class Inventory {
     private static final String ITEM_LIST_SEPARATOR = "----------";
 
     @Getter
+    private final HandsSlot handsSlot = new HandsSlot();
+
+    @Getter
     private final HeadgearSlot headgearSlot = new HeadgearSlot();
 
     @Getter
@@ -26,7 +31,7 @@ public class Inventory {
     private final LegArmorSlot legArmorSlot = new LegArmorSlot();
 
     @Getter
-    private final AccessorySlots accessorySlots = new AccessorySlots();
+    private final AccessoriesSlot accessoriesSlot = new AccessoriesSlot();
 
     @Getter
     private final BackpackSlot backpackSlot = new BackpackSlot();
@@ -42,24 +47,28 @@ public class Inventory {
         return beltBagSlot.store(item);
     }
 
-    public Item equip(Item item) {
+    public Item equip(Equipment equipment) {
 
-        if (item instanceof Headgear) {
-            return headgearSlot.equip((Headgear) item);
-        } else if (item instanceof BodyArmor) {
-            return bodyArmorSlot.equip((BodyArmor) item);
-        } else if (item instanceof LegArmor) {
-            return legArmorSlot.equip((LegArmor) item);
-        } else if (item instanceof Accessory) {
-            return accessorySlots.equip((Accessory) item);
-        } else if (item instanceof Backpack) {
-            return backpackSlot.equip((Backpack) item);
-        } else if (item instanceof BeltBag) {
-            return beltBagSlot.equip((BeltBag) item);
+        switch (equipment.getEquipmentSlotType()) {
+
+            case ACCESSORY:
+                return accessoriesSlot.equip((Accessory) equipment);
+
+            case HAND:
+                return handsSlot.equip((Hand) equipment);
+            case HEADGEAR:
+                return headgearSlot.equip((Headgear) equipment);
+            case BODY_ARMOR:
+                return bodyArmorSlot.equip((BodyArmor) equipment);
+            case LEG_ARMOR:
+                return legArmorSlot.equip((LegArmor) equipment);
+            case BACKPACK:
+                return backpackSlot.equip((Backpack) equipment);
+            case BELT_BAG:
+                return beltBagSlot.equip((BeltBag) equipment);
+            default:
+                throw new SwitchCaseNotDefinedException();
         }
-
-        throw new SwitchCaseNotDefinedException("The item you try to equip is of a type not known to the equip " +
-                "function.");
     }
 
     public String check() {

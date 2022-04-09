@@ -1,5 +1,7 @@
 package com.slinger.greenfieldworld.model.items.equipment.legarmor;
 
+import com.slinger.greenfieldworld.model.player.inventory.equipment.EquipmentSlotType;
+
 public class LinenHose extends LegArmor {
 
     private static final String NAME = "linen hose";
@@ -23,5 +25,10 @@ public class LinenHose extends LegArmor {
     @Override
     protected int setMaxStackSize() {
         return MAX_STACK_SIZE;
+    }
+
+    @Override
+    protected EquipmentSlotType setEquipmentSlotType() {
+        return EquipmentSlotType.LEG_ARMOR;
     }
 }

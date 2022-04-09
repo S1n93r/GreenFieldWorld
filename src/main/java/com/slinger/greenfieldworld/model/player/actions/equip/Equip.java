@@ -3,6 +3,7 @@ package com.slinger.greenfieldworld.model.player.actions.equip;
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.exceptions.SwitchCaseNotDefinedException;
 import com.slinger.greenfieldworld.model.items.Item;
+import com.slinger.greenfieldworld.model.items.equipment.Equipment;
 import com.slinger.greenfieldworld.model.items.storage.LootBag;
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.actions.InventoryInteraction;
@@ -61,7 +62,8 @@ public class Equip extends InventoryInteraction {
         if (item == null)
             return MessageUtil.format(OUTPUT_ITEM_NAME_NOT_FOUND, itemName);
 
-        return equipItem(item);
+        /* FIXME: If the item is not of type 'Equipment', it was still already removed from the container. */
+        return equipItem((Equipment) item);
     }
 
     private String equipByItemIndex(int itemIndex) {
@@ -71,15 +73,16 @@ public class Equip extends InventoryInteraction {
             item = player.getAvailableLootBag().fetchItem(itemIndex);
 
         if (item == null)
-            inventory.fetchItem(itemIndex);
+            item = inventory.fetchItem(itemIndex);
 
         if (item == null)
             return MessageUtil.format(OUTPUT_ITEM_INDEX_NOT_FOUND, itemIndex);
 
-        return equipItem(item);
+        /* FIXME: If the item is not of type 'Equipment', it was still already removed from the container. */
+        return equipItem((Equipment) item);
     }
 
-    private String equipItem(Item item) {
+    private String equipItem(Equipment item) {
 
         Item previousItemEquipped = inventory.equip(item);
 

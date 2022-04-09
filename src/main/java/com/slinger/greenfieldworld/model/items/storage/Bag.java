@@ -2,13 +2,14 @@ package com.slinger.greenfieldworld.model.items.storage;
 
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.items.Item;
+import com.slinger.greenfieldworld.model.items.equipment.Equipment;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class Bag extends Item {
+public abstract class Bag extends Equipment {
 
     private static final String OUTPUT_BAG_FULL = "You can't put {0} into your {1}. Your {2} is full.";
     private static final String OUTPUT_STORING_SUCCESSFUL = "You put {0} into your {1}.";

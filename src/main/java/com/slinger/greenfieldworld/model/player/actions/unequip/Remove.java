@@ -39,7 +39,7 @@ public class Remove extends InventoryInteraction {
 
             case ACCESSORY_ONE:
             case ACCESSORY_TWO:
-                return removeBySlot(inventory.getAccessorySlots());
+                return removeBySlot(inventory.getAccessoriesSlot());
 
             case BODY_ARMOR:
                 return removeBySlot(inventory.getBodyArmorSlot());

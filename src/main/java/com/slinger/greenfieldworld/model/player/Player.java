@@ -29,6 +29,7 @@ public class Player {
 
     @Getter
     private final String name;
+
     private final Inventory inventory = new Inventory();
 
     @Setter

@@ -1,5 +1,7 @@
 package com.slinger.greenfieldworld.model.items.equipment.accessory;
 
+import com.slinger.greenfieldworld.model.player.inventory.equipment.EquipmentSlotType;
+
 public class RustyIronRing extends Accessory {
 
     private static final String NAME = "rusty iron ring";
@@ -23,5 +25,10 @@ public class RustyIronRing extends Accessory {
     @Override
     protected int setMaxStackSize() {
         return MAX_STACK_SIZE;
+    }
+
+    @Override
+    protected EquipmentSlotType setEquipmentSlotType() {
+        return EquipmentSlotType.ACCESSORY;
     }
 }

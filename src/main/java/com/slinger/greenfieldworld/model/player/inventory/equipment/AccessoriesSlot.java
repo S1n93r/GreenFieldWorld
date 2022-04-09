@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AccessorySlots extends EquipmentSlot<Accessory> {
+public class AccessoriesSlot extends EquipmentSlot<Accessory> {
 
     private static final String SUCCESS_OUTPUT = "You put on {0}.";
 
@@ -16,7 +16,7 @@ public class AccessorySlots extends EquipmentSlot<Accessory> {
     AccessorySlot accessorySlotA = new AccessorySlot();
     AccessorySlot accessorySlotB = new AccessorySlot();
 
-    public AccessorySlots() {
+    public AccessoriesSlot() {
         accessorySlotList.add(accessorySlotA);
         accessorySlotList.add(accessorySlotB);
     }

@@ -8,7 +8,8 @@ public abstract class EquipmentSlot<T extends Item> {
     @Getter
     private final EquipmentSlotType type;
 
-    protected T item;
+    @Getter
+    private T item;
 
     protected EquipmentSlot() {
         type = setEquipmentSlotType();

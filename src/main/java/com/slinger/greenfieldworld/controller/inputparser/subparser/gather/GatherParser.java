@@ -11,10 +11,10 @@ import java.util.function.Consumer;
 
 public class GatherParser extends Parser {
 
-    protected static final String ACTION_NOT_AVAILABLE_PROMPT = "Your are unable to gather anything.";
-    protected static final String NO_PARAM_PROMPT = "Gather what?";
-    protected static final String PARAM_NOT_FOUND_PROMPT = "You don't know how to gather '{0}'";
-    protected static final String ACTION_PARAM_NOT_IMPLEMENTED = "WARNING: Action parameter not implemented.";
+    public static final String ACTION_NOT_AVAILABLE_PROMPT = "Your are unable to gather anything.";
+    public static final String NO_PARAM_PROMPT = "Gather what?";
+    public static final String PARAM_NOT_FOUND_PROMPT = "You don't know how to gather '{0}'";
+    public static final String ACTION_PARAM_NOT_IMPLEMENTED = "WARNING: Action parameter not implemented.";
 
     private final Player player;
 

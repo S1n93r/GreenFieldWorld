@@ -18,55 +18,55 @@ public class BackpackSlot extends EquipmentSlot<Backpack> {
         if (!isOccupied())
             return MessageUtil.format(OUTPUT_NO_BACKPACK);
 
-        return this.item.store(item);
+        return getItem().store(item);
     }
 
     public Item fetchItemFromBag(String itemName) {
 
-        if (item == null)
+        if (getItem() == null)
             return null;
 
-        return item.fetchItem(itemName);
+        return getItem().fetchItem(itemName);
     }
 
     public Item fetchItemFromBag(int itemIndex) {
 
-        if (item == null)
+        if (getItem() == null)
             return null;
 
-        return item.fetchItem(itemIndex);
+        return getItem().fetchItem(itemIndex);
     }
 
     public boolean hasBagSpace() {
 
-        if (item == null)
+        if (getItem() == null)
             return false;
 
-        return item.hasSpace();
+        return getItem().hasSpace();
     }
 
     public String getBagName() {
 
-        if (item == null)
+        if (getItem() == null)
             return MessageUtil.emptyString();
 
-        return item.getName();
+        return getItem().getName();
     }
 
     public String getBagNameWithArticle() {
 
-        if (item == null)
+        if (getItem() == null)
             return MessageUtil.emptyString();
 
-        return item.getNameWithArticle();
+        return getItem().getNameWithArticle();
     }
 
     public List<Item> getUnmodifiableItemList() {
 
-        if (item == null)
+        if (getItem() == null)
             return Collections.emptyList();
 
-        return this.item.getUnmodifiableItemList();
+        return getItem().getUnmodifiableItemList();
     }
 
     @Override

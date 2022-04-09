@@ -1,5 +1,7 @@
 package com.slinger.greenfieldworld.model.items.equipment.bodyarmor;
 
+import com.slinger.greenfieldworld.model.player.inventory.equipment.EquipmentSlotType;
+
 public class LinenSurcoat extends BodyArmor {
 
     private static final String NAME = "linen surcoat";
@@ -23,5 +25,10 @@ public class LinenSurcoat extends BodyArmor {
     @Override
     protected int setMaxStackSize() {
         return MAX_STACK_SIZE;
+    }
+
+    @Override
+    protected EquipmentSlotType setEquipmentSlotType() {
+        return EquipmentSlotType.BODY_ARMOR;
     }
 }

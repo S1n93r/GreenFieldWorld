@@ -1,5 +1,7 @@
 package com.slinger.greenfieldworld.model.items.storage;
 
+import com.slinger.greenfieldworld.model.player.inventory.equipment.EquipmentSlotType;
+
 public class LootBag extends Bag {
 
     private static final String NAME = "loot bag";
@@ -26,5 +28,10 @@ public class LootBag extends Bag {
     @Override
     int setStorageSize() {
         return STORAGE_SIZE;
+    }
+
+    @Override
+    protected EquipmentSlotType setEquipmentSlotType() {
+        return EquipmentSlotType.LOOT_BAG;
     }
 }

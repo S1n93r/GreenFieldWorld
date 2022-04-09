@@ -1,5 +1,7 @@
 package com.slinger.greenfieldworld.model.items.equipment.headgear;
 
+import com.slinger.greenfieldworld.model.player.inventory.equipment.EquipmentSlotType;
+
 public class LinenHood extends Headgear {
 
     private static final String NAME = "linen hood";
@@ -23,5 +25,10 @@ public class LinenHood extends Headgear {
     @Override
     protected int setMaxStackSize() {
         return MAX_STACK_SIZE;
+    }
+
+    @Override
+    protected EquipmentSlotType setEquipmentSlotType() {
+        return EquipmentSlotType.HEADGEAR;
     }
 }
