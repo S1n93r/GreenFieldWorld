@@ -75,22 +75,48 @@ public class Inventory {
         return checkBackpack() + System.lineSeparator() + checkBeltBag();
     }
 
-    public Item fetchItem(String itemName) {
+    /* TODO: Just a reach-through from Bag class. Really necessary?*/
+    public Item getItem(String itemName) {
 
-        Item item = backpackSlot.fetchItemFromBag(itemName);
+        Item item = backpackSlot.getItem().getItem(itemName);
 
         if (item == null)
-            item = beltBagSlot.fetchItemFromBag(itemName);
+            item = beltBagSlot.getItem().getItem(itemName);
 
         return item;
     }
 
-    public Item fetchItem(int itemIndex) {
+    /* TODO: Just a reach-through from Bag class. Really necessary?*/
+    public Item fetchItem(String itemName) {
 
-        Item item = backpackSlot.fetchItemFromBag(itemIndex);
+        Item item = backpackSlot.isOccupied() ? backpackSlot.getItem().fetchItem(itemName) : null;
 
         if (item == null)
-            item = beltBagSlot.fetchItemFromBag(itemIndex - backpackSlot.getUnmodifiableItemList().size());
+            item = beltBagSlot.isOccupied() ?
+                    beltBagSlot.getItem().fetchItem(itemName) : null;
+
+        return item;
+    }
+
+    /* TODO: Just a reach-through from Bag class. Really necessary?*/
+    public Item getItem(int itemIndex) {
+
+        Item item = backpackSlot.getItem().getItem(itemIndex);
+
+        if (item == null)
+            item = beltBagSlot.getItem().getItem(itemIndex - backpackSlot.getUnmodifiableItemList().size());
+
+        return item;
+    }
+
+    /* TODO: Just a reach-through from Bag class. Really necessary?*/
+    public Item fetchItem(int itemIndex) {
+
+        Item item = backpackSlot.isOccupied() ? backpackSlot.getItem().fetchItem(itemIndex) : null;
+
+        if (item == null)
+            item = beltBagSlot.isOccupied() ?
+                    beltBagSlot.getItem().fetchItem(itemIndex - backpackSlot.getUnmodifiableItemList().size()) : null;
 
         return item;
     }
