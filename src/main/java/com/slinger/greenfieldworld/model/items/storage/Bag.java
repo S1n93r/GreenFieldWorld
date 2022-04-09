@@ -40,35 +40,44 @@ public abstract class Bag extends Equipment {
         return Collections.unmodifiableList(itemList);
     }
 
-    /* TODO: Try to cover via unit test. */
-    public Item fetchItem(String name) {
+    public Item getItem(String itemName) {
 
-        for (Item item : itemList) {
-            if (item.getName().equalsIgnoreCase(name)) {
-
-                itemList.remove(item);
-
+        for (Item item : itemList)
+            if (item.getName().equalsIgnoreCase(itemName))
                 return item;
-            }
-        }
 
         return null;
     }
 
     /* TODO: Try to cover via unit test. */
-    public Item fetchItem(int index) {
+    public Item fetchItem(String itemName) {
 
-        try {
+        Item item = getItem(itemName);
 
-            Item item = itemList.get(index);
-
+        if (item != null)
             itemList.remove(item);
 
-            return item;
+        return item;
+    }
 
+    public Item getItem(int itemIndex) {
+
+        try {
+            return itemList.get(itemIndex);
         } catch (IndexOutOfBoundsException e) {
             return null;
         }
+    }
+
+    /* TODO: Try to cover via unit test. */
+    public Item fetchItem(int itemIndex) {
+
+        Item item = getItem(itemIndex);
+
+        if (item != null)
+            itemList.remove(item);
+
+        return item;
     }
 
     public boolean hasSpace() {
