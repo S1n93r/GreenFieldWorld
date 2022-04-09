@@ -25,6 +25,7 @@ public abstract class Region {
     private final String regionName;
 
     @Getter
+    @JsonIgnore
     private final ResourceDeposit resourceDeposit = new ResourceDeposit();
 
     @Getter
