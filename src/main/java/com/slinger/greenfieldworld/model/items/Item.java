@@ -19,7 +19,7 @@ public abstract class Item {
     @Getter
     private int stackSize = 1;
 
-    protected Item() {
+    public Item() {
 
         name = setName();
         description = setDescription();
