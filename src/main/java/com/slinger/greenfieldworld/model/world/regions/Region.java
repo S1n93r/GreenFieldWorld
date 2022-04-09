@@ -6,6 +6,7 @@ import com.slinger.greenfieldworld.model.world.Coordinate;
 import com.slinger.greenfieldworld.model.world.RegionTypeName;
 import com.slinger.greenfieldworld.model.world.events.Event;
 import com.slinger.greenfieldworld.model.world.events.EventChest;
+import com.slinger.greenfieldworld.model.world.regions.resources.ResourceDeposit;
 import lombok.Getter;
 
 import java.util.Optional;
@@ -22,6 +23,9 @@ public abstract class Region {
     private final String regionName;
 
     @Getter
+    private final ResourceDeposit resourceDeposit;
+
+    @Getter
     @JsonIgnore
     private final RegionInventory regionInventory;
 
@@ -33,10 +37,15 @@ public abstract class Region {
         this.coordinate = coordinate;
         this.regionTypeName = regionTypeName;
         this.regionName = regionName;
+
+        this.resourceDeposit = setUpResourceDeposit();
+
         this.eventChest = eventChest;
 
         regionInventory = new RegionInventory();
     }
+
+    protected abstract ResourceDeposit setUpResourceDeposit();
 
     public Optional<Event> getRandomEvent() {
         return eventChest.getRandomEvent();
