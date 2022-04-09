@@ -40,6 +40,7 @@ public abstract class Bag extends Equipment {
         return Collections.unmodifiableList(itemList);
     }
 
+    /* TODO: Try to cover via unit test. */
     public Item fetchItem(String name) {
 
         for (Item item : itemList) {
@@ -54,13 +55,16 @@ public abstract class Bag extends Equipment {
         return null;
     }
 
+    /* TODO: Try to cover via unit test. */
     public Item fetchItem(int index) {
 
         try {
 
             Item item = itemList.get(index);
 
-            return itemList.get(index);
+            itemList.remove(item);
+
+            return item;
 
         } catch (IndexOutOfBoundsException e) {
             return null;
