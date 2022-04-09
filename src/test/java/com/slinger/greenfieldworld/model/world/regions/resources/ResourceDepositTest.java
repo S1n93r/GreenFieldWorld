@@ -15,8 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ResourceDepositTest {
 
     @Test
-    public void test() {
+    public void gatheringYieldsOnlyItemsWithChanceToGet() {
 
+        /* Given */
         Resource<Kindling> twigs = Resource.of(
                 GatheringType.LUMBERJACKING,
                 GatheringChance.of(100),
@@ -29,11 +30,29 @@ class ResourceDepositTest {
                 1,
                 param -> new Log());
 
+        /* When */
         ResourceDeposit sut = new ResourceDeposit(twigs, logs);
 
         List<Item> gatheredItems = sut.gather();
 
+        /* Then */
         assertEquals(1, gatheredItems.size());
         assertTrue(gatheredItems.get(0) instanceof Kindling);
+    }
+
+    @Test
+    public void gatheringYieldsCorrectMaxStackSize() {
+
+        Resource<Kindling> twigs = Resource.of(
+                GatheringType.LUMBERJACKING,
+                GatheringChance.of(100),
+                3,
+                param -> new Kindling());
+
+        ResourceDeposit sut = new ResourceDeposit(twigs);
+
+        List<Item> gatheredItems = sut.gather();
+
+        assertTrue(gatheredItems.get(0).getStackSize() <= 3);
     }
 }
