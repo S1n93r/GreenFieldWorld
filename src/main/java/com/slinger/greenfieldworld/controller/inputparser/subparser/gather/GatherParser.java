@@ -1,5 +1,6 @@
-package com.slinger.greenfieldworld.controller.inputparser.subparser;
+package com.slinger.greenfieldworld.controller.inputparser.subparser.gather;
 
+import com.slinger.greenfieldworld.controller.inputparser.subparser.Parser;
 import com.slinger.greenfieldworld.model.common.MessageUtil;
 import com.slinger.greenfieldworld.model.player.Player;
 import com.slinger.greenfieldworld.model.player.actions.Action;

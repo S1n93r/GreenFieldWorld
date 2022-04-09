@@ -4,7 +4,7 @@
     <module name="GreenFieldWorld.main" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.slinger.greenfieldworld.controller.inputparser.subparser.*" />
+        <option name="PATTERN" value="com.slinger.greenfieldworld.controller.inputparser.subparser.gather.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
