@@ -11,7 +11,7 @@ import lombok.Value;
 
 @Value
 @AllArgsConstructor(staticName = "of")
-public class Resource<T extends Item> {
+public class Resource {
 
     GatheringType gatheringType;
 
@@ -19,9 +19,9 @@ public class Resource<T extends Item> {
 
     int maxYield;
 
-    Callback<Integer, T> itemGenerator;
+    Callback<Integer, Item> itemGenerator;
 
-    public T gather(Tool tool) {
+    public Item gather(Tool tool) {
 
         if (!gatheringSuccessful(tool))
             return null;

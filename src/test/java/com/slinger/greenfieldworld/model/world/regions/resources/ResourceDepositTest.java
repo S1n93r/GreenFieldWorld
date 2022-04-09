@@ -18,20 +18,23 @@ class ResourceDepositTest {
     public void gatheringYieldsOnlyItemsWithChanceToGet() {
 
         /* Given */
-        Resource<Kindling> twigs = Resource.of(
+        Resource twigResource = Resource.of(
                 GatheringType.LUMBERJACKING,
                 GatheringChance.of(100),
                 3,
                 param -> new Kindling());
 
-        Resource<Log> logs = Resource.of(
+        Resource logResource = Resource.of(
                 GatheringType.LUMBERJACKING,
                 GatheringChance.of(0),
                 1,
                 param -> new Log());
 
         /* When */
-        ResourceDeposit sut = new ResourceDeposit(twigs, logs);
+        ResourceDeposit sut = new ResourceDeposit();
+
+        sut.addResource(twigResource);
+        sut.addResource(logResource);
 
         List<Item> gatheredItems = sut.gather();
 
@@ -43,13 +46,15 @@ class ResourceDepositTest {
     @Test
     public void gatheringYieldsCorrectMaxStackSize() {
 
-        Resource<Kindling> twigs = Resource.of(
+        Resource twigResource = Resource.of(
                 GatheringType.LUMBERJACKING,
                 GatheringChance.of(100),
                 3,
                 param -> new Kindling());
 
-        ResourceDeposit sut = new ResourceDeposit(twigs);
+        ResourceDeposit sut = new ResourceDeposit();
+
+        sut.addResource(twigResource);
 
         List<Item> gatheredItems = sut.gather();
 

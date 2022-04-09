@@ -5,15 +5,14 @@ import com.slinger.greenfieldworld.model.items.tools.BareHanded;
 import com.slinger.greenfieldworld.model.items.tools.Tool;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ResourceDeposit {
 
-    private final List<Resource<? extends Item>> availableResources = new ArrayList<>();
+    private final List<Resource> availableResources = new ArrayList<>();
 
-    public ResourceDeposit(Resource<? extends Item>... availableResources) {
-        Collections.addAll(this.availableResources, availableResources);
+    public void addResource(Resource resource) {
+        availableResources.add(resource);
     }
 
     public List<Item> gather() {
@@ -24,7 +23,7 @@ public class ResourceDeposit {
 
         List<Item> gatheredItems = new ArrayList<>();
 
-        for (Resource<? extends Item> resource : availableResources) {
+        for (Resource resource : availableResources) {
 
             Item item = resource.gather(tool);
 

@@ -7,8 +7,11 @@ import com.slinger.greenfieldworld.model.world.events.BeggarEvent;
 import com.slinger.greenfieldworld.model.world.events.EventChest;
 import com.slinger.greenfieldworld.model.world.events.GoblinEvent;
 import com.slinger.greenfieldworld.model.world.regions.Region;
-import com.slinger.greenfieldworld.model.world.regions.resources.ResourceDeposit;
+import com.slinger.greenfieldworld.model.world.regions.resources.Resource;
 import lombok.Getter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -23,7 +26,7 @@ public class Hill extends Region {
     }
 
     @Override
-    protected ResourceDeposit setUpResourceDeposit() {
-        return new ResourceDeposit();
+    protected List<Resource> getResourcesAdded() {
+        return new ArrayList<>();
     }
 }
